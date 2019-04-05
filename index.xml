@@ -6,10 +6,21 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Apr 2019 09:01:37 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2019 09:20:41 -0700</lastBuildDate>
     
 	<atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interviews</title>
+      <link>https://example.org/posts/2019/04/interviews/</link>
+      <pubDate>Fri, 05 Apr 2019 09:20:41 -0700</pubDate>
+      
+      <guid>https://example.org/posts/2019/04/interviews/</guid>
+      <description>This is actually why (or saying the trigger) I create a website and begin blogging.
+Recently I was preparing for changing job. Inevitably I have to prepare for the coding interviews. It was funny that the recruiters from all of the companies I interviewed with suggests online coding websites to get prepared, and first ones of every list is leetcode.com.
+During these 3 months in preparing, I was discussing with my teammates/friends about what we want to see from interviews as interviewers.</description>
+    </item>
     
     <item>
       <title>Create Web</title>
