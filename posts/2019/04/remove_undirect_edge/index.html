@@ -40,7 +40,7 @@
 
 <h3 id="question">Question:</h3>
 
-<p>Given a list of pairs (tuples), each of them represents as a edge that connects two nodes in a tree. However, a node will have edge for not only direct children but also children&rsquo;s children.</p>
+<p>Given a list of pairs (tuples), each of them represents a connection from parent to it&rsquo;s child in a tree. In this list, nodes will have edges not only for their direct children, but also all of it&rsquo;s descendants (i.e. children&rsquo;s children, and their children etc).</p>
 
 <p>If we have the following tree as an example:</p>
 
@@ -53,28 +53,28 @@
 
 <p>Then the list given it will be</p>
 
-<pre><code> [(A,A), (A,B), (A,D), (A,E), (A,C), (B,D), (B,E)]
+<pre><code> [(A,B), (A,D), (A,E), (A,C), (B,D), (B,E)]
 </code></pre>
 
-<p>You can assume the edges given will result in a valid tree, but it&rsquo;s possible that a node only have edges that connects to partial of it&rsquo;s not-direct children. For example, if we remove (A,D) from above list, we should still have a valid tree.</p>
-
-<p>Use this list to construct a tree.</p>
+<p>You can assume the tuples given will result in a valid tree. Use this list to construct a tree.</p>
 
 <h3 id="analysis">Analysis</h3>
 
-<p>Intuitively, what we want to do is to remove the edges that, from a tree&rsquo;s perspective, not connected from a node&rsquo;s parent. However, we can also imagine what we have in the given list are the edges for a directed graph, and then we want to discard edges if the graph contains a longer path connecting the same two vertices.</p>
+<p>Intuitively, what we want to do is to remove the connections <em>a -&gt; b</em> while a is not the node&rsquo;s parent in the tree. The way to distinguish those connections is to find out if there&rsquo;s another way to connect a -&gt; b. If there is any, saying a -&gt; a&rsquo; -&gt; b, then we know b&rsquo;s parent is a&rsquo; instead a then we should remove a -&gt; b.</p>
 
-<p>What we have from the list is a <strong>partially ordered set</strong>  (need to confirm if this is correct) of <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph" target="_blank"><strong>DAG</strong> (Directed Acyclic Graph)</a>, and what we generated is called the <a href="https://en.wikipedia.org/wiki/Transitive_reduction" target="_blank"><strong>transitive reduction</strong></a> of the graph. You can also find it <a href="https://algs4.cs.princeton.edu/42digraph/" target="_blank">here</a> at item 38 in <em>Web Exercises</em> section.</p>
+<p>From a different perspective, if we imagine the tuples in the list are the edges in a directed graph, then we want is a <a href="https://en.wikipedia.org/wiki/Transitive_reduction" target="_blank"><strong>transitive reduction</strong></a> of the original graph (represented by all the edges). The transitive reduction of a graph contains <em>the fewest possible edges that has the same reachability relation as the original graph, by discarding the edges u → v for which G also contains a longer path connecting the same two vertices.</em> In this way, the transitive reduction we generated will be the tree the question asked.</p>
 
-<p>The transitive reduction contains <em>the fewest possible edges that has the same reachability relation as the original graph by discarding the edges u → v for which G also contains a longer path connecting the same two vertices.</em></p>
+<ol>
+<li>list given is a <strong>partially ordered set</strong> of a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph" target="_blank"><strong>DAG</strong> (Directed Acyclic Graph)</a></li>
+<li>You can also find it <a href="https://algs4.cs.princeton.edu/42digraph/" target="_blank">here</a> at item 38 in <em>Web Exercises</em> section.</li>
+<li>This question is a <strong>tree</strong> problem, but actually it&rsquo;s asking for a solution that generates the transitive reduction of a <strong>graph</strong>. It&rsquo;s important to <em>look beyond the surface</em>.</li>
+</ol>
 
-<p>This question starts from the tree&rsquo;s perspective, but actually it&rsquo;s asking for an graph algorithm that generate the transitive reduction with a graph that only have 1 zero-degree node.</p>
-
-<h3 id="coding">Coding</h3>
+<h3 id="algorithm">Algorithm</h3>
 
 <h4 id="method-0-dfs">Method 0: DFS</h4>
 
-<p>Following the intuitive algorithm, we could loop through every node in the graph and remove a edge to a child if there are other paths (and will be longer) that connect to that child.</p>
+<p>Following the intuitive algorithm, we could loop through every node <strong>u</strong> in the graph and remove the edges <strong>u-&gt;v</strong> if there are other paths that connect from <strong>u</strong> to <strong>v</strong>.</p>
 
 <pre><code class="language-python">import collections
 
@@ -115,7 +115,9 @@ def generate_tree0(edges):
 
 <h4 id="method-1-topological-sort">Method 1: Topological Sort</h4>
 
-<p>Since it&rsquo;s a direct graph and we want to remove the edges that connects u-&gt;v if there are other longer paths, we can use topological sort to go through each node in this graph. In each 0 in degree node u, for every child v, if there&rsquo;s any other in degree edge to v, then it means there will be longer path(s) that connects to v, then the edge u-&gt;v should be discarded.</p>
+<p>Since it&rsquo;s a direct graph and we want to remove the edges that connects u-&gt;v if there are other longer paths, we can use <a href="https://en.wikipedia.org/wiki/Topological_sorting" target="_blank">Topological sort</a> to go through each node in this graph. In the process of sorting, in each round we will have node <strong>u</strong> that have no edge from others to u (i.e. 0 <a href="https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree" target="_blank">indegree</a>). For every one of it&rsquo;s neighbors <strong>v</strong> it connects <em>to</em>, if there&rsquo;s any other nodes <strong>x</strong> connects <strong>to</strong> v, then it means there will be longer path(s) that connects from <strong>u</strong> to <strong>v</strong>, then the edge u-&gt;v should be discarded.</p>
+
+<p>We will use two maps to keep track of the indegrees and outdegrees of a node, and do edits in the process of sorting.</p>
 
 <pre><code class="language-python">import collections
 
