@@ -6,11 +6,18 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Apr 2019 14:51:09 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 20:01:29 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Video Stitching</title>
+      <link>https://ericliu03.github.io/posts/2019/04/video_stitching/</link>
+      <pubDate>Mon, 08 Apr 2019 20:01:29 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/04/video_stitching/</guid>
+      <description></description>
+    </item><item>
       <title>Pour Water</title>
       <link>https://ericliu03.github.io/posts/2019/04/pour_water/</link>
       <pubDate>Sun, 07 Apr 2019 14:51:09 -0700</pubDate>
@@ -37,13 +44,6 @@
       <pubDate>Fri, 05 Apr 2019 09:01:37 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/04/create-web/</guid>
-      <description></description>
-    </item><item>
-      <title>My First Post</title>
-      <link>https://ericliu03.github.io/posts/my-first-post/</link>
-      <pubDate>Fri, 05 Apr 2019 08:31:26 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/my-first-post/</guid>
       <description></description>
     </item>
   </channel>
