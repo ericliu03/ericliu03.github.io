@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Loop - Yang&#39;s Blog</title>
+    <title>loop - Yang&#39;s Blog</title>
     <link>https://ericliu03.github.io/tags/loop/</link>
-    <description>Recent content in Loop on Yang&#39;s Blog</description>
+    <description>Recent content in loop on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2019 20:01:29 -0700</lastBuildDate>
