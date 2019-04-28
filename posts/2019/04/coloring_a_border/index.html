@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Coloring Border &middot; Yang&#39;s Blog</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-138995517-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  
+</head>
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
+      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
+      
+    </ul>
+  </div>
+</nav>
+    <main class="content side-text-padding">
+      <article class="post ">
+        <header class="post-header">
+        	<h1 class="post-title">Coloring Border</h1>
+          <p class="post-date">Posted <time datetime="2019-04-28">Apr 28, 2019</time></p>
+        </header>
+        
+        
+
+<h2 id="question">Question</h2>
+
+<p><a href="https://leetcode.com/problems/coloring-a-border/" target="_blank">Leetcode 1034: Coloring A Border</a></p>
+
+<p>Given a 2-dimensional grid of integers, each value in the <code>grid</code> represents the color of the grid square at that location.</p>
+
+<p>Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.</p>
+
+<p>The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).</p>
+
+<p>Given a square at location <code>(r0, c0)</code> in the grid and a <code>color</code>, <code>color</code> the border of the connected component of that square with the given <code>color</code>, and return the final grid.</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>Example 1:</p>
+
+<pre><code>Input: grid = [[1,1],[1,2]], r0 = 0, c0 = 0, color = 3
+Output: [[3, 3], [3, 2]]
+Example 2:
+</code></pre>
+
+<pre><code>Input: grid = [[1,2,2],[2,3,2]], r0 = 0, c0 = 1, color = 3
+Output: [[1, 3, 3], [2, 3, 3]]
+Example 3:
+</code></pre>
+
+<pre><code>Input: grid = [[1,1,1],[1,1,1],[1,1,1]], r0 = 1, c0 = 1, color = 2
+Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
+</code></pre>
+
+<h4 id="notes">Notes:</h4>
+
+<ol>
+<li><code>1 &lt;= grid.length &lt;= 50</code></li>
+<li><code>1 &lt;= grid[0].length &lt;= 50</code></li>
+<li><code>1 &lt;= grid[i][j] &lt;= 1000</code></li>
+<li><code>0 &lt;= r0 &lt; grid.length</code></li>
+<li><code>0 &lt;= c0 &lt; grid[0].length</code></li>
+<li><code>1 &lt;= color &lt;= 1000</code></li>
+</ol>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1">Method 1</h3>
+
+<p>Use regular dfs/bfs to find the border squares and change them.</p>
+
+<ol>
+<li>There are two things needs to know 1) if current square is in original component, 2) if current square is border</li>
+<li>I used <code>1/0</code> to indicate if a square is in original component, so by adding up dfs result from four adjacent squares, we know whether current one is border or not.</li>
+<li>the <strong>grid should not be changed</strong> while doing dfs/bfs.</li>
+</ol>
+
+<h4 id="code">Code</h4>
+
+<pre><code class="language-python">class Solution:
+    def colorBorder(self, grid, r0, c0, color):
+
+        visited = set()
+        border = set()
+
+        def dfs(x, y):
+            # if current square is in original component, return 1, otherwise 0
+            if 0 &lt;= x &lt; len(grid) and 0 &lt;= y &lt; len(grid[0]) and grid[x][y] == grid[r0][c0]:
+                if (x, y) not in visited:
+                    visited.add((x, y))
+                    # if one of the adjacent square is not in the component, then this square is border
+                    if dfs(x + 1, y) + dfs(x - 1, y) + dfs(x, y + 1) + dfs(x, y - 1) &lt; 4:
+                        border.add((x, y))
+                return 1
+            else:
+                return 0
+
+        dfs(r0, c0)
+        for x, y in border:
+            grid[x][y] = color
+        return grid
+</code></pre>
+
+      </article>
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ericliu03-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://ericliu03.github.io/posts/2019/04/two_pass/" class="card blog-card" rel="bookmark" >
+    
+  <article class="card-body">
+    <h2 class="card-title">Two Pass for Min/Max/Sum/Product</h2>
+    <p class="card-text"></p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2019-04-23 423:00">Apr 23, 2019</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<script src="https://ericliu03.github.io/js/core.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+  </body>
+</html>

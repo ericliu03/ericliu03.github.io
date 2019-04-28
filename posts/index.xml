@@ -5,11 +5,18 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2019 21:23:24 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 28 Apr 2019 09:42:03 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Coloring Border</title>
+      <link>https://ericliu03.github.io/posts/2019/04/coloring_a_border/</link>
+      <pubDate>Sun, 28 Apr 2019 09:42:03 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/04/coloring_a_border/</guid>
+      <description></description>
+    </item><item>
       <title>Two Pass for Min/Max/Sum/Product</title>
       <link>https://ericliu03.github.io/posts/2019/04/two_pass/</link>
       <pubDate>Tue, 23 Apr 2019 21:23:24 -0700</pubDate>
@@ -36,13 +43,6 @@
       <pubDate>Mon, 15 Apr 2019 20:03:06 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/</guid>
-      <description></description>
-    </item><item>
-      <title>Inorder Predecessor</title>
-      <link>https://ericliu03.github.io/posts/2019/04/inorder_predecessor/</link>
-      <pubDate>Sat, 13 Apr 2019 21:55:51 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/04/inorder_predecessor/</guid>
       <description></description>
     </item>
   </channel>

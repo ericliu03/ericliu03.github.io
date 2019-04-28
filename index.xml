@@ -5,10 +5,99 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2019 21:23:24 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 28 Apr 2019 09:42:03 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Coloring Border</title>
+      <link>https://ericliu03.github.io/posts/2019/04/coloring_a_border/</link>
+      <pubDate>Sun, 28 Apr 2019 09:42:03 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/04/coloring_a_border/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/coloring-a-border/&#34; target=&#34;_blank&#34;&gt;Leetcode 1034: Coloring A Border&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given a 2-dimensional grid of integers, each value in the &lt;code&gt;grid&lt;/code&gt; represents the color of the grid square at that location.&lt;/p&gt;
+
+&lt;p&gt;Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.&lt;/p&gt;
+
+&lt;p&gt;The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).&lt;/p&gt;
+
+&lt;p&gt;Given a square at location &lt;code&gt;(r0, c0)&lt;/code&gt; in the grid and a &lt;code&gt;color&lt;/code&gt;, &lt;code&gt;color&lt;/code&gt; the border of the connected component of that square with the given &lt;code&gt;color&lt;/code&gt;, and return the final grid.&lt;/p&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: grid = [[1,1],[1,2]], r0 = 0, c0 = 0, color = 3
+Output: [[3, 3], [3, 2]]
+Example 2:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: grid = [[1,2,2],[2,3,2]], r0 = 0, c0 = 1, color = 3
+Output: [[1, 3, 3], [2, 3, 3]]
+Example 3:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: grid = [[1,1,1],[1,1,1],[1,1,1]], r0 = 1, c0 = 1, color = 2
+Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;notes&#34;&gt;Notes:&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;1 &amp;lt;= grid.length &amp;lt;= 50&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1 &amp;lt;= grid[0].length &amp;lt;= 50&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1 &amp;lt;= grid[i][j] &amp;lt;= 1000&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt;= r0 &amp;lt; grid.length&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt;= c0 &amp;lt; grid[0].length&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1 &amp;lt;= color &amp;lt;= 1000&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;Use regular dfs/bfs to find the border squares and change them.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;There are two things needs to know 1) if current square is in original component, 2) if current square is border&lt;/li&gt;
+&lt;li&gt;I used &lt;code&gt;1/0&lt;/code&gt; to indicate if a square is in original component, so by adding up dfs result from four adjacent squares, we know whether current one is border or not.&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;grid should not be changed&lt;/strong&gt; while doing dfs/bfs.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Solution:
+    def colorBorder(self, grid, r0, c0, color):
+
+        visited = set()
+        border = set()
+
+        def dfs(x, y):
+            # if current square is in original component, return 1, otherwise 0
+            if 0 &amp;lt;= x &amp;lt; len(grid) and 0 &amp;lt;= y &amp;lt; len(grid[0]) and grid[x][y] == grid[r0][c0]:
+                if (x, y) not in visited:
+                    visited.add((x, y))
+                    # if one of the adjacent square is not in the component, then this square is border
+                    if dfs(x + 1, y) + dfs(x - 1, y) + dfs(x, y + 1) + dfs(x, y - 1) &amp;lt; 4:
+                        border.add((x, y))
+                return 1
+            else:
+                return 0
+
+        dfs(r0, c0)
+        for x, y in border:
+            grid[x][y] = color
+        return grid
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Two Pass for Min/Max/Sum/Product</title>
