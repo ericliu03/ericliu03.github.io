@@ -5,10 +5,112 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Apr 2019 09:42:03 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 28 Apr 2019 10:46:05 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Uncrossed Lines</title>
+      <link>https://ericliu03.github.io/posts/2019/04/uncrossed_lines/</link>
+      <pubDate>Sun, 28 Apr 2019 10:46:05 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/04/uncrossed_lines/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/uncrossed-lines/&#34; target=&#34;_blank&#34;&gt;Leetcode 1035: Uncrossed Lines&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We write the integers of &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt; (in the order they are given) on two separate horizontal lines.&lt;/p&gt;
+
+&lt;p&gt;Now, we may draw a straight line connecting two numbers &lt;code&gt;A[i]&lt;/code&gt; and &lt;code&gt;B[j]&lt;/code&gt; as long as &lt;code&gt;A[i] == B[j]&lt;/code&gt;, and the line we draw does not intersect any other connecting (non-horizontal) line.&lt;/p&gt;
+
+&lt;p&gt;Return the maximum number of connecting lines we can draw in this way.&lt;/p&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;1 4 2
+|  \
+1 2 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: A = [1,4,2], B = [1,2,4]
+Output: 2
+Explanation: We can draw 2 uncrossed lines as in the diagram.
+We cannot draw 3 uncrossed lines, 
+because the line from A[1]=4 to B[2]=4 will intersect the line from A[2]=2 to B[1]=2.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: A = [2,5,1,2,5], B = [10,5,2,1,5,2]
+Output: 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: A = [1,3,7,1,7,5], B = [1,9,2,5,1]
+Output: 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;note&#34;&gt;Note:&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;1 &amp;lt;= A.length &amp;lt;= 500&lt;/li&gt;
+&lt;li&gt;1 &amp;lt;= B.length &amp;lt;= 500&lt;/li&gt;
+&lt;li&gt;1 &amp;lt;= A[i], B[i] &amp;lt;= 2000&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1-错误想法&#34;&gt;Method 1 （错误想法）&lt;/h3&gt;
+
+&lt;p&gt;这个题最直接的想法就是使用recursion来遍历，可能会想到下面这种解法：对于A中每一个数字&lt;code&gt;i&lt;/code&gt;，for loop B找到其中一样的那些数字&lt;code&gt;j&lt;/code&gt;。对于每个match的&lt;code&gt;i，j&lt;/code&gt;，找到他们之后的，也就是&lt;code&gt;A[i+1:]&lt;/code&gt;和&lt;code&gt;B[j+1:]&lt;/code&gt;能最多match的数量。这种方法有一个问题就是把for loop和recursion的思想混用了，会大大提高把自己绕晕的概率。。。&lt;/p&gt;
+
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;我们上述recursion的定义是对于从i, j开始的A，B，最多match的数量，我们可以写作&lt;code&gt;longest_match(i, j, A, B)&lt;/code&gt;。那么有两种情况：1）&lt;code&gt;A[i] == B[j]&lt;/code&gt;, 所以&lt;code&gt;longest_match(i, j, A, B)&lt;/code&gt; 结果之一等于 &lt;code&gt;longest_match(i+1, j+1, A, B)&lt;/code&gt; + 1（因为现在多match了一个）。2）不相等，两种子情况就是&lt;code&gt;longest_match(i+1, j, A, B)&lt;/code&gt; 和&lt;code&gt;longest_match(i, j+1, A, B)&lt;/code&gt;。这三种情况都考虑到，也就意味着所有的可能性都考虑到了，只是我们返回结果时值保留了最大的那种情况的数字。回过头来看上面带forloop的方法，就做了很多重复运算了。&lt;/p&gt;
+
+&lt;h3 id=&#34;method-3&#34;&gt;Method 3&lt;/h3&gt;
+
+&lt;p&gt;方法2依然存在一些重复运算，比如 当然是&lt;code&gt;i,j&lt;/code&gt;,我们需要拿到&lt;code&gt;i+1,j+1&lt;/code&gt;，&lt;code&gt;i+1,j&lt;/code&gt;和&lt;code&gt;i,j+1&lt;/code&gt;，那么到了&lt;code&gt;i+1,j&lt;/code&gt;时，我们需要拿到&lt;code&gt;i+2,j+1&lt;/code&gt;，&lt;code&gt;i+1,j+1&lt;/code&gt;和&lt;code&gt;i+2,j&lt;/code&gt;。所以可以使用DP：1）用memo存中间结果，2）用DP数组直接算结果。（&lt;a href=&#34;https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/&#34; target=&#34;_blank&#34;&gt;关于从recursion到DP的文章&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;关于输出序列可以参考ref 3和4.&lt;/p&gt;
+
+&lt;p&gt;本题其实就是&lt;a href=&#34;https://www.google.com/search?newwindow=1&amp;amp;q=longest+common+subsequence&#34; target=&#34;_blank&#34;&gt;longest common subsequence&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def maxUncrossedLines(A, B):
+    dp = [[0] * (len(B)+1) for _ in range(len(A)+1)]
+    
+    for i in range(1, len(A) + 1):
+        for j in range(1, len(B) + 1):
+            dp[i][j] = dp[i-1][j-1] + 1 if A[i-1] == B[j-1] else 0
+            dp[i][j] = max(dp[i][j], dp[i-1][j], dp[i][j-1])
+
+    return dp[-1][-1]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h2&gt;
+
+&lt;p&gt;对比最简单的DP，比如&lt;a href=&#34;https://leetcode.com/problems/climbing-stairs/&#34; target=&#34;_blank&#34;&gt;爬梯子&lt;/a&gt;，我想错的地方（method1）就是对于每个&lt;code&gt;i&lt;/code&gt;我需要loop所有&lt;code&gt;j&lt;/code&gt;，然后再recursion，没有想清楚recursion的输入输出是什么，也就是转移方程是什么。就像梯子题，对于&lt;code&gt;i&lt;/code&gt;，我只需要看&lt;code&gt;i-1&lt;/code&gt;和&lt;code&gt;i-2&lt;/code&gt;，具体到第&lt;code&gt;i-1&lt;/code&gt;阶的时候有多少种可能性， 都是怎么来的不care。题目规定只能从那两个地方过来，但是本题没有这种明显的规定，需要想清楚&lt;code&gt;i,j&lt;/code&gt;只能从那3个地方过来，而不是可以从所有j过来。&lt;/p&gt;
+
+&lt;p&gt;有一点令我耿耿于怀的就是&lt;code&gt;i,j&lt;/code&gt;只能从&lt;code&gt;i+1,j+1&lt;/code&gt;，&lt;code&gt;i+1,j&lt;/code&gt;和&lt;code&gt;i,j+1&lt;/code&gt;这三个地方过来，那如果如果我是一个&lt;code&gt;A[i]&lt;/code&gt;和B&lt;code&gt;[j+100]&lt;/code&gt;match怎么办，看着好像没考虑进去。但实际上是算在里面了的，因为&lt;code&gt;i,j&lt;/code&gt;可以到&lt;code&gt;i,j+1&lt;/code&gt;，&lt;code&gt;i,j+1&lt;/code&gt;也考虑到了&lt;code&gt;i, j+2&lt;/code&gt;的情况。所以在&lt;code&gt;i,j&lt;/code&gt;的位置上，我们看&lt;code&gt;i,j+1&lt;/code&gt;的时候就已经包含了&lt;code&gt;i,j+100&lt;/code&gt;的情况。如果这种情况match的最多，那么就是被保留下来的那一个。只不过在结果中我们不知道到底是match到了&lt;code&gt;j+?&lt;/code&gt;。想要知道的话还需要回溯去找出他们。&lt;/p&gt;
+
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Longest_common_subsequence_problem&#34; target=&#34;_blank&#34;&gt;wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/&#34; target=&#34;_blank&#34;&gt;Longest Common Subsequence | DP-4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq_36368339/article/details/76944448&#34; target=&#34;_blank&#34;&gt;LCS+路径还原&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://songlee24.github.io/2014/11/29/print-all-LCS/&#34; target=&#34;_blank&#34;&gt;【动态规划】输出所有的最长公共子序列&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Coloring Border</title>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Uncrossed Lines &middot; Yang&#39;s Blog</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-138995517-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  
+</head>
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
+      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
+      
+    </ul>
+  </div>
+</nav>
+    <main class="content side-text-padding">
+      <article class="post ">
+        <header class="post-header">
+        	<h1 class="post-title">Uncrossed Lines</h1>
+          <p class="post-date">Posted <time datetime="2019-04-28">Apr 28, 2019</time></p>
+        </header>
+        
+        
+
+<h2 id="question">Question</h2>
+
+<p><a href="https://leetcode.com/problems/uncrossed-lines/" target="_blank">Leetcode 1035: Uncrossed Lines</a></p>
+
+<p>We write the integers of <code>A</code> and <code>B</code> (in the order they are given) on two separate horizontal lines.</p>
+
+<p>Now, we may draw a straight line connecting two numbers <code>A[i]</code> and <code>B[j]</code> as long as <code>A[i] == B[j]</code>, and the line we draw does not intersect any other connecting (non-horizontal) line.</p>
+
+<p>Return the maximum number of connecting lines we can draw in this way.</p>
+
+<h3 id="examples">Examples</h3>
+
+<pre><code>1 4 2
+|  \
+1 2 2
+</code></pre>
+
+<p>Example 1:</p>
+
+<pre><code>Input: A = [1,4,2], B = [1,2,4]
+Output: 2
+Explanation: We can draw 2 uncrossed lines as in the diagram.
+We cannot draw 3 uncrossed lines, 
+because the line from A[1]=4 to B[2]=4 will intersect the line from A[2]=2 to B[1]=2.
+</code></pre>
+
+<p>Example 2:</p>
+
+<pre><code>Input: A = [2,5,1,2,5], B = [10,5,2,1,5,2]
+Output: 3
+</code></pre>
+
+<p>Example 3:</p>
+
+<pre><code>Input: A = [1,3,7,1,7,5], B = [1,9,2,5,1]
+Output: 2
+</code></pre>
+
+<h4 id="note">Note:</h4>
+
+<ol>
+<li>1 &lt;= A.length &lt;= 500</li>
+<li>1 &lt;= B.length &lt;= 500</li>
+<li>1 &lt;= A[i], B[i] &lt;= 2000</li>
+</ol>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1-错误想法">Method 1 （错误想法）</h3>
+
+<p>这个题最直接的想法就是使用recursion来遍历，可能会想到下面这种解法：对于A中每一个数字<code>i</code>，for loop B找到其中一样的那些数字<code>j</code>。对于每个match的<code>i，j</code>，找到他们之后的，也就是<code>A[i+1:]</code>和<code>B[j+1:]</code>能最多match的数量。这种方法有一个问题就是把for loop和recursion的思想混用了，会大大提高把自己绕晕的概率。。。</p>
+
+<h3 id="method-2">Method 2</h3>
+
+<p>我们上述recursion的定义是对于从i, j开始的A，B，最多match的数量，我们可以写作<code>longest_match(i, j, A, B)</code>。那么有两种情况：1）<code>A[i] == B[j]</code>, 所以<code>longest_match(i, j, A, B)</code> 结果之一等于 <code>longest_match(i+1, j+1, A, B)</code> + 1（因为现在多match了一个）。2）不相等，两种子情况就是<code>longest_match(i+1, j, A, B)</code> 和<code>longest_match(i, j+1, A, B)</code>。这三种情况都考虑到，也就意味着所有的可能性都考虑到了，只是我们返回结果时值保留了最大的那种情况的数字。回过头来看上面带forloop的方法，就做了很多重复运算了。</p>
+
+<h3 id="method-3">Method 3</h3>
+
+<p>方法2依然存在一些重复运算，比如 当然是<code>i,j</code>,我们需要拿到<code>i+1,j+1</code>，<code>i+1,j</code>和<code>i,j+1</code>，那么到了<code>i+1,j</code>时，我们需要拿到<code>i+2,j+1</code>，<code>i+1,j+1</code>和<code>i+2,j</code>。所以可以使用DP：1）用memo存中间结果，2）用DP数组直接算结果。（<a href="https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/" target="_blank">关于从recursion到DP的文章</a>)</p>
+
+<p>关于输出序列可以参考ref 3和4.</p>
+
+<p>本题其实就是<a href="https://www.google.com/search?newwindow=1&amp;q=longest+common+subsequence" target="_blank">longest common subsequence</a>。</p>
+
+<h4 id="code">Code</h4>
+
+<pre><code class="language-python">def maxUncrossedLines(A, B):
+    dp = [[0] * (len(B)+1) for _ in range(len(A)+1)]
+    
+    for i in range(1, len(A) + 1):
+        for j in range(1, len(B) + 1):
+            dp[i][j] = dp[i-1][j-1] + 1 if A[i-1] == B[j-1] else 0
+            dp[i][j] = max(dp[i][j], dp[i-1][j], dp[i][j-1])
+
+    return dp[-1][-1]
+</code></pre>
+
+<h2 id="thoughts">Thoughts</h2>
+
+<p>对比最简单的DP，比如<a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">爬梯子</a>，我想错的地方（method1）就是对于每个<code>i</code>我需要loop所有<code>j</code>，然后再recursion，没有想清楚recursion的输入输出是什么，也就是转移方程是什么。就像梯子题，对于<code>i</code>，我只需要看<code>i-1</code>和<code>i-2</code>，具体到第<code>i-1</code>阶的时候有多少种可能性， 都是怎么来的不care。题目规定只能从那两个地方过来，但是本题没有这种明显的规定，需要想清楚<code>i,j</code>只能从那3个地方过来，而不是可以从所有j过来。</p>
+
+<p>有一点令我耿耿于怀的就是<code>i,j</code>只能从<code>i+1,j+1</code>，<code>i+1,j</code>和<code>i,j+1</code>这三个地方过来，那如果如果我是一个<code>A[i]</code>和B<code>[j+100]</code>match怎么办，看着好像没考虑进去。但实际上是算在里面了的，因为<code>i,j</code>可以到<code>i,j+1</code>，<code>i,j+1</code>也考虑到了<code>i, j+2</code>的情况。所以在<code>i,j</code>的位置上，我们看<code>i,j+1</code>的时候就已经包含了<code>i,j+100</code>的情况。如果这种情况match的最多，那么就是被保留下来的那一个。只不过在结果中我们不知道到底是match到了<code>j+?</code>。想要知道的话还需要回溯去找出他们。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Longest_common_subsequence_problem" target="_blank">wikipedia</a></li>
+<li><a href="https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/" target="_blank">Longest Common Subsequence | DP-4</a></li>
+<li><a href="https://blog.csdn.net/qq_36368339/article/details/76944448" target="_blank">LCS+路径还原</a></li>
+<li><a href="https://songlee24.github.io/2014/11/29/print-all-LCS/" target="_blank">【动态规划】输出所有的最长公共子序列</a></li>
+</ol>
+
+      </article>
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ericliu03-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://ericliu03.github.io/posts/2019/04/coloring_a_border/" class="card blog-card" rel="bookmark" >
+    
+  <article class="card-body">
+    <h2 class="card-title">Coloring Border</h2>
+    <p class="card-text"></p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2019-04-28 428:00">Apr 28, 2019</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<script src="https://ericliu03.github.io/js/core.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+  </body>
+</html>
