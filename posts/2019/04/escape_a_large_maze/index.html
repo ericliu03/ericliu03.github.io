@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Escape A Large Maze &middot; Yang&#39;s Blog</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-138995517-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  
+</head>
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
+      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
+      
+    </ul>
+  </div>
+</nav>
+    <main class="content side-text-padding">
+      <article class="post ">
+        <header class="post-header">
+        	<h1 class="post-title">Escape A Large Maze</h1>
+          <p class="post-date">Posted <time datetime="2019-04-29">Apr 29, 2019</time></p>
+        </header>
+        
+        
+
+<h2 id="question">Question</h2>
+
+<p><a href="https://leetcode.com/problems/escape-a-large-maze/" target="_blank">Leetcode 1036: Escape a Large Maze</a></p>
+
+<p>In a 1 million by 1 million grid, the coordinates of each grid square are <code>(x, y)</code> with <code>0 &lt;= x, y &lt; 10^6</code>.</p>
+
+<p>We start at the <code>source</code> square and want to reach the <code>target</code> square.  Each move, we can walk to a 4-directionally adjacent square in the grid that isn&rsquo;t in the given list of <code>blocked</code> squares.</p>
+
+<p>Return <code>true</code> if and only if it is possible to reach the target square through a sequence of moves.</p>
+
+<h3 id="note">Note:</h3>
+
+<ol>
+<li><code>0 &lt;= blocked.length &lt;= 200</code></li>
+<li><code>blocked[i].length == 2</code></li>
+<li><code>0 &lt;= blocked[i][j] &lt; 10^6</code></li>
+<li><code>source.length == target.length == 2</code></li>
+<li><code>0 &lt;= source[i][j], target[i][j] &lt; 10^6</code></li>
+<li><code>source != target</code></li>
+</ol>
+
+<h3 id="examples">Examples</h3>
+
+<p>Example 1:</p>
+
+<pre><code>Input: blocked = [[0,1],[1,0]], source = [0,0], target = [0,2]
+Output: false
+Explanation: 
+The target square is inaccessible starting from the source square, because we can't walk outside the grid.
+</code></pre>
+
+<p>Example 2:</p>
+
+<pre><code>Input: blocked = [], source = [0,0], target = [999999,999999]
+Output: true
+Explanation: 
+Because there are no blocked cells, it's possible to reach the target square.
+</code></pre>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1">Method 1</h3>
+
+<p>We can do a DFS or BFS from start to see if target could be reached. But this will TLE since the matrix is too large.</p>
+
+<h3 id="method-2">Method 2</h3>
+
+<p>After taking a closer look at the &ldquo;Notes&rdquo;, you will be able to find the <strong>key point</strong> of this question: <code>0 &lt;= blocked.length &lt;= 200</code>. This means there are only at maximum <code>200</code> blocked in the matrix and <code>200</code> is a small number comparing to <code>10^6</code>.</p>
+
+<p>This graph from reference 1 shows the insight: the maximum area that those blocked grid can enclose is <code>1+2+3+4+5+...+198+199=(1+199)*199/2=19900</code> (trapezoid sum)</p>
+
+<pre><code>0th      ______________________  200
+         |------------------ X            
+         |---------------- X
+         .              .
+         .           .
+         .        . 
+         | -  - X 
+         | - X
+200      |X
+</code></pre>
+
+<p>Then there are conditions:
+1. there is not an enclosed area
+1. there is an enclosed area
+ 1. source is inside, target is out
+ 1. target is in, source is out
+ 1. both in or both out</p>
+
+<p>In order to cover all conditions, we run bfs/dfs from both source and target, so if
+1. they find each other, return true
+1. if none of them is in enclosed area, return true
+1. otherwise return false</p>
+
+<h4 id="code">Code</h4>
+
+<pre><code class="language-python">def isEscapePossible(blocked, source, target):
+    max_area = ((1 + 199) * 199)//2
+    n = 10**6
+    visited = set([tuple(each) for each in blocked])
+    
+    def bfs(start, end):
+        queue = [tuple(start)]
+        visited.add(tuple(start))
+        count = 1
+        for x0, y0 in queue:
+            count += 1
+            if (x0, y0) == end:
+                return True
+            if count &gt; max_area:
+                return True
+            for x, y in [(-1,0), (1, 0), (0, 1), (0,-1)]:
+                next_node = (x0+x, y0+y)
+                if next_node not in visited and 0 &lt;= next_node[0] &lt; n and 0 &lt;= next_node[1] &lt; n:
+                    queue.append(next_node)
+                    visited.add(next_node)
+        return False
+
+    return bfs(target, source) and bfs(source, target)
+</code></pre>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<ol>
+<li>don&rsquo;t neglect the constraints</li>
+</ol>
+
+      </article>
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ericliu03-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://ericliu03.github.io/posts/2019/04/uncrossed_lines/" class="card blog-card" rel="bookmark" >
+    
+  <article class="card-body">
+    <h2 class="card-title">Uncrossed Lines</h2>
+    <p class="card-text"></p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2019-04-28 428:00">Apr 28, 2019</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<script src="https://ericliu03.github.io/js/core.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+  </body>
+</html>
