@@ -5,10 +5,20 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 May 2019 16:44:51 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 01 May 2019 17:57:04 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>https://ericliu03.github.io/about/</link>
+      <pubDate>Wed, 01 May 2019 17:57:04 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/about/</guid>
+      <description>&lt;p&gt;This is a test about.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Frog Jump</title>
@@ -20,7 +30,7 @@
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/frog-jump/&#34; target=&#34;_blank&#34;&gt;Leetcode 403: Frog Jump&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/frog-jump/&#34;&gt;Leetcode 403: Frog Jump&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.&lt;/p&gt;
 
@@ -65,33 +75,30 @@ the gap between the 5th and 6th stone is too large.
 
 &lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
 
-&lt;p&gt;At first glance this question reminds me &lt;a href=&#34;https://github.com/ericliu03/blog.io/blob/master/content/posts/2019/04/longest_increasing_subsequence.md&#34; target=&#34;_blank&#34;&gt;longest increasing subsequence&lt;/a&gt;. We can translate the stones into the vertices in the graph and then what we need to find out are the edges and whether there&amp;rsquo;s a path between start and end vertex.&lt;/p&gt;
+&lt;p&gt;At first glance this question reminds me &lt;a href=&#34;https://github.com/ericliu03/blog.io/blob/master/content/posts/2019/04/longest_increasing_subsequence.md&#34;&gt;longest increasing subsequence&lt;/a&gt;. We can translate the stones into the vertices in the graph and then what we need to find out are the edges and whether there&amp;rsquo;s a path between start and end vertex.&lt;/p&gt;
 
 &lt;p&gt;At each vertex, to calculate the edges to next vertices, we will use the rule given by the question: &lt;em&gt;the difference between previous vertex and current vertex (plus -1, 0, 1)&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;Since we start from the start stone, so if there&amp;rsquo;s any vertex that&amp;rsquo;s connected to the end vertex then it means we find a path.&lt;/p&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def canCross(stones) -&amp;gt; bool:
-    # jump sizes are the distance between previous stone to current stone
-    jump_sizes = {}
-    for stone in stones:
-        jump_sizes[stone] = set()
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;canCross&lt;/span&gt;(stones) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; bool:
+    &lt;span style=&#34;color:#75715e&#34;&gt;# jump sizes are the distance between previous stone to current stone&lt;/span&gt;
+    jump_sizes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; stone &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; stones:
+        jump_sizes[stone] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
         
-    jump_sizes[0].add(0)
-    for stone in stones:
-        for jump_size in jump_sizes[stone]:
-            for delta in (-1, 0, 1):
-                next_jump = jump_size + delta
-                # we use the distance between prev and curr stone to calculate next stone
-                # and add this new jump size to it&#39;s jump size set if next stone exists
-                if stone + next_jump in jump_sizes and next_jump &amp;gt; 0:
-                    jump_sizes[stone + next_jump].add(next_jump)
+    jump_sizes[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; stone &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; stones:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; jump_size &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; jump_sizes[stone]:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; delta &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+                next_jump &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; jump_size &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; delta
+                &lt;span style=&#34;color:#75715e&#34;&gt;# we use the distance between prev and curr stone to calculate next stone&lt;/span&gt;
+                &lt;span style=&#34;color:#75715e&#34;&gt;# and add this new jump size to it&amp;#39;s jump size set if next stone exists&lt;/span&gt;
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; stone &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; next_jump &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; jump_sizes &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; next_jump &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:
+                    jump_sizes[stone &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; next_jump]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(next_jump)
 
-    return len(jump_sizes[stones[-1]]) != 0
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; len(jump_sizes[stones[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]]) &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h3&gt;
 
 &lt;ol&gt;
@@ -116,7 +123,7 @@ the gap between the 5th and 6th stone is too large.
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/escape-a-large-maze/&#34; target=&#34;_blank&#34;&gt;Leetcode 1036: Escape a Large Maze&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/escape-a-large-maze/&#34;&gt;Leetcode 1036: Escape a Large Maze&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;In a 1 million by 1 million grid, the coordinates of each grid square are &lt;code&gt;(x, y)&lt;/code&gt; with &lt;code&gt;0 &amp;lt;= x, y &amp;lt; 10^6&lt;/code&gt;.&lt;/p&gt;
 
@@ -189,32 +196,29 @@ Because there are no blocked cells, it&#39;s possible to reach the target square
 1. otherwise return false&lt;/p&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def isEscapePossible(blocked, source, target):
-    max_area = ((1 + 199) * 199)//2
-    n = 10**6
-    visited = set([tuple(each) for each in blocked])
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;isEscapePossible&lt;/span&gt;(blocked, source, target):
+    max_area &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ((&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;199&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;199&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+    n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;
+    visited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set([tuple(each) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; each &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; blocked])
     
-    def bfs(start, end):
-        queue = [tuple(start)]
-        visited.add(tuple(start))
-        count = 1
-        for x0, y0 in queue:
-            count += 1
-            if (x0, y0) == end:
-                return True
-            if count &amp;gt; max_area:
-                return True
-            for x, y in [(-1,0), (1, 0), (0, 1), (0,-1)]:
-                next_node = (x0+x, y0+y)
-                if next_node not in visited and 0 &amp;lt;= next_node[0] &amp;lt; n and 0 &amp;lt;= next_node[1] &amp;lt; n:
-                    queue.append(next_node)
-                    visited.add(next_node)
-        return False
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bfs&lt;/span&gt;(start, end):
+        queue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [tuple(start)]
+        visited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(tuple(start))
+        count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; x0, y0 &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; queue:
+            count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x0, y0) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; end:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; count &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; max_area:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; x, y &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; [(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;), (&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;), (&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;), (&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]:
+                next_node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (x0&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;x, y0&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;y)
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; next_node &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; visited &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; next_node[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; next_node[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n:
+                    queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(next_node)
+                    visited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(next_node)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
 
-    return bfs(target, source) and bfs(source, target)
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; bfs(target, source) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; bfs(source, target)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h3&gt;
 
 &lt;ol&gt;
@@ -233,7 +237,7 @@ Because there are no blocked cells, it&#39;s possible to reach the target square
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/uncrossed-lines/&#34; target=&#34;_blank&#34;&gt;Leetcode 1035: Uncrossed Lines&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/uncrossed-lines/&#34;&gt;Leetcode 1035: Uncrossed Lines&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;We write the integers of &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt; (in the order they are given) on two separate horizontal lines.&lt;/p&gt;
 
@@ -289,38 +293,35 @@ Output: 2
 
 &lt;h3 id=&#34;method-3&#34;&gt;Method 3&lt;/h3&gt;
 
-&lt;p&gt;方法2依然存在一些重复运算，比如 当然是&lt;code&gt;i,j&lt;/code&gt;,我们需要拿到&lt;code&gt;i+1,j+1&lt;/code&gt;，&lt;code&gt;i+1,j&lt;/code&gt;和&lt;code&gt;i,j+1&lt;/code&gt;，那么到了&lt;code&gt;i+1,j&lt;/code&gt;时，我们需要拿到&lt;code&gt;i+2,j+1&lt;/code&gt;，&lt;code&gt;i+1,j+1&lt;/code&gt;和&lt;code&gt;i+2,j&lt;/code&gt;。所以可以使用DP：1）用memo存中间结果，2）用DP数组直接算结果。（&lt;a href=&#34;https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/&#34; target=&#34;_blank&#34;&gt;关于从recursion到DP的文章&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;方法2依然存在一些重复运算，比如 当然是&lt;code&gt;i,j&lt;/code&gt;,我们需要拿到&lt;code&gt;i+1,j+1&lt;/code&gt;，&lt;code&gt;i+1,j&lt;/code&gt;和&lt;code&gt;i,j+1&lt;/code&gt;，那么到了&lt;code&gt;i+1,j&lt;/code&gt;时，我们需要拿到&lt;code&gt;i+2,j+1&lt;/code&gt;，&lt;code&gt;i+1,j+1&lt;/code&gt;和&lt;code&gt;i+2,j&lt;/code&gt;。所以可以使用DP：1）用memo存中间结果，2）用DP数组直接算结果。（&lt;a href=&#34;https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/&#34;&gt;关于从recursion到DP的文章&lt;/a&gt;)&lt;/p&gt;
 
 &lt;p&gt;关于输出序列可以参考ref 3和4.&lt;/p&gt;
 
-&lt;p&gt;本题其实就是&lt;a href=&#34;https://www.google.com/search?newwindow=1&amp;amp;q=longest+common+subsequence&#34; target=&#34;_blank&#34;&gt;longest common subsequence&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;本题其实就是&lt;a href=&#34;https://www.google.com/search?newwindow=1&amp;amp;q=longest+common+subsequence&#34;&gt;longest common subsequence&lt;/a&gt;。&lt;/p&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def maxUncrossedLines(A, B):
-    dp = [[0] * (len(B)+1) for _ in range(len(A)+1)]
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxUncrossedLines&lt;/span&gt;(A, B):
+    dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (len(B)&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(A)&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
     
-    for i in range(1, len(A) + 1):
-        for j in range(1, len(B) + 1):
-            dp[i][j] = dp[i-1][j-1] + 1 if A[i-1] == B[j-1] else 0
-            dp[i][j] = max(dp[i][j], dp[i-1][j], dp[i][j-1])
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(A) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(B) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            dp[i][j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dp[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; A[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; B[j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+            dp[i][j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(dp[i][j], dp[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][j], dp[i][j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
 
-    return dp[-1][-1]
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; dp[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h2&gt;
 
-&lt;p&gt;对比最简单的DP，比如&lt;a href=&#34;https://leetcode.com/problems/climbing-stairs/&#34; target=&#34;_blank&#34;&gt;爬梯子&lt;/a&gt;，我想错的地方（method1）就是对于每个&lt;code&gt;i&lt;/code&gt;我需要loop所有&lt;code&gt;j&lt;/code&gt;，然后再recursion，没有想清楚recursion的输入输出是什么，也就是转移方程是什么。就像梯子题，对于&lt;code&gt;i&lt;/code&gt;，我只需要看&lt;code&gt;i-1&lt;/code&gt;和&lt;code&gt;i-2&lt;/code&gt;，具体到第&lt;code&gt;i-1&lt;/code&gt;阶的时候有多少种可能性， 都是怎么来的不care。题目规定只能从那两个地方过来，但是本题没有这种明显的规定，需要想清楚&lt;code&gt;i,j&lt;/code&gt;只能从那3个地方过来，而不是可以从所有j过来。&lt;/p&gt;
+&lt;p&gt;对比最简单的DP，比如&lt;a href=&#34;https://leetcode.com/problems/climbing-stairs/&#34;&gt;爬梯子&lt;/a&gt;，我想错的地方（method1）就是对于每个&lt;code&gt;i&lt;/code&gt;我需要loop所有&lt;code&gt;j&lt;/code&gt;，然后再recursion，没有想清楚recursion的输入输出是什么，也就是转移方程是什么。就像梯子题，对于&lt;code&gt;i&lt;/code&gt;，我只需要看&lt;code&gt;i-1&lt;/code&gt;和&lt;code&gt;i-2&lt;/code&gt;，具体到第&lt;code&gt;i-1&lt;/code&gt;阶的时候有多少种可能性， 都是怎么来的不care。题目规定只能从那两个地方过来，但是本题没有这种明显的规定，需要想清楚&lt;code&gt;i,j&lt;/code&gt;只能从那3个地方过来，而不是可以从所有j过来。&lt;/p&gt;
 
 &lt;p&gt;有一点令我耿耿于怀的就是&lt;code&gt;i,j&lt;/code&gt;只能从&lt;code&gt;i+1,j+1&lt;/code&gt;，&lt;code&gt;i+1,j&lt;/code&gt;和&lt;code&gt;i,j+1&lt;/code&gt;这三个地方过来，那如果如果我是一个&lt;code&gt;A[i]&lt;/code&gt;和B&lt;code&gt;[j+100]&lt;/code&gt;match怎么办，看着好像没考虑进去。但实际上是算在里面了的，因为&lt;code&gt;i,j&lt;/code&gt;可以到&lt;code&gt;i,j+1&lt;/code&gt;，&lt;code&gt;i,j+1&lt;/code&gt;也考虑到了&lt;code&gt;i, j+2&lt;/code&gt;的情况。所以在&lt;code&gt;i,j&lt;/code&gt;的位置上，我们看&lt;code&gt;i,j+1&lt;/code&gt;的时候就已经包含了&lt;code&gt;i,j+100&lt;/code&gt;的情况。如果这种情况match的最多，那么就是被保留下来的那一个。只不过在结果中我们不知道到底是match到了&lt;code&gt;j+?&lt;/code&gt;。想要知道的话还需要回溯去找出他们。&lt;/p&gt;
 
 &lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Longest_common_subsequence_problem&#34; target=&#34;_blank&#34;&gt;wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/&#34; target=&#34;_blank&#34;&gt;Longest Common Subsequence | DP-4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq_36368339/article/details/76944448&#34; target=&#34;_blank&#34;&gt;LCS+路径还原&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://songlee24.github.io/2014/11/29/print-all-LCS/&#34; target=&#34;_blank&#34;&gt;【动态规划】输出所有的最长公共子序列&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Longest_common_subsequence_problem&#34;&gt;wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/&#34;&gt;Longest Common Subsequence | DP-4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq_36368339/article/details/76944448&#34;&gt;LCS+路径还原&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://songlee24.github.io/2014/11/29/print-all-LCS/&#34;&gt;【动态规划】输出所有的最长公共子序列&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -335,7 +336,7 @@ Output: 2
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/coloring-a-border/&#34; target=&#34;_blank&#34;&gt;Leetcode 1034: Coloring A Border&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/coloring-a-border/&#34;&gt;Leetcode 1034: Coloring A Border&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given a 2-dimensional grid of integers, each value in the &lt;code&gt;grid&lt;/code&gt; represents the color of the grid square at that location.&lt;/p&gt;
 
@@ -389,31 +390,28 @@ Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
 &lt;/ol&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;colorBorder&lt;/span&gt;(self, grid, r0, c0, color):
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Solution:
-    def colorBorder(self, grid, r0, c0, color):
+        visited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
+        border &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
 
-        visited = set()
-        border = set()
-
-        def dfs(x, y):
-            # if current square is in original component, return 1, otherwise 0
-            if 0 &amp;lt;= x &amp;lt; len(grid) and 0 &amp;lt;= y &amp;lt; len(grid[0]) and grid[x][y] == grid[r0][c0]:
-                if (x, y) not in visited:
-                    visited.add((x, y))
-                    # if one of the adjacent square is not in the component, then this square is border
-                    if dfs(x + 1, y) + dfs(x - 1, y) + dfs(x, y + 1) + dfs(x, y - 1) &amp;lt; 4:
-                        border.add((x, y))
-                return 1
-            else:
-                return 0
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dfs&lt;/span&gt;(x, y):
+            &lt;span style=&#34;color:#75715e&#34;&gt;# if current square is in original component, return 1, otherwise 0&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(grid) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; y &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(grid[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; grid[x][y] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; grid[r0][c0]:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x, y) &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; visited:
+                    visited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add((x, y))
+                    &lt;span style=&#34;color:#75715e&#34;&gt;# if one of the adjacent square is not in the component, then this square is border&lt;/span&gt;
+                    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; dfs(x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, y) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; dfs(x &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, y) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; dfs(x, y &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; dfs(x, y &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;:
+                        border&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add((x, y))
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
 
         dfs(r0, c0)
-        for x, y in border:
-            grid[x][y] = color
-        return grid
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; x, y &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; border:
+            grid[x][y] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; color
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; grid&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -428,7 +426,7 @@ Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/product-of-array-except-self&#34; target=&#34;_blank&#34;&gt;Leetcode 238: Product of Array Except Self&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/product-of-array-except-self&#34;&gt;Leetcode 238: Product of Array Except Self&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given an array &lt;code&gt;nums&lt;/code&gt; of n integers where n &amp;gt; 1,  return an array &lt;code&gt;output&lt;/code&gt; such that &lt;code&gt;output[i]&lt;/code&gt; is equal to the product of all the elements of &lt;code&gt;nums&lt;/code&gt; except &lt;code&gt;nums[i]&lt;/code&gt;.&lt;/p&gt;
 
@@ -466,28 +464,24 @@ Output: [24,12,8,6]
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
 
 &lt;p&gt;我们这里只写method 4 的code了。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def productExceptSelf(nums):
-    left = []
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;productExceptSelf&lt;/span&gt;(nums):
+    left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
     
-    curr = 1
-    for i in range(len(nums)):
-        curr *= nums[i]
-        left.append(curr)
+    curr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)):
+        curr &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; nums[i]
+        left&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(curr)
     
-    curr = 1
-    for i in range(len(nums)-1,0,-1):
-        left[i] = left[i-1] * curr
-        curr *= nums[i]
-    left[0] = curr
+    curr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+        left[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; left[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; curr
+        curr &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; nums[i]
+    left[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; curr
     
-    return left
-
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; left&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;question-2&#34;&gt;Question 2&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/trapping-rain-water/&#34; target=&#34;_blank&#34;&gt;Leetcode 42: Trapping Rain Water&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/trapping-rain-water/&#34;&gt;Leetcode 42: Trapping Rain Water&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.&lt;/p&gt;
 
@@ -509,29 +503,26 @@ Output: 6
 &lt;p&gt;从题目出发，我们需要找出每个点上可以存的水的数量（高度），能存多高取决于这个点左右两边最高的高度，也就是边界高度。但是相邻的左右两个点未必是其边界，我们需要找左右两边的最高的高度。所以我们可以扫描两边数组，找出对于位置&lt;code&gt;i&lt;/code&gt;左边的和右边的最高的elevation的高度。&lt;/p&gt;
 
 &lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def trap(heights):
-    n = len(heights)
-    left = right = [0] * n
-    l_max = r_max = 0
-    result = 0
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trap&lt;/span&gt;(heights):
+    n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(heights)
+    left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n
+    l_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; r_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
     
-    for i in range(n):
-        l_max = max(l_max, heights[i])
-        r_max = max(r_max, heights[n-1 - i])
-        left[i] = l_max
-        right[n-1 - i] = r_max
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+        l_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(l_max, heights[i])
+        r_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(r_max, heights[n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; i])
+        left[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; l_max
+        right[n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; r_max
     
-    for i in range(n):
-        water = min(left[i], right[i]) - heights[i]
-        result += water if water &amp;gt; 0 else 0
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+        water &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(left[i], right[i]) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; heights[i]
+        result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; water &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; water &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
     
-    return result
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;question-3&#34;&gt;Question 3&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/&#34; target=&#34;_blank&#34;&gt;Leetcode 1031: Maximum Sum of Two Non-Overlapping Subarrays&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/&#34;&gt;Leetcode 1031: Maximum Sum of Two Non-Overlapping Subarrays&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given an array A of non-negative integers, return the maximum sum of elements in two non-overlapping (contiguous) subarrays, which have lengths L and M.  (For clarification, the L-length subarray could occur before or after the M-length subarray.)&lt;/p&gt;
 
@@ -571,7 +562,7 @@ Explanation: One choice of subarrays is [5,6,0,9] with length 4, and [3,8] with 
 &lt;li&gt;再从右往左，找出左边为M和左边为L长度的放到另外两个数组中。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;代码可以参考一下&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278727/C%2B%2B-O(N)-buysell-stock-2-times&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;代码可以参考一下&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278727/C%2B%2B-O(N)-buysell-stock-2-times&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;method-2-1&#34;&gt;Method 2&lt;/h3&gt;
 
@@ -586,27 +577,24 @@ Explanation: One choice of subarrays is [5,6,0,9] with length 4, and [3,8] with 
 ，所以最大的和一定就是结果。&lt;/p&gt;
 
 &lt;h4 id=&#34;code-2&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxSumTwoNoOverlap&lt;/span&gt;(A, L, M):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(A)):
+        A[i] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def maxSumTwoNoOverlap(A, L, M):
-    for i in range(1, len(A)):
-        A[i] += A[i - 1]
+    l_left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[L &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+    m_left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[M &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[L &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; M &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
 
-    l_left = A[L - 1]
-    m_left = A[M - 1]
-    result = A[L + M - 1]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(L &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; M, len(A)):
+        l_left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(l_left, A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; M] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; M &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; L])
+        m_left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(m_left, A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; L] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; L &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; M])
 
-    for i in range(L + M, len(A)):
-        l_left = max(l_left, A[i - M] - A[i - M - L])
-        m_left = max(m_left, A[i - L] - A[i - L - M])
+        l_right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[i] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; L]
+        m_right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[i] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; A[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; M]
 
-        l_right = A[i] - A[i - L]
-        m_right = A[i] - A[i - M]
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(result, l_left &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; m_right, m_left &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; l_right)
 
-        result = max(result, l_left + m_right, m_left + l_right)
-
-    return result
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;总的来说这个解法就是对给定的数据做一些预处理，然后在处理之后的数据上求需要的结果。&lt;/p&gt;
@@ -617,11 +605,11 @@ Explanation: One choice of subarrays is [5,6,0,9] with length 4, and [3,8] with 
 &lt;li&gt;more questions:
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/&#34; target=&#34;_blank&#34;&gt;Leetcode 123: Best Time to Buy and Sell Stock III&lt;/a&gt;, &lt;a href=&#34;https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/39665/Java-solution-with-just-two-traverses.&#34; target=&#34;_blank&#34;&gt;solution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/&#34;&gt;Leetcode 123: Best Time to Buy and Sell Stock III&lt;/a&gt;, &lt;a href=&#34;https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/39665/Java-solution-with-just-two-traverses.&#34;&gt;solution&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278727/C%2B%2B-O(N)-buysell-stock-2-times&#34; target=&#34;_blank&#34;&gt;Q3解法1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278251/JavaC%2B%2BPython-O(N)Time-O(1)-Space&#34; target=&#34;_blank&#34;&gt;Q3解法2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/grandyang/p/4402392.html&#34; target=&#34;_blank&#34;&gt;[LeetCode] Trapping Rain Water 收集雨水&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278727/C%2B%2B-O(N)-buysell-stock-2-times&#34;&gt;Q3解法1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278251/JavaC%2B%2BPython-O(N)Time-O(1)-Space&#34;&gt;Q3解法2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/grandyang/p/4402392.html&#34;&gt;[LeetCode] Trapping Rain Water 收集雨水&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -638,7 +626,7 @@ Explanation: One choice of subarrays is [5,6,0,9] with length 4, and [3,8] with 
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/daily-temperatures/&#34; target=&#34;_blank&#34;&gt;Leetcode 739: Daily Temperatures&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/daily-temperatures/&#34;&gt;Leetcode 739: Daily Temperatures&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.&lt;/p&gt;
 
@@ -664,28 +652,25 @@ Explanation: One choice of subarrays is [5,6,0,9] with length 4, and [3,8] with 
 
 &lt;p&gt;那么用什么数据结构来暂存这些数呢？关键点就是这些暂存的数字需要保持进入时的顺序，先进先出。所以我们用一个stack来存下暂时没有找到更大的数的数，每当来一个新数的时候就和stack中的数字比较一下，如果新数比stack的顶要大，那就说明栈顶的数的对应的数找到了，可以写入结果了。我们就把他pop出来，继续看栈顶，直到栈为空或者栈顶的数比新数大。可以看到这个stack里面的数单调递减的，原因是如果有increase的话，比如&lt;code&gt;a&amp;gt;b&amp;lt;c&lt;/code&gt;，那么b的答案其实就是c，一开始就不会放到stack里。&lt;/p&gt;
 
-&lt;p&gt;这就是monotone stack，&lt;a href=&#34;http://www.cnblogs.com/grandyang/p/8887985.html&#34; target=&#34;_blank&#34;&gt;这篇文章&lt;/a&gt;可以作为参考。&lt;/p&gt;
+&lt;p&gt;这就是monotone stack，&lt;a href=&#34;http://www.cnblogs.com/grandyang/p/8887985.html&#34;&gt;这篇文章&lt;/a&gt;可以作为参考。&lt;/p&gt;
 
 &lt;p&gt;需要注意的一个细节是stack中存的不是数字（温度），而是数字的位置，这样我们在能用位置拿到数字的同时还能知道结果应该存在result数组的哪个位置。&lt;/p&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dailyTemperatures&lt;/span&gt;(temps):
+    stack &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(temps)
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def dailyTemperatures(temps):
-    stack = []
-    result = [0] * len(temps)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, temp &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(temps):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; stack &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; temp &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; temps[stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]]:
+            result[stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+            stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop()
+        stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(i)
 
-    for i, temp in enumerate(temps):
-        while stack and temp &amp;gt; temps[stack[-1]]:
-            result[stack[-1]] = i - stack[-1]
-            stack.pop()
-        stack.append(i)
-
-    return result
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;question-2&#34;&gt;Question 2&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/trapping-rain-water/&#34; target=&#34;_blank&#34;&gt;Leetcode 42: Trapping Rain Water&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/trapping-rain-water/&#34;&gt;Leetcode 42: Trapping Rain Water&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.&lt;/p&gt;
 
@@ -711,25 +696,22 @@ Output: 6
 &lt;p&gt;不容易理解的地方就是，两次计算完毕你会发现水量是根据左bar或者右bar的高度横向计算的，在这个例子里从&lt;code&gt;T[4] -&amp;gt; T[7]&lt;/code&gt; 高度&lt;code&gt;1-0&lt;/code&gt;计算一次，然后&lt;code&gt;T[3] -&amp;gt; T[7]&lt;/code&gt;高度&lt;code&gt;2-1&lt;/code&gt;计算一次。双指针的解法中水量是竖向计算的。&lt;/p&gt;
 
 &lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trap&lt;/span&gt;(heights):
+    stack &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def trap(heights):
-    stack = []
-    result = 0
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, h &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(heights):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; stack &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; h &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; heights[stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]]:
+            pit_h &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; heights[stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop()]
+            &lt;span style=&#34;color:#75715e&#34;&gt;# we have to have a left bar to trap water&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; stack:
+                result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; (min(h, heights[stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]]) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; pit_h) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+        stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(i)
 
-    for i, h in enumerate(heights):
-        while stack and h &amp;gt; heights[stack[-1]]:
-            pit_h = heights[stack.pop()]
-            # we have to have a left bar to trap water
-            if stack:
-                result += (min(h, heights[stack[-1]]) - pit_h) * (i - stack[-1] - 1)
-        stack.append(i)
-
-    return result
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;question-3&#34;&gt;Question 3&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/largest-rectangle-in-histogram/&#34; target=&#34;_blank&#34;&gt;Leetcode 84: Largest Rectangle in Histogram&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/largest-rectangle-in-histogram/&#34;&gt;Leetcode 84: Largest Rectangle in Histogram&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given n non-negative integers representing the histogram&amp;rsquo;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.&lt;/p&gt;
 
@@ -764,35 +746,32 @@ Output: 6
 &lt;p&gt;推荐看一下reference 4，博主配上了很多图片便于理解。但是博客给的图片关于计算面积是有错误的，他的左边界是选的当前栈顶的位置。&lt;/p&gt;
 
 &lt;h4 id=&#34;code-2&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;largestRectangleArea&lt;/span&gt;(heights):
+    heights&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+    stack &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def largestRectangleArea(heights):
-    heights.append(0)
-    stack = []
-    result = 0
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, h &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(heights):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; stack &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; heights[stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; h:
+            bar_i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop()
+            l_i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; stack &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(result, (i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; l_i) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; heights[bar_i])
+        stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(i)
 
-    for i, h in enumerate(heights):
-        while stack and heights[stack[-1]] &amp;gt; h:
-            bar_i = stack.pop()
-            l_i = stack[-1] + 1 if stack else 0
-            result = max(result, (i - l_i) * heights[bar_i])
-        stack.append(i)
-
-    return result
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;其他可以使用Monotone stack解的题目
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/next-greater-element-i/&#34; target=&#34;_blank&#34;&gt;Leetcode 496&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/next-greater-node-in-linked-list/&#34; target=&#34;_blank&#34;&gt;Leetcode 1019&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/next-greater-element-i/&#34;&gt;Leetcode 496&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/next-greater-node-in-linked-list/&#34;&gt;Leetcode 1019&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/grandyang/p/8887985.html&#34; target=&#34;_blank&#34;&gt;LeetCode Monotone Stack Summary 单调栈小结&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/grandyang/p/4402392.html&#34; target=&#34;_blank&#34;&gt;解法：Trapping Rain Water 收集雨水&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html&#34; target=&#34;_blank&#34;&gt;LeetCode 笔记系列 17 Largest Rectangle in Histogram&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://fisherlei.blogspot.com/2012/12/leetcode-largest-rectangle-in-histogram.html&#34; target=&#34;_blank&#34;&gt;水中的鱼：Largest Rectangle in Histogram 解题报告&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/grandyang/p/8887985.html&#34;&gt;LeetCode Monotone Stack Summary 单调栈小结&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/grandyang/p/4402392.html&#34;&gt;解法：Trapping Rain Water 收集雨水&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html&#34;&gt;LeetCode 笔记系列 17 Largest Rectangle in Histogram&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fisherlei.blogspot.com/2012/12/leetcode-largest-rectangle-in-histogram.html&#34;&gt;水中的鱼：Largest Rectangle in Histogram 解题报告&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -807,18 +786,15 @@ Output: 6
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/&#34; target=&#34;_blank&#34;&gt;Leetcode 1026&lt;/a&gt;:
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/&#34;&gt;Leetcode 1026&lt;/a&gt;:
 Given the root of a binary tree, find the maximum value &lt;code&gt;V&lt;/code&gt; for which there exists &lt;strong&gt;different&lt;/strong&gt; nodes A and B where &lt;code&gt;V = |A.val - B.val|&lt;/code&gt; and A is an ancestor of B.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;(A node A is an ancestor of B if either: any child of A is equal to B, or any child of A is an ancestor of B.)&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TreeNode&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self, x):
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; None
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; None&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
 
 &lt;p&gt;&lt;img class=&#34;special-img-class&#34; style=&#34;width:50%&#34; src=&#34;https://ericliu03.github.io/img/maximum_diff_between_node_and_ancestor_img1.jpg&#34; /&gt;&lt;/p&gt;
@@ -854,34 +830,31 @@ Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 
 &lt;/ol&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxAncestorDiff&lt;/span&gt;(root):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; root &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; None:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; helper(root)[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def maxAncestorDiff(root):
-    if root is None:
-        return 0
-    else:
-        return helper(root)[2]
 
-
-def helper(node):
-    min_num = max_num = node.val
-    diff = 0
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;helper&lt;/span&gt;(node):
+    min_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val
+    diff &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
     
-    if node.left:
-        temp = helper(node.left)
-        min_num = min(min_num, temp[0])
-        max_num = max(max_num, temp[1])
-        diff = max(diff, temp[2])
-    if node.right:
-        temp = helper(node.right)
-        min_num = min(min_num, temp[0])
-        max_num = max(max_num, temp[1])
-        diff = max(diff, temp[2])
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left:
+        temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; helper(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left)
+        min_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(min_num, temp[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;])
+        max_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(max_num, temp[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
+        diff &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(diff, temp[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;])
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right:
+        temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; helper(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right)
+        min_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(min_num, temp[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;])
+        max_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(max_num, temp[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
+        diff &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(diff, temp[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;])
     
-    diff = max(diff, max(abs(node.val - min_num), abs(node.val - max_num)))
+    diff &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(diff, max(abs(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; min_num), abs(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; max_num)))
     
-    return min_num, max_num, diff
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; min_num, max_num, diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
 
 &lt;h4 id=&#34;analysis-1&#34;&gt;Analysis&lt;/h4&gt;
@@ -893,21 +866,18 @@ def helper(node):
 &lt;li&gt;update min or max with current node&amp;rsquo;s value and pass it to it&amp;rsquo;s children&lt;/li&gt;
 &lt;li&gt;when we reached the leaf, we calculate the result by using this min and max nums&lt;/li&gt;
 &lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxAncestorDiff&lt;/span&gt;(root):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; helper(root, root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val, root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val)
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def maxAncestorDiff(root):
-    return helper(root, root.val, root.val)
 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;helper&lt;/span&gt;(node, lo, hi):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; None:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; hi &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; lo
 
-def helper(node, lo, hi):
-    if node is None:
-        return hi - lo
+    lo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(lo, node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val)
+    hi &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(hi, node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val)
 
-    lo = min(lo, node.val)
-    hi = max(hi, node.val)
-
-    return max(helper(node.left, lo, hi), helper(node.right, lo, hi))
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; max(helper(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left, lo, hi), helper(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right, lo, hi))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -920,7 +890,7 @@ def helper(node, lo, hi):
 
 &lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
 
-&lt;p&gt;This question is from &lt;a href=&#34;https://leetcode.com/problems/longest-increasing-subsequence/&#34; target=&#34;_blank&#34;&gt;Leetcode 300&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This question is from &lt;a href=&#34;https://leetcode.com/problems/longest-increasing-subsequence/&#34;&gt;Leetcode 300&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Given an unsorted array of integers, find the length of longest increasing subsequence.&lt;/p&gt;
 
@@ -946,33 +916,29 @@ Explanation: The longest increasing subsequence is [2,3,7,101], therefore the le
 具体来说我们需要试一下所有可能的组合：对于每一个数&lt;strong&gt;x&lt;/strong&gt;，他本身加上他后面的任意一个比他大的数&lt;strong&gt;y&lt;/strong&gt;都可以组成一个increasing subsequence。如果我们已经知道了以&lt;strong&gt;y&lt;/strong&gt;开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以&lt;strong&gt;x&lt;/strong&gt;和&lt;strong&gt;y&lt;/strong&gt;开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字&lt;strong&gt;z&lt;/strong&gt;也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。
 时间复杂度是\( O(N!) \)：对于第一个数字，需要进行 (n-1) * (n-2) * &amp;hellip; * 1，第二个是 (n-2) * (n-3) * &amp;hellip; * 1, 第n个是1。&lt;/p&gt;
 
-&lt;p&gt;Leetcode也提供了&lt;a href=&#34;https://leetcode.com/problems/longest-increasing-subsequence/solution/&#34; target=&#34;_blank&#34;&gt;另一种BF&lt;/a&gt;的方法。那个方法对于recursion function的定义不同，时间复杂度也只有O(2^n)。原因是相比于上面的方法，在每个点只进行了两次recursion call，而不是n次。&lt;/p&gt;
+&lt;p&gt;Leetcode也提供了&lt;a href=&#34;https://leetcode.com/problems/longest-increasing-subsequence/solution/&#34;&gt;另一种BF&lt;/a&gt;的方法。那个方法对于recursion function的定义不同，时间复杂度也只有O(2^n)。原因是相比于上面的方法，在每个点只进行了两次recursion call，而不是n次。&lt;/p&gt;
 
 &lt;p&gt;你应该能发现我们recursion function的定义，是求以当前数字作为开头，最长的increasing subsequence的长度。既然是最长，那么也就是说只要给定start位置和list，这个结果就只有一个。然而在上面的算法中，对于同一个点我们计算了很多次（对于每个数，我们计算的次数等于他前面比他小的数字的数量）。所以我们可以把计算的结果存起来，只计算一次。&lt;/p&gt;
 
 &lt;p&gt;那么时间复杂度就变成了\( O(N^2) \)，因为对于每个点，我们依然要看一下剩下符合要求的点的最长长度然后计算出自己的长度。&lt;/p&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;class Solution:
-    def lengthOfLIS(self, nums: List[int]) -&amp;gt; int:
-        if not nums:
-            return 0
-        self.memo = {}
-        return max([self.helper(i, nums) for i in range(len(nums))])
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lengthOfLIS&lt;/span&gt;(self, nums: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; nums:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; max([self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;helper(i, nums) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums))])
     
-    def helper(self, start, nums):
-        if start not in self.memo:
-            result = 0
-            for i in range(start+1, len(nums)):
-                if nums[i] &amp;gt; nums[start]:
-                    result = max(result, self.helper(i, nums))
-            self.memo[start] = result+1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;helper&lt;/span&gt;(self, start, nums):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; start &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo:
+            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(start&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(nums)):
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; nums[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; nums[start]:
+                    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(result, self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;helper(i, nums))
+            self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[start] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; result&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
             
-        return self.memo[start]
-
-&lt;/code&gt;&lt;/pre&gt;
-
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[start]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
 
 &lt;h4 id=&#34;analysis-1&#34;&gt;Analysis&lt;/h4&gt;
@@ -982,25 +948,22 @@ Explanation: The longest increasing subsequence is [2,3,7,101], therefore the le
 &lt;p&gt;在LC中提供的DP解法是反过来，从左向右计算，随之而变化的是存的每个点的数据的定义，也变为&lt;strong&gt;以当前数字为结尾，最长increasing subsequence的长度&lt;/strong&gt;。所以对于每一个数字，我们都需要看一下符合条件的数，也即在他前面且比他小的数（可以看到是正好反过来的），找出最长的作为当前数字的结果。从前往后是自然而然的顺序，但是如果是用BF的方法推导过来，却是需要转换一下才可。&lt;/p&gt;
 
 &lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lengthOfLIS&lt;/span&gt;(nums):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; nums:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def lengthOfLIS(nums):
-    if not nums:
-        return 0
+    dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(nums)
 
-    dp = [1] * len(nums)
-
-    for hi in range(len(nums)):
-        for lo in range(hi):
-            if nums[lo] &amp;lt; nums[hi]:
-                dp[hi] = max(dp[hi], dp[lo] + 1)
-    return max(dp)
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; hi &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; lo &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(hi):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; nums[lo] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; nums[hi]:
+                dp[hi] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(dp[hi], dp[lo] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; max(dp)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;follow-up-1&#34;&gt;Follow up 1&lt;/h3&gt;
 
 &lt;h4 id=&#34;question-1&#34;&gt;Question&lt;/h4&gt;
 
-&lt;p&gt;From &lt;a href=&#34;https://leetcode.com/problems/number-of-longest-increasing-subsequence/&#34; target=&#34;_blank&#34;&gt;Leetcode 673&lt;/a&gt;:
+&lt;p&gt;From &lt;a href=&#34;https://leetcode.com/problems/number-of-longest-increasing-subsequence/&#34;&gt;Leetcode 673&lt;/a&gt;:
 Given an unsorted array of integers, find the number of longest increasing subsequence.&lt;/p&gt;
 
 &lt;h4 id=&#34;examples-1&#34;&gt;Examples&lt;/h4&gt;
@@ -1022,32 +985,29 @@ Explanation: The length of longest continuous increasing subsequence is 1, and t
 &lt;p&gt;在本题目中我们需要记录下来遇到这种情况的数量，也就是在每一位不仅记录以当前为结尾数字的subsequence的最大长度，也记录有此长度的不同subsequence有多少个。这样一来，最后的时候我们就可以使用整个dp数组中最长的那个长度，作为整个数组的最长度，再用这个长度去找总共这个长度的subsequence有多少个。&lt;/p&gt;
 
 &lt;h4 id=&#34;code-2&#34;&gt;Code&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def numberOfLIS(nums):
-        if not nums:
-            return 0
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;numberOfLIS&lt;/span&gt;(nums):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; nums:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
         
-        dp = [1] * len(nums)
-        counts = [1] * len(nums)
+        dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(nums)
+        counts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(nums)
         
-        for hi in range(len(nums)):
-            for lo in range(hi):
-                if nums[lo] &amp;lt; nums[hi]:
-                    if dp[hi] &amp;lt; dp[lo] + 1:
-                        dp[hi] = dp[lo] + 1
-                        counts[hi] = counts[lo]
-                    elif dp[hi] == dp[lo] + 1:
-                        counts[hi] += counts[lo]
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; hi &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; lo &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(hi):
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; nums[lo] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; nums[hi]:
+                    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; dp[hi] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; dp[lo] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+                        dp[hi] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dp[lo] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+                        counts[hi] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; counts[lo]
+                    &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; dp[hi] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; dp[lo] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+                        counts[hi] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; counts[lo]
 
-        max_len  = max(dp)
-        return sum([counts[i] for i in range(len(nums)) if dp[i] == max_len])
-&lt;/code&gt;&lt;/pre&gt;
-
+        max_len  &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(dp)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; sum([counts[i] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)) &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; dp[i] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; max_len])&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;follow-up-2&#34;&gt;Follow up 2&lt;/h3&gt;
 
 &lt;h4 id=&#34;question-2&#34;&gt;Question&lt;/h4&gt;
 
-&lt;p&gt;From &lt;a href=&#34;https://leetcode.com/problems/longest-arithmetic-sequence/&#34; target=&#34;_blank&#34;&gt;Leetcode 1027&lt;/a&gt;:
+&lt;p&gt;From &lt;a href=&#34;https://leetcode.com/problems/longest-arithmetic-sequence/&#34;&gt;Leetcode 1027&lt;/a&gt;:
 Given an array A of integers, return the length of the longest arithmetic subsequence in A.&lt;/p&gt;
 
 &lt;p&gt;Recall that a subsequence of A is a list &lt;code&gt;A[i_1], A[i_2], ..., A[i_k]&lt;/code&gt; with &lt;code&gt;0 &amp;lt;= i_1 &amp;lt; i_2 &amp;lt; ... &amp;lt; i_k &amp;lt;= A.length - 1&lt;/code&gt;, and that a sequence B is arithmetic if &lt;code&gt;B[i+1] - B[i]&lt;/code&gt; are all the same value (for &lt;code&gt;0 &amp;lt;= i &amp;lt; B.length - 1&lt;/code&gt;).&lt;/p&gt;
@@ -1070,20 +1030,16 @@ The longest arithmetic subsequence is [20,15,10,5].
 &lt;h4 id=&#34;analysis-3&#34;&gt;Analysis&lt;/h4&gt;
 
 &lt;p&gt;看过了上面这么多题目和解法，看到这应该有感觉到需要用类似的方法做。和原题唯一的区别就是条件：原题的条件是右边的数大于左边的数，此题的条件是右边的数减左边的数等于一个差值。这个差值是由subsequence的头两个数决定的。同样的，我们可以用一个数组&lt;code&gt;dp[]&lt;/code&gt;来存以当前数字为结尾的subsequence的最长长度，但不同的是对于不一样的差值可以会有相同或者不同的最长长度，比如例子1中，以7结尾，差值为-2时，长度为2，差值为3时长度也为2（未出现的差值我们可以不记录）。在比如当到了10的时候，差值为3是就是3（接上了7），其他的（比如1，6等等）最长的只有2了。所以我们可以想到，对于每一个数字的每一种可能的差值，我们都需要记录下来其最长subsequence的长度，以备后面的数字使用。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def longestArithSeqLength(nums):
-    dp = [collections.defaultdict(int) for _ in range(len(nums))]
-    result = 0
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;longestArithSeqLength&lt;/span&gt;(nums):
+    dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(int) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums))]
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
     
-    for hi in range(len(nums)):
-        for lo in range(hi):
-            diff = nums[hi] - nums[lo]
-            dp[hi][diff] = max(dp[hi][diff], dp[lo][diff] + 1)
-            result = max(result, dp[hi][diff])        
-    return result + 1	
-
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; hi &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; lo &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(hi):
+            diff &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nums[hi] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; nums[lo]
+            dp[hi][diff] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(dp[hi][diff], dp[lo][diff] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(result, dp[hi][diff])        
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;后记&#34;&gt;后记&lt;/h3&gt;
 
 &lt;p&gt;这篇文章其实是收到了最后一个题目（follow up2）的启发，是在做LC contest的时候遇到的。回忆起来，当时感觉题目有点熟悉，但没想到和原题的关联。当时只想到了BF算法，自然也超时了。理论上用BF加memo的方法也可以做，但是因为加入了diff的缘故导致稍微有点复杂，就被绕晕了。想要思路清晰的快速解题，还是要熟练啊&lt;/p&gt;
@@ -1129,7 +1085,7 @@ If give D, return null.
 
 &lt;h4 id=&#34;analysis&#34;&gt;Analysis&lt;/h4&gt;
 
-&lt;p&gt;First, there are &lt;a href=&#34;https://en.wikipedia.org/wiki/Tree_traversal&#34; target=&#34;_blank&#34;&gt;several ways&lt;/a&gt; to traverse a tree, and in the problem it&amp;rsquo;s using in-order traversal. Basically, in-order traversal is to &amp;ldquo;display root node at &lt;em&gt;in&lt;/em&gt; position&amp;rdquo;, i.e. 1. display left subtree, display root and display right sub tree. Something like this: &lt;strong&gt;[left-subtree-inorder-list] + root + [right-subtree-inorder-list]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First, there are &lt;a href=&#34;https://en.wikipedia.org/wiki/Tree_traversal&#34;&gt;several ways&lt;/a&gt; to traverse a tree, and in the problem it&amp;rsquo;s using in-order traversal. Basically, in-order traversal is to &amp;ldquo;display root node at &lt;em&gt;in&lt;/em&gt; position&amp;rdquo;, i.e. 1. display left subtree, display root and display right sub tree. Something like this: &lt;strong&gt;[left-subtree-inorder-list] + root + [right-subtree-inorder-list]&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;For this question, the easiest way is to find the root of the tree using the pointer to parent in each node, and do a in-order traversal to generate a list. The time and space complexity would be O(n). Can we do better?&lt;/p&gt;
 
@@ -1153,35 +1109,32 @@ If give D, return null.
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;inorder_predecessor&lt;/span&gt;(node):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; None:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def inorder_predecessor(node):
-    if node is None:
-        return None
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; None:
+        curr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; curr&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right:
+            curr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; curr&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; curr
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parent:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; node:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parent
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parent
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
 
-    if node.left is not None:
-        curr = node.left
-        while curr.right:
-            curr = curr.right
-        return curr
-    else:
-        while node.parent:
-            if node.parent.right == node:
-                return node.parent
-            else:
-                node = node.parent
-        return None
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self, val, parent):
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; val
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parent &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; parent
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; None
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; None
 
-class Node:
-    def __init__(self, val, parent):
-        self.val = val
-        self.parent = parent
-        self.left = None
-        self.right = None
-
-    def __str__(self):
-        return self.val
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __str__(self):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -1233,90 +1186,84 @@ output: 1, we start from 4
 &lt;p&gt;Starting from the problem description, the most straightforward is to use a recursive method. We could have a loop of all the nodes in the graph. We treat each node as a start point of a DFS and see if we can traverse the whole graph. If yes, then we return 1 since we used 1 node as start point. If not, then we go 1 level deeper in the recursive function, which is another loop of the nodes, but here instead of all the nodes, we only use the nodes we can&amp;rsquo;t reach in the previous DFS. We should be able to get one result for each node that picked as starting point. We choose the smallest number among those and plus one to return as the nodes needed to cover all the nodes.&lt;/p&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; collections
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import collections
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;minimum_nodes&lt;/span&gt;(n, edges):
+    outdegrees &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(set)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; u, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; edges:
+        outdegrees[u]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(v)
 
-def minimum_nodes(n, edges):
-    outdegrees = collections.defaultdict(set)
-    for u, v in edges:
-        outdegrees[u].add(v)
-
-    result = float(&#39;inf&#39;)
-    unvisited = set([i for i in range(n)])
-    for i in range(n):
-        result = min(result, dfs(i, outdegrees, unvisited))
-        print(result, i)
-    return result
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+    unvisited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set([i &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n)])
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(result, dfs(i, outdegrees, unvisited))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(result, i)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
 
 
-def dfs(start, outdegrees, unvisited):
-    unvisited_set = unvisited.copy()
-    queue = [start]
-    while queue:
-        curr_node = queue.pop(0)
-        if curr_node in unvisited_set:
-            unvisited_set.remove(curr_node)
-            for neighbor in outdegrees[curr_node]:
-                queue.append(neighbor)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dfs&lt;/span&gt;(start, outdegrees, unvisited):
+    unvisited_set &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; unvisited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;copy()
+    queue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [start]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; queue:
+        curr_node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; curr_node &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; unvisited_set:
+            unvisited_set&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;remove(curr_node)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; neighbor &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; outdegrees[curr_node]:
+                queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(neighbor)
 
-    if len(unvisited_set) == 0:
-        return 1
-    else:
-        result = float(&#39;inf&#39;)
-        for unvisited in unvisited_set:
-            result = min(result, dfs(unvisited, outdegrees, unvisited_set))
-        return result + 1
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; len(unvisited_set) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; unvisited &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; unvisited_set:
+            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(result, dfs(unvisited, outdegrees, unvisited_set))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
 
 &lt;h4 id=&#34;analysis-1&#34;&gt;Analysis&lt;/h4&gt;
 
-&lt;p&gt;Thinking about the recursive function, we should notice that we did a lot duplicated works there. (Actually, if the problem is not asking for all possible ways/permutations, then there should always be duplicated works.) In this way, this could be optimized using idea of &lt;a href=&#34;https://en.wikipedia.org/wiki/Dynamic_programming&#34; target=&#34;_blank&#34;&gt;Dynamic Programing&lt;/a&gt;. There are two general ways of doing DP, 1. use a map to remember what&amp;rsquo;s the result from a start point (in this problem the start point is the node we choose as start), and go through the path using recursive function 2. use a n-Dimension array to store the result and derive results from previous results.
+&lt;p&gt;Thinking about the recursive function, we should notice that we did a lot duplicated works there. (Actually, if the problem is not asking for all possible ways/permutations, then there should always be duplicated works.) In this way, this could be optimized using idea of &lt;a href=&#34;https://en.wikipedia.org/wiki/Dynamic_programming&#34;&gt;Dynamic Programing&lt;/a&gt;. There are two general ways of doing DP, 1. use a map to remember what&amp;rsquo;s the result from a start point (in this problem the start point is the node we choose as start), and go through the path using recursive function 2. use a n-Dimension array to store the result and derive results from previous results.
 Here we could use the first way to remember the result of &lt;strong&gt;the nodes we could reach when starting from node u&lt;/strong&gt;. Then each time we start the DFS, we first check if we have already examen that node as start point and if we do return the result.&lt;/p&gt;
 
 &lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
 
 &lt;p&gt;This is similar to method 1, just we remember the results we already have. But the code looks messier =|&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;minimum_nodes&lt;/span&gt;(n, edges):
+    memo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+    outdegrees &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(set)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; u, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; edges:
+        outdegrees[u]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(v)
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def minimum_nodes(n, edges):
-    memo = {}
-    outdegrees = collections.defaultdict(set)
-    for u, v in edges:
-        outdegrees[u].add(v)
-
-    result = float(&#39;inf&#39;)
-    unvisited = set([i for i in range(n)])
-    for i in range(n):
-        result = min(result, dfs(i, memo, outdegrees, unvisited))
-        print(result, i)
-    return result
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+    unvisited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set([i &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n)])
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(result, dfs(i, memo, outdegrees, unvisited))
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(result, i)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
 
 
-def dfs(start, memo, outdegrees, unvisited):
-    if start in memo:
-        return memo[start]
-    unvisited_set = unvisited.copy()
-    queue = [start]
-    while queue:
-        curr_node = queue.pop(0)
-        if curr_node in unvisited_set:
-            unvisited_set.remove(curr_node)
-            for neighbor in outdegrees[curr_node]:
-                queue.append(neighbor)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dfs&lt;/span&gt;(start, memo, outdegrees, unvisited):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; start &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; memo:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; memo[start]
+    unvisited_set &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; unvisited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;copy()
+    queue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [start]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; queue:
+        curr_node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; curr_node &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; unvisited_set:
+            unvisited_set&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;remove(curr_node)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; neighbor &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; outdegrees[curr_node]:
+                queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(neighbor)
 
-    result = float(&#39;inf&#39;)
-    if len(unvisited_set) == 0:
-        result = 1
-    else:
-        for unvisited in unvisited_set:
-            result = min(result, dfs(unvisited, memo, outdegrees, unvisited_set))
-        result += 1
+    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; len(unvisited_set) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; unvisited &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; unvisited_set:
+            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(result, dfs(unvisited, memo, outdegrees, unvisited_set))
+        result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 
-    memo[start] = result
-    return result
-&lt;/code&gt;&lt;/pre&gt;
-
+    memo[start] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; result
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;method-3&#34;&gt;Method 3&lt;/h3&gt;
 
 &lt;h4 id=&#34;analysis-2&#34;&gt;Analysis&lt;/h4&gt;
@@ -1324,48 +1271,45 @@ def dfs(start, memo, outdegrees, unvisited):
 &lt;p&gt;Instead of remembering everything in a map during the recursion, we could remember something else. There are two things we need, 1. the vertices we already visited in &lt;code&gt;visited&lt;/code&gt;, 2. the start points we choose in &lt;code&gt;start_points&lt;/code&gt;. Still, we loop through every vertex, say &lt;strong&gt;u&lt;/strong&gt; in the graph that not in &lt;code&gt;visited&lt;/code&gt;, do a search (either DFS or BFS) to get all the vertices that could be reached started with &lt;strong&gt;u&lt;/strong&gt;. The following is the &lt;strong&gt;key&lt;/strong&gt; to this algorithm: 1. we add those reached vertices to &lt;code&gt;visited&lt;/code&gt;, so we won&amp;rsquo;t do duplicated work, 2. if in the reached vertices, there&amp;rsquo;s any &lt;strong&gt;start points we chose, we remove those start points,&lt;/strong&gt; from &lt;code&gt;start_points&lt;/code&gt;. 3. add &lt;strong&gt;u&lt;/strong&gt; to &lt;code&gt;start_points&lt;/code&gt;. This is because we could reach the &lt;strong&gt;removed start points&lt;/strong&gt; from &lt;strong&gt;u&lt;/strong&gt;, and thus the vertices that the old start vertex can reach. So there&amp;rsquo;s no need to keep the old start point anymore.&lt;/p&gt;
 
 &lt;h4 id=&#34;code-2&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;minimum_nodes3&lt;/span&gt;(n, edges):
+    outdegrees &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(set)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; u, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; edges:
+        outdegrees[u]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(v)
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def minimum_nodes3(n, edges):
-    outdegrees = collections.defaultdict(set)
-    for u, v in edges:
-        outdegrees[u].add(v)
+    visited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
+    starts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; vertex &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; vertex &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; visited:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;
 
-    visited = set()
-    starts = set()
-    for vertex in range(n):
-        if vertex in visited:
-            continue
+        reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; get_reached(vertex, outdegrees)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; s &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; list(starts):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; s &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; reached:
+                starts&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;remove(s)
+        visited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;update(reached)
+        starts&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(vertex)
 
-        reached = get_reached(vertex, outdegrees)
-        for s in list(starts):
-            if s in reached:
-                starts.remove(s)
-        visited.update(reached)
-        starts.add(vertex)
-
-    return len(starts)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; len(starts)
 
 
-def get_reached(start, outdegrees):
-    visited = set()
-    queue = [start]
-    while queue:
-        curr_node = queue.pop(0)
-        if curr_node in visited:
-            continue
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;get_reached&lt;/span&gt;(start, outdegrees):
+    visited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
+    queue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [start]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; queue:
+        curr_node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; curr_node &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; visited:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;
 
-        visited.add(curr_node)
-        for neighbor in outdegrees[curr_node]:
-            queue.append(neighbor)
+        visited&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(curr_node)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; neighbor &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; outdegrees[curr_node]:
+            queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(neighbor)
 
-    return visited
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; visited&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;method-4&#34;&gt;Method 4&lt;/h3&gt;
 
 &lt;h4 id=&#34;analysis-3&#34;&gt;Analysis&lt;/h4&gt;
 
-&lt;p&gt;In the graph theory, there&amp;rsquo;s a concept called &lt;a href=&#34;https://en.wikipedia.org/wiki/Strongly_connected_component&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Strongly Connected Component(SCC)&lt;/strong&gt;&lt;/a&gt;. If you don&amp;rsquo;t know you should read about it. In short, all nodes in a SCC has a path to go to any other nodes in the same SCC. So what we need from it for this problem is that we want to treat the nodes in same SCC as one single node in a graph. After that the graph will be a DAG, and we just need to count how many nodes don&amp;rsquo;t have incoming edges (i.e. 0 in-degree). Those nodes will be the start points.&lt;/p&gt;
+&lt;p&gt;In the graph theory, there&amp;rsquo;s a concept called &lt;a href=&#34;https://en.wikipedia.org/wiki/Strongly_connected_component&#34;&gt;&lt;strong&gt;Strongly Connected Component(SCC)&lt;/strong&gt;&lt;/a&gt;. If you don&amp;rsquo;t know you should read about it. In short, all nodes in a SCC has a path to go to any other nodes in the same SCC. So what we need from it for this problem is that we want to treat the nodes in same SCC as one single node in a graph. After that the graph will be a DAG, and we just need to count how many nodes don&amp;rsquo;t have incoming edges (i.e. 0 in-degree). Those nodes will be the start points.&lt;/p&gt;
 
 &lt;p&gt;In reference 1, code for this solution is given, which used Tarjan Algorithm. I attached some great explanation in reference for this algorithm. I will write my understanding of Tarjan in the following. It uses a stack to represent the vertices that are currently visiting, and it uses &lt;code&gt;dfn[u]&lt;/code&gt; to store IDs of vertices and &lt;code&gt;low[u]&lt;/code&gt; to represent the vertex with lowest ID it can reach. As an example, is 6 can reach 4 (so &lt;code&gt;low[6] = 4&lt;/code&gt;), and 4 can reach 1 (&lt;code&gt;low[4] = 1&lt;/code&gt;). From this we know 6 can reach 1 but during the algorithm this will not be recorded directly in &lt;code&gt;low&lt;/code&gt;. If &lt;code&gt;low[x]&lt;/code&gt; equals to x itself, then it means it can&amp;rsquo;t go back any further, and it will be recognized as &lt;em&gt;root&lt;/em&gt; of this SCC. Thus all the vertices in the stack and pushed later then this &lt;em&gt;root&lt;/em&gt; (i.e. we are visiting) will belongs to this SCC. This is because from this &lt;em&gt;root&lt;/em&gt; we reached all those vertices, and somehow those vertices can comes back to this &lt;em&gt;root&lt;/em&gt;.&lt;/p&gt;
 
@@ -1374,11 +1318,11 @@ def get_reached(start, outdegrees):
 &lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.1point3acres.com/bbs/forum.php?mod=viewthread&amp;amp;tid=319799&#34; target=&#34;_blank&#34;&gt;[树/链表/图] 求教Airbnb的graph traversal问题 &lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.miskcoo.com/2016/07/tarjan-algorithm-strongly-connected-components&#34; target=&#34;_blank&#34;&gt;Tarjan算法寻找有向图的强连通分量&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/hurmishine/article/details/75248876&#34; target=&#34;_blank&#34;&gt;全网最!详!细!Tarjan算法讲解&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/nullzx/p/6437926.html&#34; target=&#34;_blank&#34;&gt;Kosaraju算法解析: 求解图的强连通分量&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/dm_vincent/article/details/8554244&#34; target=&#34;_blank&#34;&gt;求解强连通分量算法之&amp;mdash;Kosaraju算法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.1point3acres.com/bbs/forum.php?mod=viewthread&amp;amp;tid=319799&#34;&gt;[树/链表/图] 求教Airbnb的graph traversal问题 &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.miskcoo.com/2016/07/tarjan-algorithm-strongly-connected-components&#34;&gt;Tarjan算法寻找有向图的强连通分量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/hurmishine/article/details/75248876&#34;&gt;全网最!详!细!Tarjan算法讲解&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/nullzx/p/6437926.html&#34;&gt;Kosaraju算法解析: 求解图的强连通分量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/dm_vincent/article/details/8554244&#34;&gt;求解强连通分量算法之&amp;mdash;Kosaraju算法&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -1391,7 +1335,7 @@ def get_reached(start, outdegrees):
       <guid>https://ericliu03.github.io/posts/2019/04/video_stitching/</guid>
       <description>
 
-&lt;p&gt;This is a question from &lt;a href=&#34;https://leetcode.com/problems/video-stitching/&#34; target=&#34;_blank&#34;&gt;leetcode.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a question from &lt;a href=&#34;https://leetcode.com/problems/video-stitching/&#34;&gt;leetcode.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;
 
@@ -1458,52 +1402,46 @@ Notice you can have extra video after the event ends.
 &lt;h2 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h2&gt;
 
 &lt;h3 id=&#34;method-1&#34;&gt;Method 1:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;video_stitching&lt;/span&gt;(clips, T):
+    curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+    count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def video_stitching(clips, T):
-    curr_reached = 0
-    count = 0
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; T:
+        next_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; curr_reached
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; start, end &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; clips:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; start &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; end &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; next_reached:
+                next_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; end
+        count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; next_reached &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; curr_reached:
+            count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; next_reached
 
-    while curr_reached &amp;lt; T:
-        next_reached = curr_reached
-        for start, end in clips:
-            if start &amp;lt;= curr_reached and end &amp;gt; next_reached:
-                next_reached = end
-        count += 1
-        if next_reached == curr_reached:
-            count = -1
-            break
-        else:
-            curr_reached = next_reached
-
-    return count
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; count&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Time complexity: in the worst case, we move one section by one section and need to loop through every section for each section, so \( O(N^2) \)&lt;/p&gt;
 
 &lt;h3 id=&#34;method-2&#34;&gt;Method 2:&lt;/h3&gt;
 
 &lt;p&gt;First we sort this clips based on start time (end time doesn&amp;rsquo;t matter because we will scan all of them). Then during the loop, we will keep record of how far we can go in next round and stop at the section whose start is greater than our current reached point (so that we can concatenate). So in next round, we start at where we stopped and do the same thing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;video_stitching2&lt;/span&gt;(clips, T):
+    clips&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sort()
+    curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+    count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+    pos &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def video_stitching2(clips, T):
-    clips.sort()
-    curr_reached = 0
-    count = 0
-    pos = 0
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; pos &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(clips) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; T:
+        next_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; curr_reached
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; pos &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(clips) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; clips[pos][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; curr_reached:
+            next_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(next_reached, clips[pos][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
+            pos &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; next_reached &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; curr_reached:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; next_reached
 
-    while pos &amp;lt; len(clips) and curr_reached &amp;lt; T:
-        next_reached = curr_reached
-        while pos &amp;lt; len(clips) and clips[pos][0] &amp;lt;= curr_reached:
-            next_reached = max(next_reached, clips[pos][1])
-            pos += 1
-        count += 1
-        if next_reached == curr_reached:
-            break
-        else:
-            curr_reached = next_reached
-
-    return count if curr_reached &amp;gt;= T else -1
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; count &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; curr_reached &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; T &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Time complexity: the scan is \( O(N) \) but sorting is \( O(NlogN) \). So overall the time complexity is \( O(NlogN) \)&lt;/p&gt;
 </description>
     </item>
@@ -1516,7 +1454,7 @@ Notice you can have extra video after the event ends.
       <guid>https://ericliu03.github.io/posts/2019/04/pour_water/</guid>
       <description>
 
-&lt;p&gt;This is a question from Airbnb onsite interview, also could be found on &lt;a href=&#34;https://leetcode.com/problems/pour-water/&#34; target=&#34;_blank&#34;&gt;leetcode&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a question from Airbnb onsite interview, also could be found on &lt;a href=&#34;https://leetcode.com/problems/pour-water/&#34;&gt;leetcode&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;question&#34;&gt;Question:&lt;/h2&gt;
 
@@ -1524,7 +1462,7 @@ Notice you can have extra video after the event ends.
 
 &lt;h3 id=&#34;assumptions&#34;&gt;Assumptions:&lt;/h3&gt;
 
-&lt;p&gt;Now, you should ask some clarify questions and make some assumptions of this questions. There are a lot of good solutions and explanations on &lt;a href=&#34;https://leetcode.com/problems/pour-water/solution/&#34; target=&#34;_blank&#34;&gt;leetcode&lt;/a&gt; so I will have a different version of the assumption here.&lt;/p&gt;
+&lt;p&gt;Now, you should ask some clarify questions and make some assumptions of this questions. There are a lot of good solutions and explanations on &lt;a href=&#34;https://leetcode.com/problems/pour-water/solution/&#34;&gt;leetcode&lt;/a&gt; so I will have a different version of the assumption here.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;If the droplet would eventually fall by moving &lt;strong&gt;right&lt;/strong&gt;, then move &lt;strong&gt;right&lt;/strong&gt;.&lt;/li&gt;
@@ -1579,30 +1517,27 @@ Steps:
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;coding&#34;&gt;Coding&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pour_water&lt;/span&gt;(elevation, drop_count, drop_pos):
+    n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(elevation)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(drop_count):
+        right_pos &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; drop_pos
+        left_pos &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; drop_pos
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def pour_water(elevation, drop_count, drop_pos):
-    n = len(elevation)
-    for _ in range(drop_count):
-        right_pos = drop_pos
-        left_pos = drop_pos
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; right_pos &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; elevation[right_pos &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; elevation[right_pos]:
+            right_pos &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; left_pos &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; elevation[left_pos &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; elevation[left_pos]:
+            left_pos &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 
-        while right_pos + 1 &amp;lt; n and elevation[right_pos + 1] &amp;lt;= elevation[right_pos]:
-            right_pos += 1
-        while left_pos - 1 &amp;gt;= 0 and elevation[left_pos - 1] &amp;lt;= elevation[left_pos]:
-            left_pos -= 1
+        next_pos &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; right_pos
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (right_pos &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; left_pos &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) \
+                &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (right_pos &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; elevation[left_pos] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; elevation[drop_pos]) \
+                &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; (left_pos &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; elevation[right_pos] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; elevation[drop_pos]):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; elevation[right_pos] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; elevation[drop_pos] &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; elevation[left_pos] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; elevation[drop_pos]:
+            next_pos &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; left_pos
 
-        next_pos = right_pos
-        if (right_pos == n - 1 and left_pos == 0) \
-                or (right_pos == n - 1 and elevation[left_pos] == elevation[drop_pos]) \
-                or (left_pos == 0 and elevation[right_pos] == elevation[drop_pos]):
-            continue
-        elif elevation[right_pos] == elevation[drop_pos] and elevation[left_pos] &amp;lt; elevation[drop_pos]:
-            next_pos = left_pos
-
-        elevation[next_pos] += 1
-    return elevation
-&lt;/code&gt;&lt;/pre&gt;
-
+        elevation[next_pos] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; elevation&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;tips&#34;&gt;Tips&lt;/h3&gt;
 
 &lt;p&gt;When scanning using while loop, we can check the value on next index before moving forward. In this way, our result index will be the last one that satisfy the while condition. Be attention that the first index is not checked.&lt;/p&gt;
@@ -1617,7 +1552,7 @@ Steps:
       <guid>https://ericliu03.github.io/posts/2019/04/remove_undirect_edge/</guid>
       <description>
 
-&lt;p&gt;This is a coding problem from Uber onsite interview found &lt;a href=&#34;https://www.1point3acres.com/bbs/thread-502555-1-1.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a coding problem from Uber onsite interview found &lt;a href=&#34;https://www.1point3acres.com/bbs/thread-502555-1-1.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;question&#34;&gt;Question:&lt;/h3&gt;
 
@@ -1643,11 +1578,11 @@ Steps:
 
 &lt;p&gt;Intuitively, what we want to do is to remove the connections &lt;em&gt;a -&amp;gt; b&lt;/em&gt; while a is not the node&amp;rsquo;s parent in the tree. The way to distinguish those connections is to find out if there&amp;rsquo;s another way to connect a -&amp;gt; b. If there is any, saying a -&amp;gt; a&amp;rsquo; -&amp;gt; b, then we know b&amp;rsquo;s parent is a&amp;rsquo; instead a then we should remove a -&amp;gt; b.&lt;/p&gt;
 
-&lt;p&gt;From a different perspective, if we imagine the tuples in the list are the edges in a directed graph, then we want is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Transitive_reduction&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;transitive reduction&lt;/strong&gt;&lt;/a&gt; of the original graph (represented by all the edges). The transitive reduction of a graph contains &lt;em&gt;the fewest possible edges that has the same reachability relation as the original graph, by discarding the edges u → v for which G also contains a longer path connecting the same two vertices.&lt;/em&gt; In this way, the transitive reduction we generated will be the tree the question asked.&lt;/p&gt;
+&lt;p&gt;From a different perspective, if we imagine the tuples in the list are the edges in a directed graph, then we want is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Transitive_reduction&#34;&gt;&lt;strong&gt;transitive reduction&lt;/strong&gt;&lt;/a&gt; of the original graph (represented by all the edges). The transitive reduction of a graph contains &lt;em&gt;the fewest possible edges that has the same reachability relation as the original graph, by discarding the edges u → v for which G also contains a longer path connecting the same two vertices.&lt;/em&gt; In this way, the transitive reduction we generated will be the tree the question asked.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;list given is a &lt;strong&gt;partially ordered set&lt;/strong&gt; of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_acyclic_graph&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;DAG&lt;/strong&gt; (Directed Acyclic Graph)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;You can also find it &lt;a href=&#34;https://algs4.cs.princeton.edu/42digraph/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; at item 38 in &lt;em&gt;Web Exercises&lt;/em&gt; section.&lt;/li&gt;
+&lt;li&gt;list given is a &lt;strong&gt;partially ordered set&lt;/strong&gt; of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_acyclic_graph&#34;&gt;&lt;strong&gt;DAG&lt;/strong&gt; (Directed Acyclic Graph)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;You can also find it &lt;a href=&#34;https://algs4.cs.princeton.edu/42digraph/&#34;&gt;here&lt;/a&gt; at item 38 in &lt;em&gt;Web Exercises&lt;/em&gt; section.&lt;/li&gt;
 &lt;li&gt;This question is a &lt;strong&gt;tree&lt;/strong&gt; problem, but actually it&amp;rsquo;s asking for a solution that generates the transitive reduction of a &lt;strong&gt;graph&lt;/strong&gt;. It&amp;rsquo;s important to &lt;em&gt;look beyond the surface&lt;/em&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1656,74 +1591,68 @@ Steps:
 &lt;h4 id=&#34;method-0-dfs&#34;&gt;Method 0: DFS&lt;/h4&gt;
 
 &lt;p&gt;Following the intuitive algorithm, we could loop through every node &lt;strong&gt;u&lt;/strong&gt; in the graph and remove the edges &lt;strong&gt;u-&amp;gt;v&lt;/strong&gt; if there are other paths that connect from &lt;strong&gt;u&lt;/strong&gt; to &lt;strong&gt;v&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; collections
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import collections
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;generate_tree0&lt;/span&gt;(edges):
 
-def generate_tree0(edges):
+    children &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(set)
+    nodes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; set()
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; u, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; edges:
+        children[u]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(v)
+        nodes&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(u)
+        nodes&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(v)
 
-    children = collections.defaultdict(set)
-    nodes = set()
-    for u, v in edges:
-        children[u].add(v)
-        nodes.add(u)
-        nodes.add(v)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dfs&lt;/span&gt;(start, target):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; start &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; target:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; False
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; next_node &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; children[start]:
+            &lt;span style=&#34;color:#75715e&#34;&gt;# in case we have edge that points to a node itself&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; next_node &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; start:
+                result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; result &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; dfs(next_node, target)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
 
-    def dfs(start, target):
-        if start == target:
-            return True
-        result = False
-        for next_node in children[start]:
-            # in case we have edge that points to a node itself
-            if next_node != start:
-                result = result or dfs(next_node, target)
-        return result
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; nodes:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; child &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; list(children[node]):
+            found &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; False
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; other_child &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; list(children[node]):
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; other_child &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; child &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; dfs(other_child, child):
+                    found &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; True
+                    &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; found:
+                children[node]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;remove(child)
 
-    for node in nodes:
-        for child in list(children[node]):
-            found = False
-            for other_child in list(children[node]):
-                if other_child != child and dfs(other_child, child):
-                    found = True
-                    break
-            if found:
-                children[node].remove(child)
-
-    return children
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; children&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Complexity:
  If we have N nodes, for each node we have to go to every other nodes in worst case so time complexity should be \( O(N^2) \).&lt;/p&gt;
 
 &lt;h4 id=&#34;method-1-topological-sort&#34;&gt;Method 1: Topological Sort&lt;/h4&gt;
 
-&lt;p&gt;We want to remove the edges that connects u-&amp;gt;v if there are other longer paths. From another perspective, we want to keep the path from &lt;strong&gt;root -&amp;gt; v&lt;/strong&gt; with longest path. From the description we a vertex will have a edge to all of it&amp;rsquo;s decedents, which means a vertex will have all the edges from all of it&amp;rsquo;s ancestors (indegree[v] = len(path_from_root). If we order the edges by the distance in the longest path, then we only keep the closest one. Here we can use &lt;a href=&#34;https://en.wikipedia.org/wiki/Topological_sorting&#34; target=&#34;_blank&#34;&gt;Topological sort&lt;/a&gt; to get the order. In the process of sorting, in each round we will have node &lt;strong&gt;u&lt;/strong&gt; that have no edge from others to u (i.e. 0 &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree&#34; target=&#34;_blank&#34;&gt;indegree&lt;/a&gt;). For every one of it&amp;rsquo;s neighbors &lt;strong&gt;v&lt;/strong&gt; it connects &lt;em&gt;to&lt;/em&gt;, if there&amp;rsquo;s any other nodes &lt;strong&gt;x&lt;/strong&gt; connects &lt;strong&gt;to&lt;/strong&gt; v, then it means there will be longer path(s) that connects from &lt;strong&gt;u&lt;/strong&gt; to &lt;strong&gt;v&lt;/strong&gt;, then the edge u-&amp;gt;v should be discarded.&lt;/p&gt;
+&lt;p&gt;We want to remove the edges that connects u-&amp;gt;v if there are other longer paths. From another perspective, we want to keep the path from &lt;strong&gt;root -&amp;gt; v&lt;/strong&gt; with longest path. From the description we a vertex will have a edge to all of it&amp;rsquo;s decedents, which means a vertex will have all the edges from all of it&amp;rsquo;s ancestors (indegree[v] = len(path_from_root). If we order the edges by the distance in the longest path, then we only keep the closest one. Here we can use &lt;a href=&#34;https://en.wikipedia.org/wiki/Topological_sorting&#34;&gt;Topological sort&lt;/a&gt; to get the order. In the process of sorting, in each round we will have node &lt;strong&gt;u&lt;/strong&gt; that have no edge from others to u (i.e. 0 &lt;a href=&#34;https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree&#34;&gt;indegree&lt;/a&gt;). For every one of it&amp;rsquo;s neighbors &lt;strong&gt;v&lt;/strong&gt; it connects &lt;em&gt;to&lt;/em&gt;, if there&amp;rsquo;s any other nodes &lt;strong&gt;x&lt;/strong&gt; connects &lt;strong&gt;to&lt;/strong&gt; v, then it means there will be longer path(s) that connects from &lt;strong&gt;u&lt;/strong&gt; to &lt;strong&gt;v&lt;/strong&gt;, then the edge u-&amp;gt;v should be discarded.&lt;/p&gt;
 
 &lt;p&gt;We will use two maps to keep track of the indegrees and outdegrees of a node, and do edits in the process of sorting.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; collections
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import collections
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;generate_tree0&lt;/span&gt;(edges):
+    indegrees &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(int)
+    outdegrees &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; collections&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;defaultdict(set)
 
-def generate_tree0(edges):
-    indegrees = collections.defaultdict(int)
-    outdegrees = collections.defaultdict(set)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; u, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; edges:
+        indegrees[v] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; u &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; indegrees:
+            indegrees[u] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        outdegrees[u]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(v)
 
-    for u, v in edges:
-        indegrees[v] += 1
-        if u not in indegrees:
-            indegrees[u] = 0
-        outdegrees[u].add(v)
-
-    queue = [u for u, count in indegrees.items() if indegrees[u] == 0]
-    while queue:
-        curr_node = queue.pop(0)
-        for neighbor in list(outdegrees[curr_node]):
-            if indegrees[neighbor] == 1:
-                queue.append(neighbor)
-            else:
-                indegrees[neighbor] -= 1
+    queue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [u &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; u, count &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; indegrees&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;items() &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; indegrees[u] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; queue:
+        curr_node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; neighbor &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; list(outdegrees[curr_node]):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; indegrees[neighbor] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+                queue&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(neighbor)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                indegrees[neighbor] &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
                 outdegrees[curr_node]remove(neighbor)
-    return outdegrees
-&lt;/code&gt;&lt;/pre&gt;
-
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; outdegrees&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Complexity:
  If we have N nodes, for each node we have to go to every other nodes in worst case so time complexity should be \( O(N) \). .&lt;/p&gt;
 
@@ -1743,7 +1672,7 @@ def generate_tree0(edges):
       <guid>https://ericliu03.github.io/posts/2019/04/interviews/</guid>
       <description>&lt;p&gt;This is actually why (or saying the trigger) I create a website and begin blogging.&lt;/p&gt;
 
-&lt;p&gt;Recently I was preparing for changing job. Inevitably I have to prepare for the coding interviews. It was funny that the recruiters from all of the companies I interviewed with suggests online coding websites to get prepared, and first ones of every list is &lt;a href=&#34;www.leetcode.com&#34; target=&#34;_blank&#34;&gt;leetcode.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Recently I was preparing for changing job. Inevitably I have to prepare for the coding interviews. It was funny that the recruiters from all of the companies I interviewed with suggests online coding websites to get prepared, and first ones of every list is &lt;a href=&#34;www.leetcode.com&#34;&gt;leetcode.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;During these 3 months in preparing, I was discussing with my teammates/friends about what we want to see from interviews as interviewers. We agreed that the thought process is most important one, and then it&amp;rsquo;s the problem itself, since it&amp;rsquo;s possible to get stuck, or go some circles if you first met this problem. No one will need those and thus and practice on those algorithm problems in daily work.&lt;/p&gt;
 
@@ -1785,9 +1714,9 @@ def generate_tree0(edges):
 &lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Searched a little bit in zhihu.com and found this post about &lt;a href=&#34;https://blog.coderzh.com/2015/08/29/hugo/&#34; target=&#34;_blank&#34;&gt;create website using huge&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;quick start with hugo: &lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34; target=&#34;_blank&#34;&gt;https://gohugo.io/getting-started/quick-start/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;and hosting on github: &lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34; target=&#34;_blank&#34;&gt;https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Searched a little bit in zhihu.com and found this post about &lt;a href=&#34;https://blog.coderzh.com/2015/08/29/hugo/&#34;&gt;create website using huge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;quick start with hugo: &lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;https://gohugo.io/getting-started/quick-start/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;and hosting on github: &lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34;&gt;https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;It&amp;rsquo;s quite simple to create a simple page, but there sohuld be more features to add later. Let&amp;rsquo;s see if there&amp;rsquo;s any needed, and add them then.&lt;/p&gt;

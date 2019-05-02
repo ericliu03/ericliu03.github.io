@@ -1,13 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts - Yang&#39;s Blog</title>
+    <title>Posts on Yang&#39;s Blog</title>
     <link>https://ericliu03.github.io/posts/</link>
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 01 May 2019 16:44:51 -0700</lastBuildDate>
     
-        <atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Frog Jump</title>
@@ -15,35 +17,58 @@
       <pubDate>Wed, 01 May 2019 16:44:51 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/05/frog_jump/</guid>
-      <description></description>
-    </item><item>
+      <description>Question Leetcode 403: Frog Jump
+A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
+Given a list of stones&amp;rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone.</description>
+    </item>
+    
+    <item>
       <title>Escape A Large Maze</title>
       <link>https://ericliu03.github.io/posts/2019/04/escape_a_large_maze/</link>
       <pubDate>Mon, 29 Apr 2019 16:43:38 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/04/escape_a_large_maze/</guid>
-      <description></description>
-    </item><item>
+      <description>Question Leetcode 1036: Escape a Large Maze
+In a 1 million by 1 million grid, the coordinates of each grid square are (x, y) with 0 &amp;lt;= x, y &amp;lt; 10^6.
+We start at the source square and want to reach the target square. Each move, we can walk to a 4-directionally adjacent square in the grid that isn&amp;rsquo;t in the given list of blocked squares.
+Return true if and only if it is possible to reach the target square through a sequence of moves.</description>
+    </item>
+    
+    <item>
       <title>Uncrossed Lines</title>
       <link>https://ericliu03.github.io/posts/2019/04/uncrossed_lines/</link>
       <pubDate>Sun, 28 Apr 2019 10:46:05 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/04/uncrossed_lines/</guid>
-      <description></description>
-    </item><item>
+      <description>Question Leetcode 1035: Uncrossed Lines
+We write the integers of A and B (in the order they are given) on two separate horizontal lines.
+Now, we may draw a straight line connecting two numbers A[i] and B[j] as long as A[i] == B[j], and the line we draw does not intersect any other connecting (non-horizontal) line.
+Return the maximum number of connecting lines we can draw in this way.</description>
+    </item>
+    
+    <item>
       <title>Coloring Border</title>
       <link>https://ericliu03.github.io/posts/2019/04/coloring_a_border/</link>
       <pubDate>Sun, 28 Apr 2019 09:42:03 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/04/coloring_a_border/</guid>
-      <description></description>
-    </item><item>
+      <description>Question Leetcode 1034: Coloring A Border
+Given a 2-dimensional grid of integers, each value in the grid represents the color of the grid square at that location.
+Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.
+The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).</description>
+    </item>
+    
+    <item>
       <title>Two Pass for Min/Max/Sum/Product</title>
       <link>https://ericliu03.github.io/posts/2019/04/two_pass/</link>
       <pubDate>Tue, 23 Apr 2019 21:23:24 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/posts/2019/04/two_pass/</guid>
-      <description></description>
+      <description>今天我们讲解一种算法思想。这种方法一般使用在需要把整个数组分成2份的情况，求这两份组成的是最大、最小、和最大之类的。下面我们来看三道由易到难的题目。
+Question Leetcode 238: Product of Array Except Self
+Given an array nums of n integers where n &amp;gt; 1, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
+Examples Input: [1,2,3,4] Output: [24,12,8,6]  Follow up:  Please solve it without division and in O(n). Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.</description>
     </item>
+    
   </channel>
 </rss>

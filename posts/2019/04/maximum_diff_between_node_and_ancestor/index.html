@@ -1,68 +1,86 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Maximum Difference Between Node and Ancestor &middot; Yang&#39;s Blog</title>
-  <meta name="description" content="" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
-  
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Maximum Difference Between Node and Ancestor - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Maximum Difference Between Node and Ancestor" />
+<meta property="og:description" content="Question Leetcode 1026: Given the root of a binary tree, find the maximum value V for which there exists different nodes A and B where V = |A.val - B.val| and A is an ancestor of B.
+(A node A is an ancestor of B if either: any child of A is equal to B, or any child of A is an ancestor of B.)
+class TreeNode: def __init__(self, x): self." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/04/maximum_diff_between_node_and_ancestor/" />
+<meta property="article:published_time" content="2019-04-16T21:16:39-07:00"/>
+<meta property="article:modified_time" content="2019-04-16T21:16:39-07:00"/>
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Maximum Difference Between Node and Ancestor"/>
+<meta name="twitter:description" content="Question Leetcode 1026: Given the root of a binary tree, find the maximum value V for which there exists different nodes A and B where V = |A.val - B.val| and A is an ancestor of B.
+(A node A is an ancestor of B if either: any child of A is equal to B, or any child of A is an ancestor of B.)
+class TreeNode: def __init__(self, x): self."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 	ga('create', 'UA-138995517-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-  
 </head>
-  <body class="single-body">
-    <nav class="nav-bar side-padding">
-  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
-  <div class="hamburger-menu">
-    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
-      <span></span>
-      <span></span>
-    </button>
-    <ul id="menu" class="hamburger-menu-overlay">
-      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
-      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
-      
-    </ul>
-  </div>
-</nav>
-    <main class="content side-text-padding">
-      <article class="post ">
-        <header class="post-header">
-        	<h1 class="post-title">Maximum Difference Between Node and Ancestor</h1>
-          <p class="post-date">Posted <time datetime="2019-04-16">Apr 16, 2019</time></p>
-        </header>
-        
-        
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Maximum Difference Between Node and Ancestor</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-16T21:16:39">2019-04-16</time>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/" target="_blank">Leetcode 1026</a>:
+<p><a href="https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/">Leetcode 1026</a>:
 Given the root of a binary tree, find the maximum value <code>V</code> for which there exists <strong>different</strong> nodes A and B where <code>V = |A.val - B.val|</code> and A is an ancestor of B.</p>
 
 <p><em>(A node A is an ancestor of B if either: any child of A is equal to B, or any child of A is an ancestor of B.)</em></p>
-
-<pre><code class="language-python">class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, x):
+        self<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> x
+        self<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> None
+        self<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> None</code></pre></div>
 <h3 id="examples">Examples</h3>
 
 <p><img class="special-img-class" style="width:50%" src="/img/maximum_diff_between_node_and_ancestor_img1.jpg" /></p>
@@ -98,34 +116,31 @@ Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 
 </ol>
 
 <h4 id="code">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxAncestorDiff</span>(root):
+    <span style="color:#66d9ef">if</span> root <span style="color:#f92672">is</span> None:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> helper(root)[<span style="color:#ae81ff">2</span>]
 
-<pre><code class="language-python">def maxAncestorDiff(root):
-    if root is None:
-        return 0
-    else:
-        return helper(root)[2]
 
-
-def helper(node):
-    min_num = max_num = node.val
-    diff = 0
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">helper</span>(node):
+    min_num <span style="color:#f92672">=</span> max_num <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>val
+    diff <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
     
-    if node.left:
-        temp = helper(node.left)
-        min_num = min(min_num, temp[0])
-        max_num = max(max_num, temp[1])
-        diff = max(diff, temp[2])
-    if node.right:
-        temp = helper(node.right)
-        min_num = min(min_num, temp[0])
-        max_num = max(max_num, temp[1])
-        diff = max(diff, temp[2])
+    <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>left:
+        temp <span style="color:#f92672">=</span> helper(node<span style="color:#f92672">.</span>left)
+        min_num <span style="color:#f92672">=</span> min(min_num, temp[<span style="color:#ae81ff">0</span>])
+        max_num <span style="color:#f92672">=</span> max(max_num, temp[<span style="color:#ae81ff">1</span>])
+        diff <span style="color:#f92672">=</span> max(diff, temp[<span style="color:#ae81ff">2</span>])
+    <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>right:
+        temp <span style="color:#f92672">=</span> helper(node<span style="color:#f92672">.</span>right)
+        min_num <span style="color:#f92672">=</span> min(min_num, temp[<span style="color:#ae81ff">0</span>])
+        max_num <span style="color:#f92672">=</span> max(max_num, temp[<span style="color:#ae81ff">1</span>])
+        diff <span style="color:#f92672">=</span> max(diff, temp[<span style="color:#ae81ff">2</span>])
     
-    diff = max(diff, max(abs(node.val - min_num), abs(node.val - max_num)))
+    diff <span style="color:#f92672">=</span> max(diff, max(abs(node<span style="color:#f92672">.</span>val <span style="color:#f92672">-</span> min_num), abs(node<span style="color:#f92672">.</span>val <span style="color:#f92672">-</span> max_num)))
     
-    return min_num, max_num, diff
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> min_num, max_num, diff</code></pre></div>
 <h3 id="method-2">Method 2</h3>
 
 <h4 id="analysis-1">Analysis</h4>
@@ -137,23 +152,46 @@ def helper(node):
 <li>update min or max with current node&rsquo;s value and pass it to it&rsquo;s children</li>
 <li>when we reached the leaf, we calculate the result by using this min and max nums</li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxAncestorDiff</span>(root):
+    <span style="color:#66d9ef">return</span> helper(root, root<span style="color:#f92672">.</span>val, root<span style="color:#f92672">.</span>val)
 
-<pre><code class="language-python">def maxAncestorDiff(root):
-    return helper(root, root.val, root.val)
 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">helper</span>(node, lo, hi):
+    <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> None:
+        <span style="color:#66d9ef">return</span> hi <span style="color:#f92672">-</span> lo
 
-def helper(node, lo, hi):
-    if node is None:
-        return hi - lo
+    lo <span style="color:#f92672">=</span> min(lo, node<span style="color:#f92672">.</span>val)
+    hi <span style="color:#f92672">=</span> max(hi, node<span style="color:#f92672">.</span>val)
 
-    lo = min(lo, node.val)
-    hi = max(hi, node.val)
+    <span style="color:#66d9ef">return</span> max(helper(node<span style="color:#f92672">.</span>left, lo, hi), helper(node<span style="color:#f92672">.</span>right, lo, hi))</code></pre></div>
+		</div>
+		
+	</article>
+</main>
 
-    return max(helper(node.left, lo, hi), helper(node.right, lo, hi))
-</code></pre>
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
 
-      </article>
-      <div id="disqus_thread"></div>
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/04/longest_increasing_subsequence/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Longest Increasing Subsequence (Chinese)</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/2019/04/monotone_stack/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Monotone Stack</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -173,34 +211,65 @@ def helper(node, lo, hi):
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </main>
-    <nav class="end-nav side-padding">
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/" class="card blog-card" rel="bookmark" >
-    
-  <article class="card-body">
-    <h2 class="card-title">Longest Increasing Subsequence (Chinese)</h2>
-    <p class="card-text"></p>
-    <div class="card-subtext muted-text">
-      <p>Posted <time datetime="2019-04-15 415:00">Apr 15, 2019</time></p>
-      
-    </div>
-  </article>
-</a>
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
-  Home
-</a>
-    </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-<script src="https://ericliu03.github.io/js/core.js"></script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-  </body>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/frog_jump/">Frog Jump</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/escape_a_large_maze/">Escape A Large Maze</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/uncrossed_lines/">Uncrossed Lines</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/coloring_a_border/">Coloring Border</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/two_pass/">Two Pass for Min/Max/Sum/Product</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

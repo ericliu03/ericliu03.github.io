@@ -1,57 +1,78 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Longest Increasing Subsequence (Chinese) &middot; Yang&#39;s Blog</title>
-  <meta name="description" content="" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
-  
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Longest Increasing Subsequence (Chinese) - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Longest Increasing Subsequence (Chinese)" />
+<meta property="og:description" content="Question This question is from Leetcode 300
+Given an unsorted array of integers, find the length of longest increasing subsequence.
+Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.  Note  There may be more than one LIS combination, it is only necessary for you to return the length. Your algorithm should run in \( O(N^2) \) complexity.  Method 1 Analysis 可以使用Brute force的方法来解决这个问题。 具体来说我们需要试一下所有可能的组合：对于每一个数x，他本身加上他后面的任意一个比他大的数y都可以组成一个increasing subsequence。如果我们已经知道了以y开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以x和y开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字z也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。 时间复杂度是\( O(N!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/04/longest_increasing_subsequence/" />
+<meta property="article:published_time" content="2019-04-15T20:03:06-07:00"/>
+<meta property="article:modified_time" content="2019-04-15T20:03:06-07:00"/>
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Longest Increasing Subsequence (Chinese)"/>
+<meta name="twitter:description" content="Question This question is from Leetcode 300
+Given an unsorted array of integers, find the length of longest increasing subsequence.
+Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.  Note  There may be more than one LIS combination, it is only necessary for you to return the length. Your algorithm should run in \( O(N^2) \) complexity.  Method 1 Analysis 可以使用Brute force的方法来解决这个问题。 具体来说我们需要试一下所有可能的组合：对于每一个数x，他本身加上他后面的任意一个比他大的数y都可以组成一个increasing subsequence。如果我们已经知道了以y开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以x和y开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字z也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。 时间复杂度是\( O(N!"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 	ga('create', 'UA-138995517-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-  
 </head>
-  <body class="single-body">
-    <nav class="nav-bar side-padding">
-  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
-  <div class="hamburger-menu">
-    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
-      <span></span>
-      <span></span>
-    </button>
-    <ul id="menu" class="hamburger-menu-overlay">
-      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
-      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
-      
-    </ul>
-  </div>
-</nav>
-    <main class="content side-text-padding">
-      <article class="post ">
-        <header class="post-header">
-        	<h1 class="post-title">Longest Increasing Subsequence (Chinese)</h1>
-          <p class="post-date">Posted <time datetime="2019-04-15">Apr 15, 2019</time></p>
-        </header>
-        
-        
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Longest Increasing Subsequence (Chinese)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-15T20:03:06">2019-04-15</time>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			
 
 <h2 id="question">Question</h2>
 
-<p>This question is from <a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank">Leetcode 300</a></p>
+<p>This question is from <a href="https://leetcode.com/problems/longest-increasing-subsequence/">Leetcode 300</a></p>
 
 <p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
 
@@ -77,33 +98,29 @@ Explanation: The longest increasing subsequence is [2,3,7,101], therefore the le
 具体来说我们需要试一下所有可能的组合：对于每一个数<strong>x</strong>，他本身加上他后面的任意一个比他大的数<strong>y</strong>都可以组成一个increasing subsequence。如果我们已经知道了以<strong>y</strong>开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以<strong>x</strong>和<strong>y</strong>开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字<strong>z</strong>也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。
 时间复杂度是\( O(N!) \)：对于第一个数字，需要进行 (n-1) * (n-2) * &hellip; * 1，第二个是 (n-2) * (n-3) * &hellip; * 1, 第n个是1。</p>
 
-<p>Leetcode也提供了<a href="https://leetcode.com/problems/longest-increasing-subsequence/solution/" target="_blank">另一种BF</a>的方法。那个方法对于recursion function的定义不同，时间复杂度也只有O(2^n)。原因是相比于上面的方法，在每个点只进行了两次recursion call，而不是n次。</p>
+<p>Leetcode也提供了<a href="https://leetcode.com/problems/longest-increasing-subsequence/solution/">另一种BF</a>的方法。那个方法对于recursion function的定义不同，时间复杂度也只有O(2^n)。原因是相比于上面的方法，在每个点只进行了两次recursion call，而不是n次。</p>
 
 <p>你应该能发现我们recursion function的定义，是求以当前数字作为开头，最长的increasing subsequence的长度。既然是最长，那么也就是说只要给定start位置和list，这个结果就只有一个。然而在上面的算法中，对于同一个点我们计算了很多次（对于每个数，我们计算的次数等于他前面比他小的数字的数量）。所以我们可以把计算的结果存起来，只计算一次。</p>
 
 <p>那么时间复杂度就变成了\( O(N^2) \)，因为对于每个点，我们依然要看一下剩下符合要求的点的最长长度然后计算出自己的长度。</p>
 
 <h4 id="code">Code</h4>
-
-<pre><code class="language-python">class Solution:
-    def lengthOfLIS(self, nums: List[int]) -&gt; int:
-        if not nums:
-            return 0
-        self.memo = {}
-        return max([self.helper(i, nums) for i in range(len(nums))])
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lengthOfLIS</span>(self, nums: List[int]) <span style="color:#f92672">-&gt;</span> int:
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        self<span style="color:#f92672">.</span>memo <span style="color:#f92672">=</span> {}
+        <span style="color:#66d9ef">return</span> max([self<span style="color:#f92672">.</span>helper(i, nums) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(nums))])
     
-    def helper(self, start, nums):
-        if start not in self.memo:
-            result = 0
-            for i in range(start+1, len(nums)):
-                if nums[i] &gt; nums[start]:
-                    result = max(result, self.helper(i, nums))
-            self.memo[start] = result+1
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">helper</span>(self, start, nums):
+        <span style="color:#66d9ef">if</span> start <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>memo:
+            result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(start<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, len(nums)):
+                <span style="color:#66d9ef">if</span> nums[i] <span style="color:#f92672">&gt;</span> nums[start]:
+                    result <span style="color:#f92672">=</span> max(result, self<span style="color:#f92672">.</span>helper(i, nums))
+            self<span style="color:#f92672">.</span>memo[start] <span style="color:#f92672">=</span> result<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
             
-        return self.memo[start]
-
-</code></pre>
-
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>memo[start]</code></pre></div>
 <h3 id="method-2">Method 2</h3>
 
 <h4 id="analysis-1">Analysis</h4>
@@ -113,25 +130,22 @@ Explanation: The longest increasing subsequence is [2,3,7,101], therefore the le
 <p>在LC中提供的DP解法是反过来，从左向右计算，随之而变化的是存的每个点的数据的定义，也变为<strong>以当前数字为结尾，最长increasing subsequence的长度</strong>。所以对于每一个数字，我们都需要看一下符合条件的数，也即在他前面且比他小的数（可以看到是正好反过来的），找出最长的作为当前数字的结果。从前往后是自然而然的顺序，但是如果是用BF的方法推导过来，却是需要转换一下才可。</p>
 
 <h4 id="code-1">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lengthOfLIS</span>(nums):
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
 
-<pre><code class="language-python">def lengthOfLIS(nums):
-    if not nums:
-        return 0
+    dp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> len(nums)
 
-    dp = [1] * len(nums)
-
-    for hi in range(len(nums)):
-        for lo in range(hi):
-            if nums[lo] &lt; nums[hi]:
-                dp[hi] = max(dp[hi], dp[lo] + 1)
-    return max(dp)
-</code></pre>
-
+    <span style="color:#66d9ef">for</span> hi <span style="color:#f92672">in</span> range(len(nums)):
+        <span style="color:#66d9ef">for</span> lo <span style="color:#f92672">in</span> range(hi):
+            <span style="color:#66d9ef">if</span> nums[lo] <span style="color:#f92672">&lt;</span> nums[hi]:
+                dp[hi] <span style="color:#f92672">=</span> max(dp[hi], dp[lo] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">return</span> max(dp)</code></pre></div>
 <h3 id="follow-up-1">Follow up 1</h3>
 
 <h4 id="question-1">Question</h4>
 
-<p>From <a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence/" target="_blank">Leetcode 673</a>:
+<p>From <a href="https://leetcode.com/problems/number-of-longest-increasing-subsequence/">Leetcode 673</a>:
 Given an unsorted array of integers, find the number of longest increasing subsequence.</p>
 
 <h4 id="examples-1">Examples</h4>
@@ -153,32 +167,29 @@ Explanation: The length of longest continuous increasing subsequence is 1, and t
 <p>在本题目中我们需要记录下来遇到这种情况的数量，也就是在每一位不仅记录以当前为结尾数字的subsequence的最大长度，也记录有此长度的不同subsequence有多少个。这样一来，最后的时候我们就可以使用整个dp数组中最长的那个长度，作为整个数组的最长度，再用这个长度去找总共这个长度的subsequence有多少个。</p>
 
 <h4 id="code-2">Code</h4>
-
-<pre><code class="language-python">def numberOfLIS(nums):
-        if not nums:
-            return 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">numberOfLIS</span>(nums):
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
         
-        dp = [1] * len(nums)
-        counts = [1] * len(nums)
+        dp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> len(nums)
+        counts <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> len(nums)
         
-        for hi in range(len(nums)):
-            for lo in range(hi):
-                if nums[lo] &lt; nums[hi]:
-                    if dp[hi] &lt; dp[lo] + 1:
-                        dp[hi] = dp[lo] + 1
-                        counts[hi] = counts[lo]
-                    elif dp[hi] == dp[lo] + 1:
-                        counts[hi] += counts[lo]
+        <span style="color:#66d9ef">for</span> hi <span style="color:#f92672">in</span> range(len(nums)):
+            <span style="color:#66d9ef">for</span> lo <span style="color:#f92672">in</span> range(hi):
+                <span style="color:#66d9ef">if</span> nums[lo] <span style="color:#f92672">&lt;</span> nums[hi]:
+                    <span style="color:#66d9ef">if</span> dp[hi] <span style="color:#f92672">&lt;</span> dp[lo] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:
+                        dp[hi] <span style="color:#f92672">=</span> dp[lo] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                        counts[hi] <span style="color:#f92672">=</span> counts[lo]
+                    <span style="color:#66d9ef">elif</span> dp[hi] <span style="color:#f92672">==</span> dp[lo] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:
+                        counts[hi] <span style="color:#f92672">+=</span> counts[lo]
 
-        max_len  = max(dp)
-        return sum([counts[i] for i in range(len(nums)) if dp[i] == max_len])
-</code></pre>
-
+        max_len  <span style="color:#f92672">=</span> max(dp)
+        <span style="color:#66d9ef">return</span> sum([counts[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(nums)) <span style="color:#66d9ef">if</span> dp[i] <span style="color:#f92672">==</span> max_len])</code></pre></div>
 <h3 id="follow-up-2">Follow up 2</h3>
 
 <h4 id="question-2">Question</h4>
 
-<p>From <a href="https://leetcode.com/problems/longest-arithmetic-sequence/" target="_blank">Leetcode 1027</a>:
+<p>From <a href="https://leetcode.com/problems/longest-arithmetic-sequence/">Leetcode 1027</a>:
 Given an array A of integers, return the length of the longest arithmetic subsequence in A.</p>
 
 <p>Recall that a subsequence of A is a list <code>A[i_1], A[i_2], ..., A[i_k]</code> with <code>0 &lt;= i_1 &lt; i_2 &lt; ... &lt; i_k &lt;= A.length - 1</code>, and that a sequence B is arithmetic if <code>B[i+1] - B[i]</code> are all the same value (for <code>0 &lt;= i &lt; B.length - 1</code>).</p>
@@ -201,26 +212,48 @@ The longest arithmetic subsequence is [20,15,10,5].
 <h4 id="analysis-3">Analysis</h4>
 
 <p>看过了上面这么多题目和解法，看到这应该有感觉到需要用类似的方法做。和原题唯一的区别就是条件：原题的条件是右边的数大于左边的数，此题的条件是右边的数减左边的数等于一个差值。这个差值是由subsequence的头两个数决定的。同样的，我们可以用一个数组<code>dp[]</code>来存以当前数字为结尾的subsequence的最长长度，但不同的是对于不一样的差值可以会有相同或者不同的最长长度，比如例子1中，以7结尾，差值为-2时，长度为2，差值为3时长度也为2（未出现的差值我们可以不记录）。在比如当到了10的时候，差值为3是就是3（接上了7），其他的（比如1，6等等）最长的只有2了。所以我们可以想到，对于每一个数字的每一种可能的差值，我们都需要记录下来其最长subsequence的长度，以备后面的数字使用。</p>
-
-<pre><code class="language-python">def longestArithSeqLength(nums):
-    dp = [collections.defaultdict(int) for _ in range(len(nums))]
-    result = 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">longestArithSeqLength</span>(nums):
+    dp <span style="color:#f92672">=</span> [collections<span style="color:#f92672">.</span>defaultdict(int) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(len(nums))]
+    result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
     
-    for hi in range(len(nums)):
-        for lo in range(hi):
-            diff = nums[hi] - nums[lo]
-            dp[hi][diff] = max(dp[hi][diff], dp[lo][diff] + 1)
-            result = max(result, dp[hi][diff])        
-    return result + 1	
-
-</code></pre>
-
+    <span style="color:#66d9ef">for</span> hi <span style="color:#f92672">in</span> range(len(nums)):
+        <span style="color:#66d9ef">for</span> lo <span style="color:#f92672">in</span> range(hi):
+            diff <span style="color:#f92672">=</span> nums[hi] <span style="color:#f92672">-</span> nums[lo]
+            dp[hi][diff] <span style="color:#f92672">=</span> max(dp[hi][diff], dp[lo][diff] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+            result <span style="color:#f92672">=</span> max(result, dp[hi][diff])        
+    <span style="color:#66d9ef">return</span> result <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>	</code></pre></div>
 <h3 id="后记">后记</h3>
 
 <p>这篇文章其实是收到了最后一个题目（follow up2）的启发，是在做LC contest的时候遇到的。回忆起来，当时感觉题目有点熟悉，但没想到和原题的关联。当时只想到了BF算法，自然也超时了。理论上用BF加memo的方法也可以做，但是因为加入了diff的缘故导致稍微有点复杂，就被绕晕了。想要思路清晰的快速解题，还是要熟练啊</p>
 
-      </article>
-      <div id="disqus_thread"></div>
+		</div>
+		
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/04/inorder_predecessor/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Inorder Predecessor</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/2019/04/maximum_diff_between_node_and_ancestor/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Maximum Difference Between Node and Ancestor</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -240,34 +273,65 @@ The longest arithmetic subsequence is [20,15,10,5].
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </main>
-    <nav class="end-nav side-padding">
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/posts/2019/04/inorder_predecessor/" class="card blog-card" rel="bookmark" >
-    
-  <article class="card-body">
-    <h2 class="card-title">Inorder Predecessor</h2>
-    <p class="card-text"></p>
-    <div class="card-subtext muted-text">
-      <p>Posted <time datetime="2019-04-13 413:00">Apr 13, 2019</time></p>
-      
-    </div>
-  </article>
-</a>
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
-  Home
-</a>
-    </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-<script src="https://ericliu03.github.io/js/core.js"></script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-  </body>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/frog_jump/">Frog Jump</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/escape_a_large_maze/">Escape A Large Maze</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/uncrossed_lines/">Uncrossed Lines</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/coloring_a_border/">Coloring Border</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/two_pass/">Two Pass for Min/Max/Sum/Product</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

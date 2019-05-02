@@ -1,55 +1,78 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Create tree from tuples &middot; Yang&#39;s Blog</title>
-  <meta name="description" content="" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
-  
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Create tree from tuples - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Create tree from tuples" />
+<meta property="og:description" content="This is a coding problem from Uber onsite interview found here.
+Question: Given a list of pairs (tuples), each of them represents a connection from parent to it&rsquo;s child in a tree. In this list, nodes will have edges not only for their direct children, but also all of it&rsquo;s descendants (i.e. children&rsquo;s children, and their children etc).
+If we have the following tree as an example:
+ A / \ B C / \ D E  Then the list given it will be" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/04/remove_undirect_edge/" />
+<meta property="article:published_time" content="2019-04-06T16:55:31-07:00"/>
+<meta property="article:modified_time" content="2019-04-06T16:55:31-07:00"/>
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Create tree from tuples"/>
+<meta name="twitter:description" content="This is a coding problem from Uber onsite interview found here.
+Question: Given a list of pairs (tuples), each of them represents a connection from parent to it&rsquo;s child in a tree. In this list, nodes will have edges not only for their direct children, but also all of it&rsquo;s descendants (i.e. children&rsquo;s children, and their children etc).
+If we have the following tree as an example:
+ A / \ B C / \ D E  Then the list given it will be"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 	ga('create', 'UA-138995517-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-  
 </head>
-  <body class="single-body">
-    <nav class="nav-bar side-padding">
-  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
-  <div class="hamburger-menu">
-    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
-      <span></span>
-      <span></span>
-    </button>
-    <ul id="menu" class="hamburger-menu-overlay">
-      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
-      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
-      
-    </ul>
-  </div>
-</nav>
-    <main class="content side-text-padding">
-      <article class="post dropcase">
-        <header class="post-header">
-        	<h1 class="post-title">Create tree from tuples</h1>
-          <p class="post-date">Posted <time datetime="2019-04-06">Apr 6, 2019</time></p>
-        </header>
-        
-        
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Create tree from tuples</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-06T16:55:31">2019-04-06</time>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			
 
-<p>This is a coding problem from Uber onsite interview found <a href="https://www.1point3acres.com/bbs/thread-502555-1-1.html" target="_blank">here</a>.</p>
+<p>This is a coding problem from Uber onsite interview found <a href="https://www.1point3acres.com/bbs/thread-502555-1-1.html">here</a>.</p>
 
 <h3 id="question">Question:</h3>
 
@@ -75,11 +98,11 @@ if (!doNotTrack) {
 
 <p>Intuitively, what we want to do is to remove the connections <em>a -&gt; b</em> while a is not the node&rsquo;s parent in the tree. The way to distinguish those connections is to find out if there&rsquo;s another way to connect a -&gt; b. If there is any, saying a -&gt; a&rsquo; -&gt; b, then we know b&rsquo;s parent is a&rsquo; instead a then we should remove a -&gt; b.</p>
 
-<p>From a different perspective, if we imagine the tuples in the list are the edges in a directed graph, then we want is a <a href="https://en.wikipedia.org/wiki/Transitive_reduction" target="_blank"><strong>transitive reduction</strong></a> of the original graph (represented by all the edges). The transitive reduction of a graph contains <em>the fewest possible edges that has the same reachability relation as the original graph, by discarding the edges u → v for which G also contains a longer path connecting the same two vertices.</em> In this way, the transitive reduction we generated will be the tree the question asked.</p>
+<p>From a different perspective, if we imagine the tuples in the list are the edges in a directed graph, then we want is a <a href="https://en.wikipedia.org/wiki/Transitive_reduction"><strong>transitive reduction</strong></a> of the original graph (represented by all the edges). The transitive reduction of a graph contains <em>the fewest possible edges that has the same reachability relation as the original graph, by discarding the edges u → v for which G also contains a longer path connecting the same two vertices.</em> In this way, the transitive reduction we generated will be the tree the question asked.</p>
 
 <ol>
-<li>list given is a <strong>partially ordered set</strong> of a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph" target="_blank"><strong>DAG</strong> (Directed Acyclic Graph)</a></li>
-<li>You can also find it <a href="https://algs4.cs.princeton.edu/42digraph/" target="_blank">here</a> at item 38 in <em>Web Exercises</em> section.</li>
+<li>list given is a <strong>partially ordered set</strong> of a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph"><strong>DAG</strong> (Directed Acyclic Graph)</a></li>
+<li>You can also find it <a href="https://algs4.cs.princeton.edu/42digraph/">here</a> at item 38 in <em>Web Exercises</em> section.</li>
 <li>This question is a <strong>tree</strong> problem, but actually it&rsquo;s asking for a solution that generates the transitive reduction of a <strong>graph</strong>. It&rsquo;s important to <em>look beyond the surface</em>.</li>
 </ol>
 
@@ -88,74 +111,68 @@ if (!doNotTrack) {
 <h4 id="method-0-dfs">Method 0: DFS</h4>
 
 <p>Following the intuitive algorithm, we could loop through every node <strong>u</strong> in the graph and remove the edges <strong>u-&gt;v</strong> if there are other paths that connect from <strong>u</strong> to <strong>v</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> collections
 
-<pre><code class="language-python">import collections
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_tree0</span>(edges):
 
-def generate_tree0(edges):
+    children <span style="color:#f92672">=</span> collections<span style="color:#f92672">.</span>defaultdict(set)
+    nodes <span style="color:#f92672">=</span> set()
+    <span style="color:#66d9ef">for</span> u, v <span style="color:#f92672">in</span> edges:
+        children[u]<span style="color:#f92672">.</span>add(v)
+        nodes<span style="color:#f92672">.</span>add(u)
+        nodes<span style="color:#f92672">.</span>add(v)
 
-    children = collections.defaultdict(set)
-    nodes = set()
-    for u, v in edges:
-        children[u].add(v)
-        nodes.add(u)
-        nodes.add(v)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dfs</span>(start, target):
+        <span style="color:#66d9ef">if</span> start <span style="color:#f92672">==</span> target:
+            <span style="color:#66d9ef">return</span> True
+        result <span style="color:#f92672">=</span> False
+        <span style="color:#66d9ef">for</span> next_node <span style="color:#f92672">in</span> children[start]:
+            <span style="color:#75715e"># in case we have edge that points to a node itself</span>
+            <span style="color:#66d9ef">if</span> next_node <span style="color:#f92672">!=</span> start:
+                result <span style="color:#f92672">=</span> result <span style="color:#f92672">or</span> dfs(next_node, target)
+        <span style="color:#66d9ef">return</span> result
 
-    def dfs(start, target):
-        if start == target:
-            return True
-        result = False
-        for next_node in children[start]:
-            # in case we have edge that points to a node itself
-            if next_node != start:
-                result = result or dfs(next_node, target)
-        return result
+    <span style="color:#66d9ef">for</span> node <span style="color:#f92672">in</span> nodes:
+        <span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> list(children[node]):
+            found <span style="color:#f92672">=</span> False
+            <span style="color:#66d9ef">for</span> other_child <span style="color:#f92672">in</span> list(children[node]):
+                <span style="color:#66d9ef">if</span> other_child <span style="color:#f92672">!=</span> child <span style="color:#f92672">and</span> dfs(other_child, child):
+                    found <span style="color:#f92672">=</span> True
+                    <span style="color:#66d9ef">break</span>
+            <span style="color:#66d9ef">if</span> found:
+                children[node]<span style="color:#f92672">.</span>remove(child)
 
-    for node in nodes:
-        for child in list(children[node]):
-            found = False
-            for other_child in list(children[node]):
-                if other_child != child and dfs(other_child, child):
-                    found = True
-                    break
-            if found:
-                children[node].remove(child)
-
-    return children
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> children</code></pre></div>
 <p>Complexity:
  If we have N nodes, for each node we have to go to every other nodes in worst case so time complexity should be \( O(N^2) \).</p>
 
 <h4 id="method-1-topological-sort">Method 1: Topological Sort</h4>
 
-<p>We want to remove the edges that connects u-&gt;v if there are other longer paths. From another perspective, we want to keep the path from <strong>root -&gt; v</strong> with longest path. From the description we a vertex will have a edge to all of it&rsquo;s decedents, which means a vertex will have all the edges from all of it&rsquo;s ancestors (indegree[v] = len(path_from_root). If we order the edges by the distance in the longest path, then we only keep the closest one. Here we can use <a href="https://en.wikipedia.org/wiki/Topological_sorting" target="_blank">Topological sort</a> to get the order. In the process of sorting, in each round we will have node <strong>u</strong> that have no edge from others to u (i.e. 0 <a href="https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree" target="_blank">indegree</a>). For every one of it&rsquo;s neighbors <strong>v</strong> it connects <em>to</em>, if there&rsquo;s any other nodes <strong>x</strong> connects <strong>to</strong> v, then it means there will be longer path(s) that connects from <strong>u</strong> to <strong>v</strong>, then the edge u-&gt;v should be discarded.</p>
+<p>We want to remove the edges that connects u-&gt;v if there are other longer paths. From another perspective, we want to keep the path from <strong>root -&gt; v</strong> with longest path. From the description we a vertex will have a edge to all of it&rsquo;s decedents, which means a vertex will have all the edges from all of it&rsquo;s ancestors (indegree[v] = len(path_from_root). If we order the edges by the distance in the longest path, then we only keep the closest one. Here we can use <a href="https://en.wikipedia.org/wiki/Topological_sorting">Topological sort</a> to get the order. In the process of sorting, in each round we will have node <strong>u</strong> that have no edge from others to u (i.e. 0 <a href="https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree">indegree</a>). For every one of it&rsquo;s neighbors <strong>v</strong> it connects <em>to</em>, if there&rsquo;s any other nodes <strong>x</strong> connects <strong>to</strong> v, then it means there will be longer path(s) that connects from <strong>u</strong> to <strong>v</strong>, then the edge u-&gt;v should be discarded.</p>
 
 <p>We will use two maps to keep track of the indegrees and outdegrees of a node, and do edits in the process of sorting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> collections
 
-<pre><code class="language-python">import collections
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_tree0</span>(edges):
+    indegrees <span style="color:#f92672">=</span> collections<span style="color:#f92672">.</span>defaultdict(int)
+    outdegrees <span style="color:#f92672">=</span> collections<span style="color:#f92672">.</span>defaultdict(set)
 
-def generate_tree0(edges):
-    indegrees = collections.defaultdict(int)
-    outdegrees = collections.defaultdict(set)
+    <span style="color:#66d9ef">for</span> u, v <span style="color:#f92672">in</span> edges:
+        indegrees[v] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> u <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> indegrees:
+            indegrees[u] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        outdegrees[u]<span style="color:#f92672">.</span>add(v)
 
-    for u, v in edges:
-        indegrees[v] += 1
-        if u not in indegrees:
-            indegrees[u] = 0
-        outdegrees[u].add(v)
-
-    queue = [u for u, count in indegrees.items() if indegrees[u] == 0]
-    while queue:
-        curr_node = queue.pop(0)
-        for neighbor in list(outdegrees[curr_node]):
-            if indegrees[neighbor] == 1:
-                queue.append(neighbor)
-            else:
-                indegrees[neighbor] -= 1
+    queue <span style="color:#f92672">=</span> [u <span style="color:#66d9ef">for</span> u, count <span style="color:#f92672">in</span> indegrees<span style="color:#f92672">.</span>items() <span style="color:#66d9ef">if</span> indegrees[u] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">while</span> queue:
+        curr_node <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">for</span> neighbor <span style="color:#f92672">in</span> list(outdegrees[curr_node]):
+            <span style="color:#66d9ef">if</span> indegrees[neighbor] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+                queue<span style="color:#f92672">.</span>append(neighbor)
+            <span style="color:#66d9ef">else</span>:
+                indegrees[neighbor] <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
                 outdegrees[curr_node]remove(neighbor)
-    return outdegrees
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> outdegrees</code></pre></div>
 <p>Complexity:
  If we have N nodes, for each node we have to go to every other nodes in worst case so time complexity should be \( O(N) \). .</p>
 
@@ -165,8 +182,43 @@ def generate_tree0(edges):
 
 <p>However, the problem is that we don&rsquo;t know which parent should we keep. For example, we have a leaf node v and it have parents u1 and u2, then which one should we keep? from the desription above, if we keep the parent that has only one child, then what about the situations that v has a sibling v2? i.e u2 -&gt; v and u2 -&gt; v2, then we should keep u2 as the parent.</p>
 
-      </article>
-      <div id="disqus_thread"></div>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/graph/" rel="tag">graph</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/topological-sort/" rel="tag">topological sort</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/tree/" rel="tag">tree</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/dfs/" rel="tag">dfs</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/04/interviews/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Interviews</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/2019/04/pour_water/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Pour Water</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -186,34 +238,65 @@ def generate_tree0(edges):
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </main>
-    <nav class="end-nav side-padding">
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/posts/2019/04/interviews/" class="card blog-card" rel="bookmark" >
-    
-  <article class="card-body">
-    <h2 class="card-title">Interviews</h2>
-    <p class="card-text"></p>
-    <div class="card-subtext muted-text">
-      <p>Posted <time datetime="2019-04-05 45:00">Apr 5, 2019</time></p>
-      
-    </div>
-  </article>
-</a>
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
-  Home
-</a>
-    </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-<script src="https://ericliu03.github.io/js/core.js"></script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-  </body>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/frog_jump/">Frog Jump</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/escape_a_large_maze/">Escape A Large Maze</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/uncrossed_lines/">Uncrossed Lines</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/coloring_a_border/">Coloring Border</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/two_pass/">Two Pass for Min/Max/Sum/Product</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

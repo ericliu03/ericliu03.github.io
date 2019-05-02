@@ -1,57 +1,104 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Frog Jump &middot; Yang&#39;s Blog</title>
-  <meta name="description" content="" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://ericliu03.github.io/css/main.min.css" />
-  
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Frog Jump - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Frog Jump" />
+<meta property="og:description" content="Question Leetcode 403: Frog Jump
+A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
+Given a list of stones&rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/frog_jump/" />
+<meta property="article:published_time" content="2019-05-01T16:44:51-07:00"/>
+<meta property="article:modified_time" content="2019-05-01T16:44:51-07:00"/>
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Frog Jump"/>
+<meta name="twitter:description" content="Question Leetcode 403: Frog Jump
+A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
+Given a list of stones&rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 	ga('create', 'UA-138995517-1', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
-  
 </head>
-  <body class="single-body">
-    <nav class="nav-bar side-padding">
-  <h1 class="nav-header"><a href="https://ericliu03.github.io/" class="nav-text">Yang&#39;s Blog</a></h1>
-  <div class="hamburger-menu">
-    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
-      <span></span>
-      <span></span>
-    </button>
-    <ul id="menu" class="hamburger-menu-overlay">
-      <li><a href="https://ericliu03.github.io/" class="hamburger-menu-overlay-link">Home</a></li>
-      <li><a href="https://ericliu03.github.io/posts/2019/04/pour_water/" class="hamburger-menu-overlay-link">Pour Water</a></li>
-      
-    </ul>
-  </div>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Frog Jump</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-05-01T16:44:51">2019-05-01</time>
+</div>
+</div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#question">Question</a>
+<ul>
+<li><a href="#note">Note:</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul></li>
+<li><a href="#solution">Solution</a>
+<ul>
+<li><a href="#method-1">Method 1</a>
+<ul>
+<li><a href="#code">Code</a></li>
+</ul></li>
+<li><a href="#thoughts">Thoughts</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
-    <main class="content side-text-padding">
-      <article class="post ">
-        <header class="post-header">
-        	<h1 class="post-title">Frog Jump</h1>
-          <p class="post-date">Posted <time datetime="2019-05-01">May 1, 2019</time></p>
-        </header>
-        
-        
+	</div>
+</div>
+<div class="content post__content clearfix">
+			
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/frog-jump/" target="_blank">Leetcode 403: Frog Jump</a></p>
+<p><a href="https://leetcode.com/problems/frog-jump/">Leetcode 403: Frog Jump</a></p>
 
 <p>A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.</p>
 
@@ -96,33 +143,30 @@ the gap between the 5th and 6th stone is too large.
 
 <h3 id="method-1">Method 1</h3>
 
-<p>At first glance this question reminds me <a href="https://github.com/ericliu03/blog.io/blob/master/content/posts/2019/04/longest_increasing_subsequence.md" target="_blank">longest increasing subsequence</a>. We can translate the stones into the vertices in the graph and then what we need to find out are the edges and whether there&rsquo;s a path between start and end vertex.</p>
+<p>At first glance this question reminds me <a href="https://github.com/ericliu03/blog.io/blob/master/content/posts/2019/04/longest_increasing_subsequence.md">longest increasing subsequence</a>. We can translate the stones into the vertices in the graph and then what we need to find out are the edges and whether there&rsquo;s a path between start and end vertex.</p>
 
 <p>At each vertex, to calculate the edges to next vertices, we will use the rule given by the question: <em>the difference between previous vertex and current vertex (plus -1, 0, 1)</em>.</p>
 
 <p>Since we start from the start stone, so if there&rsquo;s any vertex that&rsquo;s connected to the end vertex then it means we find a path.</p>
 
 <h4 id="code">Code</h4>
-
-<pre><code class="language-python">def canCross(stones) -&gt; bool:
-    # jump sizes are the distance between previous stone to current stone
-    jump_sizes = {}
-    for stone in stones:
-        jump_sizes[stone] = set()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">canCross</span>(stones) <span style="color:#f92672">-&gt;</span> bool:
+    <span style="color:#75715e"># jump sizes are the distance between previous stone to current stone</span>
+    jump_sizes <span style="color:#f92672">=</span> {}
+    <span style="color:#66d9ef">for</span> stone <span style="color:#f92672">in</span> stones:
+        jump_sizes[stone] <span style="color:#f92672">=</span> set()
         
-    jump_sizes[0].add(0)
-    for stone in stones:
-        for jump_size in jump_sizes[stone]:
-            for delta in (-1, 0, 1):
-                next_jump = jump_size + delta
-                # we use the distance between prev and curr stone to calculate next stone
-                # and add this new jump size to it's jump size set if next stone exists
-                if stone + next_jump in jump_sizes and next_jump &gt; 0:
-                    jump_sizes[stone + next_jump].add(next_jump)
+    jump_sizes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>add(<span style="color:#ae81ff">0</span>)
+    <span style="color:#66d9ef">for</span> stone <span style="color:#f92672">in</span> stones:
+        <span style="color:#66d9ef">for</span> jump_size <span style="color:#f92672">in</span> jump_sizes[stone]:
+            <span style="color:#66d9ef">for</span> delta <span style="color:#f92672">in</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>):
+                next_jump <span style="color:#f92672">=</span> jump_size <span style="color:#f92672">+</span> delta
+                <span style="color:#75715e"># we use the distance between prev and curr stone to calculate next stone</span>
+                <span style="color:#75715e"># and add this new jump size to it&#39;s jump size set if next stone exists</span>
+                <span style="color:#66d9ef">if</span> stone <span style="color:#f92672">+</span> next_jump <span style="color:#f92672">in</span> jump_sizes <span style="color:#f92672">and</span> next_jump <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+                    jump_sizes[stone <span style="color:#f92672">+</span> next_jump]<span style="color:#f92672">.</span>add(next_jump)
 
-    return len(jump_sizes[stones[-1]]) != 0
-</code></pre>
-
+    <span style="color:#66d9ef">return</span> len(jump_sizes[stones[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span></code></pre></div>
 <h3 id="thoughts">Thoughts</h3>
 
 <ol>
@@ -135,8 +179,38 @@ the gap between the 5th and 6th stone is too large.
 </ol></li>
 </ol>
 
-      </article>
-      <div id="disqus_thread"></div>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/dp/" rel="tag">DP</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/graph/" rel="tag">graph</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/04/escape_a_large_maze/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Escape A Large Maze</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -156,34 +230,65 @@ the gap between the 5th and 6th stone is too large.
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </main>
-    <nav class="end-nav side-padding">
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/posts/2019/04/escape_a_large_maze/" class="card blog-card" rel="bookmark" >
-    
-  <article class="card-body">
-    <h2 class="card-title">Escape A Large Maze</h2>
-    <p class="card-text"></p>
-    <div class="card-subtext muted-text">
-      <p>Posted <time datetime="2019-04-29 429:00">Apr 29, 2019</time></p>
-      
-    </div>
-  </article>
-</a>
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="https://ericliu03.github.io/" class="card home-card" style="background-image: url( https://ericliu03.github.io/img/grey-cloud.jpg )" rel="bookmark" >
-  Home
-</a>
-    </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
-<script src="https://ericliu03.github.io/js/core.js"></script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-  </body>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/frog_jump/">Frog Jump</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/escape_a_large_maze/">Escape A Large Maze</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/uncrossed_lines/">Uncrossed Lines</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/coloring_a_border/">Coloring Border</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/two_pass/">Two Pass for Min/Max/Sum/Product</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>
