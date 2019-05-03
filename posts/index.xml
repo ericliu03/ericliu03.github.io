@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 May 2019 16:44:51 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 May 2019 14:09:47 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>K Empty Slots</title>
+      <link>https://ericliu03.github.io/posts/2019/05/k_empty_slots/</link>
+      <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/k_empty_slots/</guid>
+      <description>Question Leetcode 683: K Empty Slots
+There is a garden with N slots. In each slot, there is a flower. The N flowers will bloom one by one inN days. In each day, there will be exactly one flower blooming and it will be in the status of blooming since then.
+Given an array flowers consists of number from 1 to N. Each number in the array represents the place where the flower will open in that day.</description>
+    </item>
     
     <item>
       <title>Frog Jump</title>
@@ -56,18 +67,6 @@ Return the maximum number of connecting lines we can draw in this way.</descript
 Given a 2-dimensional grid of integers, each value in the grid represents the color of the grid square at that location.
 Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.
 The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).</description>
-    </item>
-    
-    <item>
-      <title>Two Pass for Min/Max/Sum/Product</title>
-      <link>https://ericliu03.github.io/posts/2019/04/two_pass/</link>
-      <pubDate>Tue, 23 Apr 2019 21:23:24 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/04/two_pass/</guid>
-      <description>今天我们讲解一种算法思想。这种方法一般使用在需要把整个数组分成2份的情况，求这两份组成的是最大、最小、和最大之类的。下面我们来看三道由易到难的题目。
-Question Leetcode 238: Product of Array Except Self
-Given an array nums of n integers where n &amp;gt; 1, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
-Examples Input: [1,2,3,4] Output: [24,12,8,6]  Follow up:  Please solve it without division and in O(n). Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.</description>
     </item>
     
   </channel>

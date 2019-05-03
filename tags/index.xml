@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Yang&#39;s Blog</title>
+    <title>Tags on Yang&#39;s Blog</title>
     <link>https://ericliu03.github.io/tags/</link>
-    <description>Recent content on Yang&#39;s Blog</description>
+    <description>Recent content in Tags on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 May 2019 17:57:04 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 May 2019 14:09:47 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About</title>
-      <link>https://ericliu03.github.io/about/</link>
-      <pubDate>Wed, 01 May 2019 17:57:04 -0700</pubDate>
+      <title></title>
+      <link>https://ericliu03.github.io/tags/</link>
+      <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
       
-      <guid>https://ericliu03.github.io/about/</guid>
-      <description>This is a test about.</description>
+      <guid>https://ericliu03.github.io/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>array</title>
+      <link>https://ericliu03.github.io/tags/array/</link>
+      <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/tags/array/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>inverted index</title>
+      <link>https://ericliu03.github.io/tags/inverted-index/</link>
+      <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/tags/inverted-index/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DP</title>
+      <link>https://ericliu03.github.io/tags/dp/</link>
+      <pubDate>Wed, 01 May 2019 16:44:51 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/tags/dp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graph</title>
+      <link>https://ericliu03.github.io/tags/graph/</link>
+      <pubDate>Wed, 01 May 2019 16:44:51 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/tags/graph/</guid>
+      <description></description>
     </item>
     
   </channel>

@@ -5,10 +5,145 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 May 2019 17:57:04 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 May 2019 14:09:47 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>K Empty Slots</title>
+      <link>https://ericliu03.github.io/posts/2019/05/k_empty_slots/</link>
+      <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/k_empty_slots/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/k-empty-slots&#34;&gt;Leetcode 683: K Empty Slots&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;There is a garden with &lt;code&gt;N&lt;/code&gt; slots. In each slot, there is a flower. The &lt;code&gt;N&lt;/code&gt; flowers will bloom one by one in&lt;code&gt;N&lt;/code&gt; days. In each day, there will be &lt;strong&gt;exactly&lt;/strong&gt; one flower blooming and it will be in the status of blooming since then.&lt;/p&gt;
+
+&lt;p&gt;Given an array &lt;code&gt;flowers&lt;/code&gt; consists of number from &lt;code&gt;1&lt;/code&gt; to &lt;code&gt;N&lt;/code&gt;. Each number in the array represents the place where the flower will open in that day.&lt;/p&gt;
+
+&lt;p&gt;For example, &lt;code&gt;flowers[i] = x&lt;/code&gt; means that the unique flower that blooms at day i will be at position &lt;code&gt;x&lt;/code&gt;, where &lt;code&gt;i&lt;/code&gt; and &lt;code&gt;x&lt;/code&gt; will be in the range from &lt;code&gt;1&lt;/code&gt; to &lt;code&gt;N&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also given an integer &lt;code&gt;k&lt;/code&gt;, you need to output in which day there exists two flowers in the status of blooming, and also the number of flowers between them is &lt;code&gt;k&lt;/code&gt; and these flowers are not blooming.&lt;/p&gt;
+
+&lt;p&gt;If there isn&amp;rsquo;t such day, output &lt;code&gt;-1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The given array will be in the range &lt;code&gt;[1, 20000]&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在reference 1 中有人提到提示题目有两个条件没有说明：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;flowers[i] = x should mean that the unique flower that blooms at day i+1 (not i) will be at position x.&lt;/li&gt;
+&lt;li&gt;If you can get multiple possible results, then you need to return the minimum one.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: 
+flowers: [1,3,2]
+k: 1
+Output: 2
+Explanation: In the second day, the first and the third flower have become blooming.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: 
+flowers: [1,2,3]
+k: 1
+Output: -1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;既然每天都会开花，那么我们可以开一个数组&lt;code&gt;slots&lt;/code&gt;来存当前位置的花的开放情况，然后每天扫一遍这个数组来看看符合要求的情况有没有出现。&lt;/p&gt;
+
+&lt;p&gt;时间复杂度为O(n2)的，因为对于每一天都需要扫一遍所有的花。&lt;/p&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+
+&lt;p&gt;代码大概写了一下没有优化，在LC是TLE的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;kEmptySlots&lt;/span&gt;(self, flowers: List[int], k: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        
+        slots &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [False] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(flowers)
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, lo &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(flowers):
+            slots[lo&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; True
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;helper(slots, k):
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        
+    
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;helper&lt;/span&gt;(self, slots, k):
+        slow &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        fast &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; fast &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(slots) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; slots[fast]:
+            fast &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        slow &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fast
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; fast &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(slots):
+            non_bloomed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fast &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; slow &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; non_bloomed &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; k:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
+            slow &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fast
+            fast &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; fast &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(slots) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; slots[fast]:
+                fast &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; False
+            &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;既然给定的要求是基于位置（相距k朵花），那么我们就不难想到把提供的信息换一种方式储存：给的array&lt;code&gt;flowers&lt;/code&gt;是第&lt;code&gt;i&lt;/code&gt;天开花的位置&lt;code&gt;l&lt;/code&gt;，我们转换一下变成另一个数组&lt;code&gt;slots&lt;/code&gt;where第&lt;code&gt;l&lt;/code&gt;个位置存的是开花的时间&lt;code&gt;i&lt;/code&gt;。（这个转换有点像inverted index，倒排索引，后面可以研究一下）。基于这个数组我们需要的找的就是&lt;strong&gt;长度为k+2的subarray&lt;/strong&gt;。我们定义这个subarray边界是&lt;code&gt;slots[left]&lt;/code&gt;和&lt;code&gt;slots[right]&lt;/code&gt;，那么题目的要求就是对于 &lt;code&gt;slots[i] where left &amp;lt; i &amp;lt; right&lt;/code&gt;, &lt;code&gt;slots[i] &amp;lt; slots[left] and slots[i] &amp;lt; slots[right]&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;关于扫描的方法，我这里使用了从ref1中给出的方法。每当遇到slot[i]比left或者right还小，就把这个作为left。原因是这个slot开花的日子比left或者right开花的日子早，所以不能在subarray中间。（感觉有点马拉车算法的意思？）&lt;/p&gt;
+
+&lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;kEmptySlots&lt;/span&gt;(self, flowers: List[int], k: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        slots &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(flowers)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; day, slot &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(flowers):
+            slots[slot&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; day &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        
+        left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+        i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(slots) &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; right &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(slots):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; slots[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; slots[left] &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; slots[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; slots[right]:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; right:
+                    result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(result, max(slots[left], slots[right]))
+                left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i
+                right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; left &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            i &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; result &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;有一点想错了，以为两朵花之间有k个没开的，其中可能夹杂着开了的花。而实际上是有k朵花，然后他们都没开。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;reference&#34;&gt;Reference&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/k-empty-slots/discuss/107931/JavaC%2B%2B-Simple-O(n)-solution&#34;&gt;[Java/C++] Simple O(n) solution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95&#34;&gt;倒排索引&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>About</title>
