@@ -6,10 +6,21 @@
     <description>Recent content in array on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 May 2019 14:09:47 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 May 2019 16:22:13 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/array/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Max Increase to Keep City Skyline</title>
+      <link>https://ericliu03.github.io/posts/2019/05/max_increase_to_keep_city_skyline/</link>
+      <pubDate>Fri, 03 May 2019 16:22:13 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/max_increase_to_keep_city_skyline/</guid>
+      <description>Question Leetcode 807: Max Increase to Keep City Skyline
+In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.
+At the end, the &amp;ldquo;skyline&amp;rdquo; when viewed from all four directions of the grid, i.</description>
+    </item>
     
     <item>
       <title>K Empty Slots</title>

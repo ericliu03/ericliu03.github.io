@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ericliu03.github.io/" />
 
-<meta property="og:updated_time" content="2019-05-03T14:09:47-07:00"/>
+<meta property="og:updated_time" content="2019-05-03T16:22:13-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Yang&#39;s Blog"/>
@@ -57,6 +57,26 @@ if (!doNotTrack) {
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/posts/2019/04/coloring_a_border/" rel="bookmark">
+			Coloring Border
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-28T09:42:03">2019-04-28</time>
+</div>
+</div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Question Leetcode 1034: Coloring A Border
+Given a 2-dimensional grid of integers, each value in the grid represents the color of the grid square at that location.
+Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.
+The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/posts/2019/04/two_pass/" rel="bookmark">
@@ -134,25 +154,6 @@ class TreeNode: def __init__(self, x): self.
 Given an unsorted array of integers, find the length of longest increasing subsequence.
 Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.  Note  There may be more than one LIS combination, it is only necessary for you to return the length. Your algorithm should run in \( O(N^2) \) complexity.  Method 1 Analysis 可以使用Brute force的方法来解决这个问题。 具体来说我们需要试一下所有可能的组合：对于每一个数x，他本身加上他后面的任意一个比他大的数y都可以组成一个increasing subsequence。如果我们已经知道了以y开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以x和y开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字z也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。 时间复杂度是\( O(N!
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/04/inorder_predecessor/" rel="bookmark">
-			Inorder Predecessor
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-13T21:55:51">2019-04-13</time>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question Given a node in a binary tree, return the inorder predecessor of that node. If it doesn&rsquo;t exist, return null. Both input and output should be node objects.
-Node is given as an object with pointers to it&rsquo;s left child, right child and parent.
-Examples Example 1  A / \ B C / \ D E / F In order traversal: DBFEAC If give A, then return should be E.
-	</div>
 </article>
 </main>
 
@@ -177,11 +178,11 @@ Examples Example 1  A / \ B C / \ D E / F In order traversal: DBFEAC If give A, 
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/max_increase_to_keep_city_skyline/">Max Increase to Keep City Skyline</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/k_empty_slots/">K Empty Slots</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/frog_jump/">Frog Jump</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/escape_a_large_maze/">Escape A Large Maze</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/uncrossed_lines/">Uncrossed Lines</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/2019/04/coloring_a_border/">Coloring Border</a></li>
 		</ul>
 	</div>
 </div>
@@ -197,12 +198,13 @@ Examples Example 1  A / \ B C / \ D E / F In order traversal: DBFEAC If give A, 
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
 	</div>
