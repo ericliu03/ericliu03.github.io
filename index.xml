@@ -54,9 +54,12 @@ The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
 
 &lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
 
-&lt;p&gt;On each day, we hold two values represent our profit in two states: if we have cash, or if we hold stock.
-cash[i] = max(cash[i-1], hold[i-1] + price[i] - fee)
-hold[i] = max(hold[i-1], cash[i-1] - price[i])&lt;/p&gt;
+&lt;p&gt;On each day, we hold two values represent our profit in two states: if we have cash, or if we hold stock.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;cash[i] = max(cash[i-1], hold[i-1] + price[i] - fee)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hold[i] = max(hold[i-1], cash[i-1] - price[i])&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
