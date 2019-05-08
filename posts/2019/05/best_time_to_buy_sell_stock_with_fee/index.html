@@ -4,25 +4,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Coloring Border - Yang&#39;s Blog</title>
+	<title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="Coloring Border" />
-<meta property="og:description" content="Question Leetcode 1034: Coloring A Border
-Given a 2-dimensional grid of integers, each value in the grid represents the color of the grid square at that location.
-Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.
-The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column)." />
+	<meta property="og:title" content="[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee" />
+<meta property="og:description" content="Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
+Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/04/coloring_a_border/" />
-<meta property="article:published_time" content="2019-04-28T09:42:03-07:00"/>
-<meta property="article:modified_time" content="2019-04-28T09:42:03-07:00"/>
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/" />
+<meta property="article:published_time" content="2019-05-07T10:53:59-07:00"/>
+<meta property="article:modified_time" content="2019-05-07T10:53:59-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Coloring Border"/>
-<meta name="twitter:description" content="Question Leetcode 1034: Coloring A Border
-Given a 2-dimensional grid of integers, each value in the grid represents the color of the grid square at that location.
-Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.
-The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column)."/>
+<meta name="twitter:title" content="[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee"/>
+<meta name="twitter:description" content="Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
+Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -62,11 +60,16 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Coloring Border</h1>
+			<h1 class="post__title">[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-28T09:42:03">2019-04-28</time>
+	<time class="meta__text" datetime="2019-05-07T10:53:59">2019-05-07</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
 </div>
 </div>
 		</header><div class="content post__content clearfix">
@@ -74,84 +77,62 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/coloring-a-border/">Leetcode 1034: Coloring A Border</a></p>
+<p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee</a></p>
 
-<p>Given a 2-dimensional grid of integers, each value in the <code>grid</code> represents the color of the grid square at that location.</p>
+<p>Your are given an array of integers <code>prices</code>, for which the <code>i</code>-th element is the price of a given stock on day <code>i</code>; and a non-negative integer fee representing a transaction <code>fee</code>.</p>
 
-<p>Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.</p>
+<p>You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)</p>
 
-<p>The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).</p>
+<p>Return the maximum profit you can make.</p>
 
-<p>Given a square at location <code>(r0, c0)</code> in the grid and a <code>color</code>, <code>color</code> the border of the connected component of that square with the given <code>color</code>, and return the final grid.</p>
+<h3 id="note">Note:</h3>
+
+<ol>
+<li><code>0 &lt; prices.length &lt;= 50000</code>.</li>
+<li><code>0 &lt; prices[i] &lt; 50000</code>.</li>
+<li><code>0 &lt;= fee &lt; 50000</code>.</li>
+</ol>
 
 <h3 id="examples">Examples</h3>
 
 <p>Example 1:</p>
 
-<pre><code>Input: grid = [[1,1],[1,2]], r0 = 0, c0 = 0, color = 3
-Output: [[3, 3], [3, 2]]
+<pre><code>Input: prices = [1, 3, 2, 8, 4, 9], fee = 2
+Output: 8
+Explanation: The maximum profit can be achieved by:
+Buying at prices[0] = 1
+Selling at prices[3] = 8
+Buying at prices[4] = 4
+Selling at prices[5] = 9
+The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
 </code></pre>
-
-<p>Example 2:</p>
-
-<pre><code>Input: grid = [[1,2,2],[2,3,2]], r0 = 0, c0 = 1, color = 3
-Output: [[1, 3, 3], [2, 3, 3]]
-</code></pre>
-
-<p>Example 3:</p>
-
-<pre><code>Input: grid = [[1,1,1],[1,1,1],[1,1,1]], r0 = 1, c0 = 1, color = 2
-Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
-</code></pre>
-
-<h4 id="notes">Notes:</h4>
-
-<ol>
-<li><code>1 &lt;= grid.length &lt;= 50</code></li>
-<li><code>1 &lt;= grid[0].length &lt;= 50</code></li>
-<li><code>1 &lt;= grid[i][j] &lt;= 1000</code></li>
-<li><code>0 &lt;= r0 &lt; grid.length</code></li>
-<li><code>0 &lt;= c0 &lt; grid[0].length</code></li>
-<li><code>1 &lt;= color &lt;= 1000</code></li>
-</ol>
 
 <h2 id="solution">Solution</h2>
 
 <h3 id="method-1">Method 1</h3>
 
-<p>Use regular dfs/bfs to find the border squares and change them.</p>
-
-<ol>
-<li>There are two things needs to know 1) if current square is in original component, 2) if current square is border</li>
-<li>I used <code>1/0</code> to indicate if a square is in original component, so by adding up dfs result from four adjacent squares, we know whether current one is border or not.</li>
-<li>the <strong>grid should not be changed</strong> while doing dfs/bfs.</li>
-</ol>
+<p>On each day, we hold two values represent our profit in two states: if we have cash, or if we hold stock.
+cash[i] = max(cash[i-1], hold[i-1] + price[i] - fee)
+hold[i] = max(hold[i-1], cash[i-1] - price[i])</p>
 
 <h4 id="code">Code</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">colorBorder</span>(self, grid, r0, c0, color):
-
-        visited <span style="color:#f92672">=</span> set()
-        border <span style="color:#f92672">=</span> set()
-
-        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dfs</span>(x, y):
-            <span style="color:#75715e"># if current square is in original component, return 1, otherwise 0</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> x <span style="color:#f92672">&lt;</span> len(grid) <span style="color:#f92672">and</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> y <span style="color:#f92672">&lt;</span> len(grid[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">and</span> grid[x][y] <span style="color:#f92672">==</span> grid[r0][c0]:
-                <span style="color:#66d9ef">if</span> (x, y) <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> visited:
-                    visited<span style="color:#f92672">.</span>add((x, y))
-                    <span style="color:#75715e"># if one of the adjacent square is not in the component, then this square is border</span>
-                    <span style="color:#66d9ef">if</span> dfs(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, y) <span style="color:#f92672">+</span> dfs(x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, y) <span style="color:#f92672">+</span> dfs(x, y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> dfs(x, y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>:
-                        border<span style="color:#f92672">.</span>add((x, y))
-                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">else</span>:
-                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-
-        dfs(r0, c0)
-        <span style="color:#66d9ef">for</span> x, y <span style="color:#f92672">in</span> border:
-            grid[x][y] <span style="color:#f92672">=</span> color
-        <span style="color:#66d9ef">return</span> grid</code></pre></div>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxProfit</span>(self, prices: List[int], fee: int) <span style="color:#f92672">-&gt;</span> int:
+        cash, hold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span>prices[<span style="color:#ae81ff">0</span>]
+        
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(prices)):
+            cash <span style="color:#f92672">=</span> max(cash, hold <span style="color:#f92672">+</span> prices[i] <span style="color:#f92672">-</span> fee)
+            hold <span style="color:#f92672">=</span> max(hold, cash <span style="color:#f92672">-</span> prices[i])
+        
+        <span style="color:#66d9ef">return</span> cash</code></pre></div>
 		</div>
 		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/dp/" rel="tag">dp</a></li>
+	</ul>
+</div>
 	</article>
 </main>
 
@@ -169,10 +150,7 @@ Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/04/two_pass/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Two Pass for Min/Max/Sum/Product</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/04/uncrossed_lines/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Uncrossed Lines</p></a>
+		<a class="post-nav__link" href="/posts/2019/05/student_attendance_record_ii/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 552] Student Attendance Record II</p></a>
 	</div>
 </nav>
 

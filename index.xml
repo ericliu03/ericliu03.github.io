@@ -5,13 +5,259 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 May 2019 16:22:13 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 10:53:59 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Max Increase to Keep City Skyline</title>
+      <title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</title>
+      <link>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</link>
+      <pubDate>Tue, 07 May 2019 10:53:59 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/&#34;&gt;Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Your are given an array of integers &lt;code&gt;prices&lt;/code&gt;, for which the &lt;code&gt;i&lt;/code&gt;-th element is the price of a given stock on day &lt;code&gt;i&lt;/code&gt;; and a non-negative integer fee representing a transaction &lt;code&gt;fee&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)&lt;/p&gt;
+
+&lt;p&gt;Return the maximum profit you can make.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt; prices.length &amp;lt;= 50000&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt; prices[i] &amp;lt; 50000&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt;= fee &amp;lt; 50000&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: prices = [1, 3, 2, 8, 4, 9], fee = 2
+Output: 8
+Explanation: The maximum profit can be achieved by:
+Buying at prices[0] = 1
+Selling at prices[3] = 8
+Buying at prices[4] = 4
+Selling at prices[5] = 9
+The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;On each day, we hold two values represent our profit in two states: if we have cash, or if we hold stock.
+cash[i] = max(cash[i-1], hold[i-1] + price[i] - fee)
+hold[i] = max(hold[i-1], cash[i-1] - price[i])&lt;/p&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxProfit&lt;/span&gt;(self, prices: List[int], fee: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        cash, hold &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;prices[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(prices)):
+            cash &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(cash, hold &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; prices[i] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; fee)
+            hold &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(hold, cash &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; prices[i])
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; cash&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 552] Student Attendance Record II</title>
+      <link>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</link>
+      <pubDate>Mon, 06 May 2019 10:54:57 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/frog-jump/&#34;&gt;Leetcode 552: Student Attendance Record II&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod &lt;code&gt;10^9 + 7&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A student attendance record is a string that only contains the following three characters:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&amp;lsquo;A&amp;rsquo; : Absent.&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;L&amp;rsquo; : Late.&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;P&amp;rsquo; : Present.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A record is regarded as rewardable if it doesn&amp;rsquo;t &lt;code&gt;contain more than one &#39;A&#39; (absent)&lt;/code&gt; or &lt;code&gt;more than two continuous &#39;L&#39; (late)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The value of &lt;code&gt;n&lt;/code&gt; won&amp;rsquo;t exceed &lt;code&gt;100,000&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: n = 2
+Output: 8 
+Explanation:
+There are 8 records with length 2 will be regarded as rewardable:
+&amp;quot;PP&amp;quot; , &amp;quot;AP&amp;quot;, &amp;quot;PA&amp;quot;, &amp;quot;LP&amp;quot;, &amp;quot;PL&amp;quot;, &amp;quot;AL&amp;quot;, &amp;quot;LA&amp;quot;, &amp;quot;LL&amp;quot;
+Only &amp;quot;AA&amp;quot; won&#39;t be regarded as rewardable owing to more than one absent times. 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;为了得到长度为n的所有rewardable的string（定义为f(n))，我们可以从长度n-1的string中加上L和P来得到。但是因为不能存在3个连续的L，所以在所有rewardable且长度为n-1的string中，以LL结尾的我们不能要。如果你觉得长度为n-1且以LL结尾的string数量可以用&lt;code&gt;f(n-3) + LL&lt;/code&gt;来表示就错了，因为f(n-3)包含了以L结尾的string，而以L结尾的是不能链接&lt;code&gt;LL&lt;/code&gt;的，也就是说不会存在于f(n-1）包含的情况中。因此， f(n-1)中以LL结尾的情况就等于f(n-4) + PLL。所以f(n) = f(n-1) * 2 - f(n-4) * 1。&lt;/p&gt;
+
+&lt;p&gt;当我们找到这个transition function之后解法就和fibonacci数列没什么不同了。这题是把两种不同想法混合了起来，1是回溯计算的思想，2是组合&lt;/p&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;checkRecord&lt;/span&gt;(self, n: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;]
+        m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, n&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            dp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append((&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; dp[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; dp[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;])&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;m)
+        
+        r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dp[n]
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, n&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            r &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; (dp[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; dp[n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;i])
+
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; r &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;m&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 1039] Minimum Score Triangulation of Polygon</title>
+      <link>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</link>
+      <pubDate>Sun, 05 May 2019 10:52:39 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/frog-jump/&#34;&gt;Leetcode 1039: Minimum Score Triangulation of Polygon&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given &lt;code&gt;N&lt;/code&gt;, consider a convex &lt;code&gt;N&lt;/code&gt;-sided polygon with vertices labelled &lt;code&gt;A[0], A[i], ..., A[N-1]&lt;/code&gt; in clockwise order.&lt;/p&gt;
+
+&lt;p&gt;Suppose you triangulate the polygon into &lt;code&gt;N-2&lt;/code&gt; triangles.  For each triangle, the value of that triangle is the product of the labels of the vertices, and the total score of the triangulation is the sum of these values over all &lt;code&gt;N-2&lt;/code&gt; triangles in the triangulation.&lt;/p&gt;
+
+&lt;p&gt;Return the smallest possible total score that you can achieve with some triangulation of the polygon.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;3 &amp;lt;= A.length &amp;lt;= 50&lt;/li&gt;
+&lt;li&gt;1 &amp;lt;= A[i] &amp;lt;= 100&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: [1,2,3]
+Output: 6
+Explanation: The polygon is already triangulated, and the score of the only triangle is 6.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: [3,7,4,5]
+Output: 144
+Explanation: There are two triangulations, with possible scores: 3*7*5 + 4*5*7 = 245, or 3*4*5 + 3*4*7 = 144.  The minimum score is 144.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: [1,3,1,4,1,5]
+Output: 13
+Explanation: The minimum score triangulation has score 1*1*3 + 1*1*4 + 1*1*5 + 1*1*1 = 13.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;对于一个多边形，无论怎样划分，我们得到一个三角形后便可以计算他的score。与此同时，这个三角形会把这个原本的多边形分成两个新的多边形。那么接下来我们只需要继续计算，直到多边形边长为0，也即不存在新的多边形为止。&lt;/p&gt;
+
+&lt;p&gt;除了划分之外，我们题目的要求是找最小，所以需要scan一遍所有可能的拆分方法，找到最小的那种。由于很多sub problem会遇到很多次，所以我们可以存下中间结果减少计算次数。&lt;/p&gt;
+
+&lt;p&gt;这其实是一个典型的DP问题，因为通过对解法的描述我们可以想到原本的problem被很清晰的分成了两个sub problem。&lt;/p&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;minScoreTriangulation&lt;/span&gt;(self, A: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;helper(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, len(A)&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, A)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, len(A)&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
+        
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;helper&lt;/span&gt;(self, i, j, A):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i, j) &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo:
+            self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[(i, j)] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, j):
+                s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[i] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; A[k] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; A[j]
+                s &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;helper(i, k, A) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;helper(k, j, A)
+                self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[(i, j)] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[(i, j)], s)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;memo[(i, j)]
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;如果想用2维数组的方式写DP我们就需要考虑一下数组中每个element需要的前置结果有多少。先从状态转移方程来看
+设&lt;code&gt;dp[i][j]&lt;/code&gt;为&lt;code&gt;A[i...j]&lt;/code&gt;包含的所有定点的最小score。那么转移方程为&lt;code&gt;dp[i][j] = min(dp[i][k] + dp[k][j] + score(i,k,j)) (i&amp;lt;k&amp;lt;j)&lt;/code&gt;。每个&lt;code&gt;[i,j]&lt;/code&gt;需要的是&lt;code&gt;[i,k]&lt;/code&gt;和&lt;code&gt;[k,j]&lt;/code&gt;，即&lt;code&gt;dp[i][i-&amp;gt;j]&lt;/code&gt;和&lt;code&gt;dp[i-&amp;gt;j][j]&lt;/code&gt;。换句话说，我们在计算大的多边形的时候，我们必须先把它包含的所有小的多边形计算一边。&lt;/p&gt;
+
+&lt;p&gt;直观来看（如下图所示），需要的是所有在&lt;code&gt;dp[i][j]&lt;/code&gt;左边的和下的。所以计算的时候我们是每次计算一条从左上往右下的对角线，也即&lt;code&gt;[0,0]-&amp;gt;[n-1,n-1]&lt;/code&gt;，&lt;code&gt;[0,1]-&amp;gt;[n-2,n-1]&lt;/code&gt;&amp;hellip;.到&lt;code&gt;[0,n-1]-&amp;gt;[0,n-1]&lt;/code&gt;（本题&lt;code&gt;m = n&lt;/code&gt;）&lt;/p&gt;
+
+&lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;minScoreTriangulation&lt;/span&gt;(self, A: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(A) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(A))] 
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;# number of vertices minus 1 in the sub polygon&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, len(A)):
+            &lt;span style=&#34;color:#75715e&#34;&gt;# i is start vertex and j is end vertex&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(A)&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;n):
+                j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; n
+                score &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, j):
+                    score &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(score, A[i] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; A[k] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; A[j] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; dp[i][k] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; dp[k][j])
+                dp[i][j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; score
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; dp[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;thoughts&#34;&gt;Thoughts&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;做题时其实想到了recursion，或者说DP的方向，就是选取的建模对象错了。
+
+&lt;ol&gt;
+&lt;li&gt;我自己在做题时虽然也想到了要划线，分成两份计算然后求和，但是分法想的是从i到k画一条线，分成了&lt;code&gt;i-&amp;gt;k&lt;/code&gt;和&lt;code&gt;k-&amp;gt;i&lt;/code&gt;两部分，这样带来了很多问题，比如 1)三角形如何划分，我考虑了很多情况。。2）数组中最后一个元素和第一个元素组成的边如何连接等等。&lt;/li&gt;
+&lt;li&gt;题目的划分方法是把i到j范围内的点看做多边形所有的定点，与此同时把i-&amp;gt;j作为一条边，再选点k组成三角形&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;感觉是时候系统的看一下DP的总结了：&lt;a href=&#34;http://cppblog.com/menjitianya/archive/2015/10/23/212084.html&#34;&gt;夜深人静写算法（二） - 动态规划&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/u014755255/article/details/51076932&#34;&gt;算法笔记——【动态规划】凸多边形最优三角剖分&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cppblog.com/menjitianya/archive/2015/10/23/212084.html&#34;&gt;夜深人静写算法（二） - 动态规划&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/Jason-Damon/p/3298172.html&#34;&gt;动态规划&amp;ndash;凸多边形最优三角剖分&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 807] Max Increase to Keep City Skyline</title>
       <link>https://ericliu03.github.io/posts/2019/05/max_increase_to_keep_city_skyline/</link>
       <pubDate>Fri, 03 May 2019 16:22:13 -0700</pubDate>
       
@@ -86,14 +332,17 @@ gridNew = [ [8, 4, 8, 7],
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxIncreaseKeepingSkyline&lt;/span&gt;(self, grid: List[List[int]]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
     row, col &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; list(map(max, grid)), list(map(max, zip(&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;grid)))
     &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; sum(min(i, j) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; row &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; col) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; sum(map(sum, grid))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;我们来分析一下这个代码：
-1. &lt;code&gt;map(max, grid)&lt;/code&gt;是吧grid中的每个元素（也就是作为一行的一个list）求最大，生成的就是每行的最大值
-1. &lt;code&gt;map(max, zip(*grid))&lt;/code&gt;，和之前一样，只不过先做了一个unzip，就是把grid的n行看做n个元素，然后每个元素的第i个sub元素拿出来，各自组成一个list。&lt;/p&gt;
+&lt;p&gt;我们来分析一下这个代码：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;map(max, grid)&lt;/code&gt;是吧grid中的每个元素（也就是作为一行的一个list）求最大，生成的就是每行的最大值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;map(max, zip(*grid))&lt;/code&gt;，和之前一样，只不过先做了一个unzip，就是把grid的n行看做n个元素，然后每个元素的第i个sub元素拿出来，各自组成一个list。&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
     <item>
-      <title>K Empty Slots</title>
+      <title>[Leetcode 683] K Empty Slots</title>
       <link>https://ericliu03.github.io/posts/2019/05/k_empty_slots/</link>
       <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
       
@@ -238,7 +487,7 @@ Output: -1
     </item>
     
     <item>
-      <title>Frog Jump</title>
+      <title>[Leetcode 403] Frog Jump</title>
       <link>https://ericliu03.github.io/posts/2019/05/frog_jump/</link>
       <pubDate>Wed, 01 May 2019 16:44:51 -0700</pubDate>
       

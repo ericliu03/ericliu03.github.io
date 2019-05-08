@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DP on Yang&#39;s Blog</title>
+    <title>dp on Yang&#39;s Blog</title>
     <link>https://ericliu03.github.io/tags/dp/</link>
-    <description>Recent content in DP on Yang&#39;s Blog</description>
+    <description>Recent content in dp on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 May 2019 16:44:51 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 10:53:59 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/dp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Frog Jump</title>
+      <title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</title>
+      <link>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</link>
+      <pubDate>Tue, 07 May 2019 10:53:59 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</guid>
+      <description>Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
+Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 552] Student Attendance Record II</title>
+      <link>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</link>
+      <pubDate>Mon, 06 May 2019 10:54:57 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</guid>
+      <description>Question Leetcode 552: Student Attendance Record II
+Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10^9 + 7.
+A student attendance record is a string that only contains the following three characters:
+ &amp;lsquo;A&amp;rsquo; : Absent. &amp;lsquo;L&amp;rsquo; : Late. &amp;lsquo;P&amp;rsquo; : Present.  A record is regarded as rewardable if it doesn&amp;rsquo;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 1039] Minimum Score Triangulation of Polygon</title>
+      <link>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</link>
+      <pubDate>Sun, 05 May 2019 10:52:39 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</guid>
+      <description>Question Leetcode 1039: Minimum Score Triangulation of Polygon
+Given N, consider a convex N-sided polygon with vertices labelled A[0], A[i], ..., A[N-1] in clockwise order.
+Suppose you triangulate the polygon into N-2 triangles. For each triangle, the value of that triangle is the product of the labels of the vertices, and the total score of the triangulation is the sum of these values over all N-2 triangles in the triangulation.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 403] Frog Jump</title>
       <link>https://ericliu03.github.io/posts/2019/05/frog_jump/</link>
       <pubDate>Wed, 01 May 2019 16:44:51 -0700</pubDate>
       

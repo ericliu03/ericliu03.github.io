@@ -6,13 +6,47 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 May 2019 16:22:13 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 10:53:59 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Max Increase to Keep City Skyline</title>
+      <title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</title>
+      <link>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</link>
+      <pubDate>Tue, 07 May 2019 10:53:59 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</guid>
+      <description>Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
+Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 552] Student Attendance Record II</title>
+      <link>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</link>
+      <pubDate>Mon, 06 May 2019 10:54:57 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</guid>
+      <description>Question Leetcode 552: Student Attendance Record II
+Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10^9 + 7.
+A student attendance record is a string that only contains the following three characters:
+ &amp;lsquo;A&amp;rsquo; : Absent. &amp;lsquo;L&amp;rsquo; : Late. &amp;lsquo;P&amp;rsquo; : Present.  A record is regarded as rewardable if it doesn&amp;rsquo;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 1039] Minimum Score Triangulation of Polygon</title>
+      <link>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</link>
+      <pubDate>Sun, 05 May 2019 10:52:39 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</guid>
+      <description>Question Leetcode 1039: Minimum Score Triangulation of Polygon
+Given N, consider a convex N-sided polygon with vertices labelled A[0], A[i], ..., A[N-1] in clockwise order.
+Suppose you triangulate the polygon into N-2 triangles. For each triangle, the value of that triangle is the product of the labels of the vertices, and the total score of the triangulation is the sum of these values over all N-2 triangles in the triangulation.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 807] Max Increase to Keep City Skyline</title>
       <link>https://ericliu03.github.io/posts/2019/05/max_increase_to_keep_city_skyline/</link>
       <pubDate>Fri, 03 May 2019 16:22:13 -0700</pubDate>
       
@@ -23,7 +57,7 @@ At the end, the &amp;ldquo;skyline&amp;rdquo; when viewed from all four directio
     </item>
     
     <item>
-      <title>K Empty Slots</title>
+      <title>[Leetcode 683] K Empty Slots</title>
       <link>https://ericliu03.github.io/posts/2019/05/k_empty_slots/</link>
       <pubDate>Fri, 03 May 2019 14:09:47 -0700</pubDate>
       
@@ -31,41 +65,6 @@ At the end, the &amp;ldquo;skyline&amp;rdquo; when viewed from all four directio
       <description>Question Leetcode 683: K Empty Slots
 There is a garden with N slots. In each slot, there is a flower. The N flowers will bloom one by one inN days. In each day, there will be exactly one flower blooming and it will be in the status of blooming since then.
 Given an array flowers consists of number from 1 to N. Each number in the array represents the place where the flower will open in that day.</description>
-    </item>
-    
-    <item>
-      <title>Frog Jump</title>
-      <link>https://ericliu03.github.io/posts/2019/05/frog_jump/</link>
-      <pubDate>Wed, 01 May 2019 16:44:51 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/frog_jump/</guid>
-      <description>Question Leetcode 403: Frog Jump
-A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
-Given a list of stones&amp;rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone.</description>
-    </item>
-    
-    <item>
-      <title>Escape A Large Maze</title>
-      <link>https://ericliu03.github.io/posts/2019/04/escape_a_large_maze/</link>
-      <pubDate>Mon, 29 Apr 2019 16:43:38 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/04/escape_a_large_maze/</guid>
-      <description>Question Leetcode 1036: Escape a Large Maze
-In a 1 million by 1 million grid, the coordinates of each grid square are (x, y) with 0 &amp;lt;= x, y &amp;lt; 10^6.
-We start at the source square and want to reach the target square. Each move, we can walk to a 4-directionally adjacent square in the grid that isn&amp;rsquo;t in the given list of blocked squares.
-Return true if and only if it is possible to reach the target square through a sequence of moves.</description>
-    </item>
-    
-    <item>
-      <title>Uncrossed Lines</title>
-      <link>https://ericliu03.github.io/posts/2019/04/uncrossed_lines/</link>
-      <pubDate>Sun, 28 Apr 2019 10:46:05 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/04/uncrossed_lines/</guid>
-      <description>Question Leetcode 1035: Uncrossed Lines
-We write the integers of A and B (in the order they are given) on two separate horizontal lines.
-Now, we may draw a straight line connecting two numbers A[i] and B[j] as long as A[i] == B[j], and the line we draw does not intersect any other connecting (non-horizontal) line.
-Return the maximum number of connecting lines we can draw in this way.</description>
     </item>
     
   </channel>
