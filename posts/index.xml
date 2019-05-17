@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 May 2019 11:23:20 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2019 11:51:24 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 785] Is Graph Bipartite</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</link>
+      <pubDate>Fri, 17 May 2019 11:51:24 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</guid>
+      <description>Question Leetcode 785: Is Graph Bipartite?
+Given an undirected graph, return true if and only if it is bipartite.
+Recall that a graph is bipartite if we can split it&amp;rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.</description>
+    </item>
     
     <item>
       <title>[Leetcode 560] Subarray Sum Equals K</title>
@@ -55,17 +67,6 @@ You may complete as many transactions as you like, but you need to pay the trans
 Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10^9 + 7.
 A student attendance record is a string that only contains the following three characters:
  &amp;lsquo;A&amp;rsquo; : Absent. &amp;lsquo;L&amp;rsquo; : Late. &amp;lsquo;P&amp;rsquo; : Present.  A record is regarded as rewardable if it doesn&amp;rsquo;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 1039] Minimum Score Triangulation of Polygon</title>
-      <link>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</link>
-      <pubDate>Sun, 05 May 2019 10:52:39 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/minimum_score_triangulation_of_polygon/</guid>
-      <description>Question Leetcode 1039: Minimum Score Triangulation of Polygon
-Given N, consider a convex N-sided polygon with vertices labelled A[0], A[i], ..., A[N-1] in clockwise order.
-Suppose you triangulate the polygon into N-2 triangles. For each triangle, the value of that triangle is the product of the labels of the vertices, and the total score of the triangulation is the sum of these values over all N-2 triangles in the triangulation.</description>
     </item>
     
   </channel>

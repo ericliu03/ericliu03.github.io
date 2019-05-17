@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 May 2019 11:23:20 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2019 11:51:24 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,63 @@
     <item>
       <title></title>
       <link>https://ericliu03.github.io/categories/</link>
-      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
+      <pubDate>Fri, 17 May 2019 11:51:24 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/categories/</guid>
       <description></description>
+    </item>
+    
+  </channel>
+</rss>description>Question Leetcode 785: Is Graph Bipartite?
+Given an undirected graph, return true if and only if it is bipartite.
+Recall that a graph is bipartite if we can split it&amp;rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 560] Subarray Sum Equals K</title>
+      <link>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</link>
+      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</guid>
+      <description>Question Leetcode 560: Subarray Sum Equals K
+Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+Note:  The length of the array is in range [1, 20,000]. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].  Examples Example 1:
+Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 975] Odd Even Jump</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/</link>
+      <pubDate>Fri, 10 May 2019 09:59:57 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/</guid>
+      <description>Question Leetcode 975: Odd Even Jump
+You are given an integer array A. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, &amp;hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &amp;hellip;) jumps in the series are called even numbered jumps.
+You may from index i jump forward to index j (with i &amp;lt; j) in the following way:</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</title>
+      <link>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</link>
+      <pubDate>Tue, 07 May 2019 10:53:59 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</guid>
+      <description>Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
+Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 552] Student Attendance Record II</title>
+      <link>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</link>
+      <pubDate>Mon, 06 May 2019 10:54:57 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</guid>
+      <description>Question Leetcode 552: Student Attendance Record II
+Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10^9 + 7.
+A student attendance record is a string that only contains the following three characters:
+ &amp;lsquo;A&amp;rsquo; : Absent. &amp;lsquo;L&amp;rsquo; : Late. &amp;lsquo;P&amp;rsquo; : Present.  A record is regarded as rewardable if it doesn&amp;rsquo;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).</description>
     </item>
     
   </channel>

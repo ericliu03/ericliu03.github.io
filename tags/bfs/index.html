@@ -4,23 +4,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Posts - Yang&#39;s Blog</title>
+	<title>bfs - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="Posts" />
+	<meta property="og:title" content="bfs" />
 <meta property="og:description" content="Eric&#39;s Personal blog about tech" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/" />
+<meta property="og:url" content="https://ericliu03.github.io/tags/bfs/" />
 
 <meta property="og:updated_time" content="2019-05-17T11:51:24-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:title" content="bfs"/>
 <meta name="twitter:description" content="Eric&#39;s Personal blog about tech"/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="alternate" type="application/rss+xml" href="/posts/index.xml" title="Yang's Blog">
+	<link rel="alternate" type="application/rss+xml" href="/tags/bfs/index.xml" title="Yang's Blog">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/custom.css">
@@ -56,7 +56,7 @@ if (!doNotTrack) {
 			
 <main class="main list" role="main">
 	<header class="main__header">
-		<h1 class="main__title">Posts</h1>
+		<h1 class="main__title">bfs</h1>
 	</header><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
@@ -82,111 +82,8 @@ Given an undirected graph, return true if and only if it is bipartite.
 Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
 The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/05/560_subarray_sum_equals_k/" rel="bookmark">
-			[Leetcode 560] Subarray Sum Equals K
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-14T11:23:20">2019-05-14</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question Leetcode 560: Subarray Sum Equals K
-Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
-Note:  The length of the array is in range [1, 20,000]. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].  Examples Example 1:
-Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/05/lc_975_odd_even_jump/" rel="bookmark">
-			[Leetcode 975] Odd Even Jump
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-10T09:59:57">2019-05-10</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question Leetcode 975: Odd Even Jump
-You are given an integer array A. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, &hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &hellip;) jumps in the series are called even numbered jumps.
-You may from index i jump forward to index j (with i &lt; j) in the following way:
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/05/best_time_to_buy_sell_stock_with_fee/" rel="bookmark">
-			[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-07T10:53:59">2019-05-07</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
-Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
-You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/05/student_attendance_record_ii/" rel="bookmark">
-			[Leetcode 552] Student Attendance Record II
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-06T10:54:57">2019-05-06</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question Leetcode 552: Student Attendance Record II
-Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10^9 + 7.
-A student attendance record is a string that only contains the following three characters:
- &lsquo;A&rsquo; : Absent. &lsquo;L&rsquo; : Late. &lsquo;P&rsquo; : Present.  A record is regarded as rewardable if it doesn&rsquo;t contain more than one 'A' (absent) or more than two continuous 'L' (late).
-	</div>
 </article>
 </main>
-
-<div class="pagination">
-	<span class="pagination__item pagination__item--current">1/5</span>
-	<a class="pagination__item pagination__item--next btn" href="/posts/page/2/">»</a>
-</div>
 
 
 			</div>

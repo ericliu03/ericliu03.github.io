@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dfs on Yang&#39;s Blog</title>
-    <link>https://ericliu03.github.io/tags/dfs/</link>
-    <description>Recent content in dfs on Yang&#39;s Blog</description>
+    <title>bfs on Yang&#39;s Blog</title>
+    <link>https://ericliu03.github.io/tags/bfs/</link>
+    <description>Recent content in bfs on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 17 May 2019 11:51:24 -0700</lastBuildDate>
     
-	<atom:link href="https://ericliu03.github.io/tags/dfs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ericliu03.github.io/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,18 +21,6 @@
 Given an undirected graph, return true if and only if it is bipartite.
 Recall that a graph is bipartite if we can split it&amp;rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
 The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.</description>
-    </item>
-    
-    <item>
-      <title>Create tree from tuples</title>
-      <link>https://ericliu03.github.io/posts/2019/04/remove_undirect_edge/</link>
-      <pubDate>Sat, 06 Apr 2019 16:55:31 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/04/remove_undirect_edge/</guid>
-      <description>This is a coding problem from Uber onsite interview found here.
-Question: Given a list of pairs (tuples), each of them represents a connection from parent to it&amp;rsquo;s child in a tree. In this list, nodes will have edges not only for their direct children, but also all of it&amp;rsquo;s descendants (i.e. children&amp;rsquo;s children, and their children etc).
-If we have the following tree as an example:
- A / \ B C / \ D E  Then the list given it will be</description>
     </item>
     
   </channel>

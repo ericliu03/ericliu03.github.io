@@ -4,37 +4,54 @@
   
   <url>
     <loc>https://ericliu03.github.io/categories/</loc>
-    <lastmod>2019-05-14T11:23:20-07:00</lastmod>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ericliu03.github.io/tags/</loc>
-    <lastmod>2019-05-14T11:23:20-07:00</lastmod>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ericliu03.github.io/categories/</loc>
-    <lastmod>2019-05-14T11:23:20-07:00</lastmod>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ericliu03.github.io/posts/</loc>
-    <lastmod>2019-05-14T11:23:20-07:00</lastmod>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ericliu03.github.io/tags/</loc>
-    <lastmod>2019-05-14T11:23:20-07:00</lastmod>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ericliu03.github.io/</loc>
-    <lastmod>2019-05-14T11:23:20-07:00</lastmod>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</loc>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ericliu03.github.io/tags/bfs/</loc>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ericliu03.github.io/tags/dfs/</loc>
+    <lastmod>2019-05-17T11:51:24-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -189,12 +206,6 @@
   <url>
     <loc>https://ericliu03.github.io/posts/2019/04/remove_undirect_edge/</loc>
     <lastmod>2019-04-06T16:55:31-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ericliu03.github.io/tags/dfs/</loc>
-    <lastmod>2019-04-06T16:55:31-07:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

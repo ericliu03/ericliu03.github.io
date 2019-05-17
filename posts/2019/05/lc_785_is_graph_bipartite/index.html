@@ -4,23 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Interviews - Yang&#39;s Blog</title>
+	<title>[Leetcode 785] Is Graph Bipartite - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="Interviews" />
-<meta property="og:description" content="This is actually why (or saying the trigger) I create a website and begin blogging.
-Recently I was preparing for changing job. Inevitably I have to prepare for the coding interviews. It was funny that the recruiters from all of the companies I interviewed with suggests online coding websites to get prepared, and first ones of every list is leetcode.com.
-During these 3 months in preparing, I was discussing with my teammates/friends about what we want to see from interviews as interviewers." />
+	<meta property="og:title" content="[Leetcode 785] Is Graph Bipartite" />
+<meta property="og:description" content="Question Leetcode 785: Is Graph Bipartite?
+Given an undirected graph, return true if and only if it is bipartite.
+Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/04/interviews/" />
-<meta property="article:published_time" content="2019-04-05T09:20:41-07:00"/>
-<meta property="article:modified_time" content="2019-04-05T09:20:41-07:00"/>
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/" />
+<meta property="article:published_time" content="2019-05-17T11:51:24-07:00"/>
+<meta property="article:modified_time" content="2019-05-17T11:51:24-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Interviews"/>
-<meta name="twitter:description" content="This is actually why (or saying the trigger) I create a website and begin blogging.
-Recently I was preparing for changing job. Inevitably I have to prepare for the coding interviews. It was funny that the recruiters from all of the companies I interviewed with suggests online coding websites to get prepared, and first ones of every list is leetcode.com.
-During these 3 months in preparing, I was discussing with my teammates/friends about what we want to see from interviews as interviewers."/>
+<meta name="twitter:title" content="[Leetcode 785] Is Graph Bipartite"/>
+<meta name="twitter:description" content="Question Leetcode 785: Is Graph Bipartite?
+Given an undirected graph, return true if and only if it is bipartite.
+Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -60,43 +62,112 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Interviews</h1>
+			<h1 class="post__title">[Leetcode 785] Is Graph Bipartite</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-05T09:20:41">2019-04-05</time>
+	<time class="meta__text" datetime="2019-05-17T11:51:24">2019-05-17</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
 </div>
 </div>
 		</header><div class="content post__content clearfix">
-			<p>This is actually why (or saying the trigger) I create a website and begin blogging.</p>
+			
 
-<p>Recently I was preparing for changing job. Inevitably I have to prepare for the coding interviews. It was funny that the recruiters from all of the companies I interviewed with suggests online coding websites to get prepared, and first ones of every list is <a href="www.leetcode.com">leetcode.com</a>.</p>
+<h2 id="question">Question</h2>
 
-<p>During these 3 months in preparing, I was discussing with my teammates/friends about what we want to see from interviews as interviewers. We agreed that the thought process is most important one, and then it&rsquo;s the problem itself, since it&rsquo;s possible to get stuck, or go some circles if you first met this problem. No one will need those and thus and practice on those algorithm problems in daily work.</p>
+<p><a href="https://leetcode.com/problems/is-graph-bipartite/">Leetcode 785: Is Graph Bipartite?</a></p>
 
-<p>But I think I&rsquo;m wrong, or at least not that accurate on the percentage of characteristic they would like to see from you during the interviews. Let&rsquo;s list what areas we should have as a developer:</p>
+<p>Given an undirected <code>graph</code>, return <code>true</code> if and only if it is bipartite.</p>
+
+<p>Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.</p>
+
+<p>The graph is given in the following form: <code>graph[i]</code> is a list of indexes <code>j</code> for which the edge between nodes <code>i</code> and <code>j</code> exists.  Each node is an integer between <code>0</code> and <code>graph.length - 1</code>.  There are no self edges or parallel edges: <code>graph[i]</code> does not contain <code>i</code>, and it doesn&rsquo;t contain any element twice.</p>
+
+<h3 id="note">Note:</h3>
 
 <ol>
-<li>thought process: the way you approach a new problem, and how you solve it</li>
-<li>communication: can you make others clear about your thought</li>
-<li>algorithm and data structure: basically CS knowledge</li>
-<li>coding style: naming, methods, spaces</li>
-<li>result correctness:</li>
-<li>tests cases: how do you want to test your program to ensure it&rsquo;s correct</li>
+<li>graph will have length in range [1, 100].</li>
+<li>graph[i] will contain integers in range [0, graph.length - 1].</li>
+<li>graph[i] will not contain i or duplicate values.</li>
+<li>The graph is undirected: if any element j is in graph[i], then i will be in graph[j].</li>
 </ol>
 
-<p>I think I put too much weight on 1 and 2 because I thought that&rsquo;s the part that shows how a person works in real world, and whether a person is a good cooperator. But yes, that&rsquo;s my thoughts, or the thoughts from the people I know.</p>
+<h3 id="examples">Examples</h3>
 
-<p>In a 45 or 60 minute interview, it&rsquo;s hard to express all of the area listed above, which you have to, so how? In my opinion the part I can work on, and improve is the speed of writing coding. <strong>So that I could write code so quickly enough to still keep the time and effort I will use to communicate and explain, to test and walk through the algorithm.</strong> It&rsquo;s not because it&rsquo;s a mandatory in work (and my friend and I thought it&rsquo;s kind of ridiculous), but it&rsquo;s for the interview to be perfect(无懈可击) (as much as possible) that people won&rsquo;t have something bad to put on their feedbacks.</p>
+<p>Example 1:</p>
 
-<p>Why? because you don&rsquo;t know the interviewers, it&rsquo;s possible some people want perfectness of code, some people think communication and collaboration is the most important thing, while others like to see clean code and meaningful names. The bad thing is that you don&rsquo;t know what they want, so all you can do is give them all.</p>
+<pre><code>Input: [[1,3], [0,2], [1,3], [0,2]]
+Output: true
+Explanation: 
+The graph looks like this:
+0----1
+|    |
+|    |
+3----2
+We can divide the vertices into two groups: {0, 2} and {1, 3}.
+</code></pre>
 
-<p>This blog comes an action item of my reviews the interview I&rsquo;ve been through. I will keep working on the algorithms as a long lasting background job to write down my journey on this. I will try to dive deep on the algorithms, complexity analysis and do clear explanations.</p>
+<p>Example 2:</p>
 
-<p>You are not guaranteed to succeed, but you are guaranteed not if you don&rsquo;t try. Do my part, and accept the rest.</p>
+<pre><code>Input: [[1,2,3], [0,2], [0,1,3], [0,2]]
+Output: false
+Explanation: 
+The graph looks like this:
+0----1
+| \  |
+|  \ |
+3----2
+We cannot find a way to divide the set of nodes into two independent subsets.
+</code></pre>
 
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1">Method 1</h3>
+
+<p>Key:每个edge的两个vertex在不同的group -&gt; 任意一个vertex, <code>v</code>, 的所有neighbor都应该是与<code>v</code>在不同的group。</p>
+
+<p>所以只需要dfs或者bfs走一遍，每次往neighbor走一个level时看看是不是访问过，如果有看下是不是相同group。bfs或者dfs的过程中，我们可以用一个map记录已经访问的vertex的group是什么。</p>
+
+<p>我认为需要注意的点:</p>
+
+<ol>
+<li>有可能存在多个联通分量，所以需要从每个点都开始一次</li>
+<li>题目给的就是每个点的neighbor id，所以无需处理</li>
+</ol>
+
+<h4 id="code">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isBipartite</span>(self, graph):
+        group <span style="color:#f92672">=</span> {}
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(graph)):
+            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> group:
+                <span style="color:#66d9ef">continue</span>
+            
+            queue <span style="color:#f92672">=</span> [i]
+            group[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#66d9ef">while</span> queue:
+                curr_node <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
+                <span style="color:#66d9ef">for</span> neighbor <span style="color:#f92672">in</span> graph[curr_node]:
+                    <span style="color:#66d9ef">if</span> neighbor <span style="color:#f92672">in</span> group:
+                        <span style="color:#66d9ef">if</span> group[neighbor] <span style="color:#f92672">==</span> group[curr_node]:
+                            <span style="color:#66d9ef">return</span> False
+                    <span style="color:#66d9ef">else</span>:
+                        queue<span style="color:#f92672">.</span>append(neighbor)
+                        group[neighbor] <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>group[curr_node]
+        <span style="color:#66d9ef">return</span> True</code></pre></div>
 		</div>
 		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/bfs/" rel="tag">bfs</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/dfs/" rel="tag">dfs</a></li>
+	</ul>
+</div>
 	</article>
 </main>
 
@@ -114,10 +185,7 @@ if (!doNotTrack) {
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/04/create-web/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Create Web</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/04/remove_undirect_edge/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Create tree from tuples</p></a>
+		<a class="post-nav__link" href="/posts/2019/05/560_subarray_sum_equals_k/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 560] Subarray Sum Equals K</p></a>
 	</div>
 </nav>
 
