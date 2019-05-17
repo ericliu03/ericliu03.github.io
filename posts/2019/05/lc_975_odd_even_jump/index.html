@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Leetcode 975] Odd Even Jump - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="[Leetcode 975] Odd Even Jump" />
+<meta property="og:description" content="Question Leetcode 975: Odd Even Jump
+You are given an integer array A. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, &hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &hellip;) jumps in the series are called even numbered jumps.
+You may from index i jump forward to index j (with i &lt; j) in the following way:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/" />
+<meta property="article:published_time" content="2019-05-10T09:59:57-07:00"/>
+<meta property="article:modified_time" content="2019-05-10T09:59:57-07:00"/>
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Leetcode 975] Odd Even Jump"/>
+<meta name="twitter:description" content="Question Leetcode 975: Odd Even Jump
+You are given an integer array A. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, &hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &hellip;) jumps in the series are called even numbered jumps.
+You may from index i jump forward to index j (with i &lt; j) in the following way:"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-138995517-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Leetcode 975] Odd Even Jump</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-05-10T09:59:57">2019-05-10</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			
+
+<h2 id="question">Question</h2>
+
+<p><a href="https://leetcode.com/problems/odd-even-jump/">Leetcode 975: Odd Even Jump</a></p>
+
+<p>You are given an integer array <code>A</code>.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, &hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &hellip;) jumps in the series are called even numbered jumps.</p>
+
+<p>You may from index <code>i</code> jump forward to index <code>j</code> (with <code>i &lt; j</code>) in the following way:</p>
+
+<ol>
+<li>During odd numbered jumps (ie. jumps 1, 3, 5, &hellip;), you jump to the index <code>j</code> such that <code>A[i] &lt;= A[j]</code> and A[j] is the smallest possible value.  If there are multiple such indexes <code>j</code>, you can only jump to the smallest such index <code>j</code>.</li>
+<li>During even numbered jumps (ie. jumps 2, 4, 6, &hellip;), you jump to the index <code>j</code> such that <code>A[i] &gt;= A[j]</code> and A[j] is the largest possible value.  If there are multiple such indexes <code>j</code>, you can only jump to the smallest such index <code>j</code>.</li>
+<li>(It may be the case that for some index <code>i</code>, there are no legal jumps.)</li>
+</ol>
+
+<p>A starting index is good if, starting from that index, you can reach the end of the array (index <code>A.length - 1</code>) by jumping some number of times (possibly 0 or more than once.)</p>
+
+<p>Return the number of good starting indexes.</p>
+
+<h3 id="note">Note:</h3>
+
+<ol>
+<li><code>1 &lt;= A.length &lt;= 20000</code></li>
+<li><code>0 &lt;= A[i] &lt; 100000</code></li>
+</ol>
+
+<h3 id="examples">Examples</h3>
+
+<p>Example 1:</p>
+
+<pre><code>Input: [10,13,12,14,15]
+Output: 2
+</code></pre>
+
+<p>Explanation:</p>
+
+<ol>
+<li>From starting index i = 0, we can jump to i = 2 (since A[2] is the smallest among A[1], A[2], A[3], A[4] that is greater or equal to A[0]), then we can&rsquo;t jump any more.</li>
+<li>From starting index i = 1 and i = 2, we can jump to i = 3, then we can&rsquo;t jump any more.</li>
+<li>From starting index i = 3, we can jump to i = 4, so we&rsquo;ve reached the end.</li>
+<li>From starting index i = 4, we&rsquo;ve reached the end already.</li>
+</ol>
+
+<p>In total, there are 2 different starting indexes (i = 3, i = 4) where we can reach the end with some number of jumps.</p>
+
+<p>There are other examples in leetcode.</p>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1">Method 1</h3>
+
+<p>本题还是DP的思路，记录的是每个位置奇数跳和偶数跳是否能够达到终点，然后数一下在奇数跳情况下（也就是作为起点时），能到终点的数量即可。</p>
+
+<p>题目要求每个位置都需要考虑他后面所有点，找出符合情况的那个，所以我们需要从后往前开始。j的找法我这里用了for loop全部看一遍(TLE)。理论上寻找的过程可以sort一下用二分查找，就变成<code>O(nlogn)</code>的复杂度。</p>
+
+<ol>
+<li><code>dp[i][odd] = dp[j][even]</code></li>
+<li><code>dp[i][even] = dp[j][odd]</code></li>
+</ol>
+
+<h4 id="code">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">oddEvenJumps</span>(self, A: List[int]) <span style="color:#f92672">-&gt;</span> int:
+        dp <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(len(A))]
+        
+        dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(A) <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> , <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+            mmin <span style="color:#f92672">=</span> float(<span style="color:#e6db74">&#39;inf&#39;</span>)
+            mmax <span style="color:#f92672">=</span> float(<span style="color:#e6db74">&#39;-inf&#39;</span>)
+            <span style="color:#75715e"># search for the number/index that meets requirement</span>
+            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, len(A)):
+                <span style="color:#66d9ef">if</span> A[i] <span style="color:#f92672">&lt;=</span> A[j] <span style="color:#f92672">and</span> mmin <span style="color:#f92672">&gt;</span> A[j]:
+                    mmin <span style="color:#f92672">=</span> A[j]
+                    dp[i][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> dp[j][<span style="color:#ae81ff">0</span>]
+                <span style="color:#66d9ef">if</span> A[i] <span style="color:#f92672">&gt;=</span> A[j] <span style="color:#f92672">and</span> mmax <span style="color:#f92672">&lt;</span> A[j]:
+                    mmax <span style="color:#f92672">=</span> A[j]
+                    dp[i][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> dp[j][<span style="color:#ae81ff">1</span>]
+        <span style="color:#66d9ef">return</span> list(map(sum, zip(<span style="color:#f92672">*</span>dp)))[<span style="color:#ae81ff">1</span>]</code></pre></div>
+<h3 id="method-2">Method 2</h3>
+
+<p>这里使用到了monotone stack的技巧。在之前我们讲过一次monotone stack，但是这个解法会更难想到，因为stack里面的存的东西不再是雨水数量，木板面积等等，而会更抽象。</p>
+
+<p>总的来说，我们需要寻找的依然是，在每个位置分别作为偶数跳和奇数跳能否到达终点的信息。原数列给出的是位置<code>i</code>处数值的大小，我们做一次*类似*invert index操作之后拿到另外一个list，存了数字大小和其位置<code>[(v1, i1),(v2, i2)...(vn, in)]</code>。这里我们先考虑奇数跳的情况，所以按照数值<strong>从小到大</strong>排序*O(nlogn)*。排好序后开始loop。每次loop拿到数据<code>(v2,i2)</code>,看一下<strong>mono_stack栈顶的元素<code>(v1, i1)</code>所代表的*位置<code>i1</code>*是否小于当前位置(<code>i2</code>。如果小于，那么说明栈顶元素<code>i1</code>的奇数下一跳就是<code>i2</code>。</strong></p>
+
+<p>为什么呢？奇数跳的要求是，对下一跳<code>i2</code>, <code>i2 &gt; i1</code> and <strong><code>A[i2]</code>是所有 <code>i&gt;i1</code>中最小的那个</strong>。既然我们是从小到大排序了，那么<code>[v2...vn]</code>中v2一定是大于v1的最小的那个。所以这时候，如果v2在v1的后面，也就是<code>i2&gt;i1</code>，那么i2就一定是i1的下一个奇数跳跳。</p>
+
+<p>偶数跳只是条件有所变化，你可以自己思考一下！</p>
+
+<p>可以看到，这个mono_stack是单调递减(Monotonically decreasing)的，因为里面存的是位置<code>i1</code>，如果下一个<code>i2</code>，大于<code>i1</code>，我们就找到了<code>i1</code>的下一跳的位置。反过来说，如果<code>i2</code>是小于<code>i1</code>（也即在数组中<code>i2</code>在<code>i1</code>前面，那么我们是不能确定<code>i2</code>的下一跳，所以要先保存在数组中）。</p>
+
+<h4 id="code-1">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">oddEvenJumps</span>(self, A: List[int]) <span style="color:#f92672">-&gt;</span> int:
+        n <span style="color:#f92672">=</span> len(A)
+        
+        odd_next <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> n
+        stack <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> v, i <span style="color:#f92672">in</span> sorted([(v, i) <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> enumerate(A)]):
+            <span style="color:#66d9ef">while</span> stack <span style="color:#f92672">and</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> i:
+                odd_next[stack<span style="color:#f92672">.</span>pop()] <span style="color:#f92672">=</span> i
+            stack<span style="color:#f92672">.</span>append(i)
+        
+        even_next <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> n
+        stack <span style="color:#f92672">=</span> []
+        <span style="color:#75715e"># in order to get the smaller i first, we keep the order of i (increasing) when value is same</span>
+        <span style="color:#66d9ef">for</span> v, i <span style="color:#f92672">in</span> sorted([(<span style="color:#f92672">-</span>v, i) <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> enumerate(A)]):
+            <span style="color:#66d9ef">while</span> stack <span style="color:#f92672">and</span> stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> i:
+                even_next[stack<span style="color:#f92672">.</span>pop()] <span style="color:#f92672">=</span> i
+            stack<span style="color:#f92672">.</span>append(i)
+        
+        
+        odd_reached <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> n
+        even_reached <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> n
+        odd_reached[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> even_reached[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(A) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+            odd_reached[i] <span style="color:#f92672">=</span> even_reached[odd_next[i]]
+            even_reached[i] <span style="color:#f92672">=</span> odd_reached[even_next[i]]
+        <span style="color:#66d9ef">return</span> sum(odd_reached)</code></pre></div>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/dp/" rel="tag">dp</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/stack/" rel="tag">stack</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/05/best_time_to_buy_sell_stock_with_fee/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/2019/05/560_subarray_sum_equals_k/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 560] Subarray Sum Equals K</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ericliu03-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/560_subarray_sum_equals_k/">[Leetcode 560] Subarray Sum Equals K</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_975_odd_even_jump/">[Leetcode 975] Odd Even Jump</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/best_time_to_buy_sell_stock_with_fee/">[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/student_attendance_record_ii/">[Leetcode 552] Student Attendance Record II</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/minimum_score_triangulation_of_polygon/">[Leetcode 1039] Minimum Score Triangulation of Polygon</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cumulative-sum" title="Cumulative sum">Cumulative sum (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stack" title="Stack">Stack (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

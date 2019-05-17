@@ -6,10 +6,22 @@
     <description>Recent content in array on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 May 2019 16:22:13 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 11:23:20 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/array/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 560] Subarray Sum Equals K</title>
+      <link>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</link>
+      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</guid>
+      <description>Question Leetcode 560: Subarray Sum Equals K
+Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+Note:  The length of the array is in range [1, 20,000]. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].  Examples Example 1:
+Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。</description>
+    </item>
     
     <item>
       <title>[Leetcode 807] Max Increase to Keep City Skyline</title>

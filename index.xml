@@ -5,10 +5,214 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 May 2019 10:53:59 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 11:23:20 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 560] Subarray Sum Equals K</title>
+      <link>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</link>
+      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/subarray-sum-equals-k/&#34;&gt;Leetcode 560: Subarray Sum Equals K&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The length of the array is in range [1, 20,000].&lt;/li&gt;
+&lt;li&gt;The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input:nums = [1,1,1], k = 2
+Output: 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1-tle&#34;&gt;Method 1 (TLE)&lt;/h3&gt;
+
+&lt;p&gt;我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。&lt;/p&gt;
+
+&lt;p&gt;这个方法有点DP的感觉，但实际上是走了 cumulative的路线。cumulative的路线更简单一些，就是在每个位置&lt;code&gt;i&lt;/code&gt;存&lt;code&gt;cum_sum[i] = sum(num[:i+1])&lt;/code&gt;。这样我们在每个位置就扫一遍前面的所有的sum，做个减法就知道是否有k出现。&lt;/p&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; collections &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; defaultdict
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;subarraySum&lt;/span&gt;(self, nums: List[int], k: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(nums)
+        dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [defaultdict(int) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; number, count &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; dp[i]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;items():
+                dp[i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][number &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; nums[i]] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; count
+            dp[i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][nums[i]] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; sum(dp[i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][k] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;这个方法利用到了cumulative sum，hashmap，和题目的要求（只求数量）。&lt;/p&gt;
+
+&lt;p&gt;首先hashmap是用来存每一种cumulative sum出现了多少次，然后在每个位置看一下&lt;strong&gt;当前位置&lt;code&gt;cum_sum[i]&lt;/code&gt;减去k的值&lt;/strong&gt;是否在hashmap中存在。如果存在&lt;code&gt;hashmap[cum_sum[i]-k] = x&lt;/code&gt;，就意味着之前有过&lt;code&gt;cum_sum[i] - cum_sum[某一位置] = k&lt;/code&gt;的情况，而且出现了x次。换句话说，我们找到了x个以i结尾的subarray，他们的和等于k。&lt;/p&gt;
+
+&lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; collections &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; defaultdict
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;subarraySum&lt;/span&gt;(self, nums: List[int], k: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(nums)
+        cum_sum &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; defaultdict(int)
+        cum_sum[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        curr_sum &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; num &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; nums:
+            curr_sum &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; num
+            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; cum_sum[curr_sum &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; k]
+            &lt;span style=&#34;color:#75715e&#34;&gt;# we don&amp;#39;t want to use current cum_sum to minus itself&lt;/span&gt;
+            &lt;span style=&#34;color:#75715e&#34;&gt;# so we calculate before add it to hashmap&lt;/span&gt;
+            &lt;span style=&#34;color:#75715e&#34;&gt;# mostly for the case where k = 0&lt;/span&gt;
+            cum_sum[curr_sum] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+            
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 975] Odd Even Jump</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/</link>
+      <pubDate>Fri, 10 May 2019 09:59:57 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/odd-even-jump/&#34;&gt;Leetcode 975: Odd Even Jump&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You are given an integer array &lt;code&gt;A&lt;/code&gt;.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, &amp;hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &amp;hellip;) jumps in the series are called even numbered jumps.&lt;/p&gt;
+
+&lt;p&gt;You may from index &lt;code&gt;i&lt;/code&gt; jump forward to index &lt;code&gt;j&lt;/code&gt; (with &lt;code&gt;i &amp;lt; j&lt;/code&gt;) in the following way:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;During odd numbered jumps (ie. jumps 1, 3, 5, &amp;hellip;), you jump to the index &lt;code&gt;j&lt;/code&gt; such that &lt;code&gt;A[i] &amp;lt;= A[j]&lt;/code&gt; and A[j] is the smallest possible value.  If there are multiple such indexes &lt;code&gt;j&lt;/code&gt;, you can only jump to the smallest such index &lt;code&gt;j&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;During even numbered jumps (ie. jumps 2, 4, 6, &amp;hellip;), you jump to the index &lt;code&gt;j&lt;/code&gt; such that &lt;code&gt;A[i] &amp;gt;= A[j]&lt;/code&gt; and A[j] is the largest possible value.  If there are multiple such indexes &lt;code&gt;j&lt;/code&gt;, you can only jump to the smallest such index &lt;code&gt;j&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;(It may be the case that for some index &lt;code&gt;i&lt;/code&gt;, there are no legal jumps.)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A starting index is good if, starting from that index, you can reach the end of the array (index &lt;code&gt;A.length - 1&lt;/code&gt;) by jumping some number of times (possibly 0 or more than once.)&lt;/p&gt;
+
+&lt;p&gt;Return the number of good starting indexes.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;1 &amp;lt;= A.length &amp;lt;= 20000&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt;= A[i] &amp;lt; 100000&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Example 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: [10,13,12,14,15]
+Output: 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Explanation:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;From starting index i = 0, we can jump to i = 2 (since A[2] is the smallest among A[1], A[2], A[3], A[4] that is greater or equal to A[0]), then we can&amp;rsquo;t jump any more.&lt;/li&gt;
+&lt;li&gt;From starting index i = 1 and i = 2, we can jump to i = 3, then we can&amp;rsquo;t jump any more.&lt;/li&gt;
+&lt;li&gt;From starting index i = 3, we can jump to i = 4, so we&amp;rsquo;ve reached the end.&lt;/li&gt;
+&lt;li&gt;From starting index i = 4, we&amp;rsquo;ve reached the end already.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In total, there are 2 different starting indexes (i = 3, i = 4) where we can reach the end with some number of jumps.&lt;/p&gt;
+
+&lt;p&gt;There are other examples in leetcode.&lt;/p&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;本题还是DP的思路，记录的是每个位置奇数跳和偶数跳是否能够达到终点，然后数一下在奇数跳情况下（也就是作为起点时），能到终点的数量即可。&lt;/p&gt;
+
+&lt;p&gt;题目要求每个位置都需要考虑他后面所有点，找出符合情况的那个，所以我们需要从后往前开始。j的找法我这里用了for loop全部看一遍(TLE)。理论上寻找的过程可以sort一下用二分查找，就变成&lt;code&gt;O(nlogn)&lt;/code&gt;的复杂度。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;dp[i][odd] = dp[j][even]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dp[i][even] = dp[j][odd]&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oddEvenJumps&lt;/span&gt;(self, A: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        dp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(A))]
+        
+        dp[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(A) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; , &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            mmin &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+            mmax &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-inf&amp;#39;&lt;/span&gt;)
+            &lt;span style=&#34;color:#75715e&#34;&gt;# search for the number/index that meets requirement&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(A)):
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; A[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; A[j] &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; mmin &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; A[j]:
+                    mmin &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[j]
+                    dp[i][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dp[j][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; A[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; A[j] &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; mmax &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; A[j]:
+                    mmax &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; A[j]
+                    dp[i][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dp[j][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; list(map(sum, zip(&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;dp)))[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;这里使用到了monotone stack的技巧。在之前我们讲过一次monotone stack，但是这个解法会更难想到，因为stack里面的存的东西不再是雨水数量，木板面积等等，而会更抽象。&lt;/p&gt;
+
+&lt;p&gt;总的来说，我们需要寻找的依然是，在每个位置分别作为偶数跳和奇数跳能否到达终点的信息。原数列给出的是位置&lt;code&gt;i&lt;/code&gt;处数值的大小，我们做一次*类似*invert index操作之后拿到另外一个list，存了数字大小和其位置&lt;code&gt;[(v1, i1),(v2, i2)...(vn, in)]&lt;/code&gt;。这里我们先考虑奇数跳的情况，所以按照数值&lt;strong&gt;从小到大&lt;/strong&gt;排序*O(nlogn)*。排好序后开始loop。每次loop拿到数据&lt;code&gt;(v2,i2)&lt;/code&gt;,看一下&lt;strong&gt;mono_stack栈顶的元素&lt;code&gt;(v1, i1)&lt;/code&gt;所代表的*位置&lt;code&gt;i1&lt;/code&gt;*是否小于当前位置(&lt;code&gt;i2&lt;/code&gt;。如果小于，那么说明栈顶元素&lt;code&gt;i1&lt;/code&gt;的奇数下一跳就是&lt;code&gt;i2&lt;/code&gt;。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;为什么呢？奇数跳的要求是，对下一跳&lt;code&gt;i2&lt;/code&gt;, &lt;code&gt;i2 &amp;gt; i1&lt;/code&gt; and &lt;strong&gt;&lt;code&gt;A[i2]&lt;/code&gt;是所有 &lt;code&gt;i&amp;gt;i1&lt;/code&gt;中最小的那个&lt;/strong&gt;。既然我们是从小到大排序了，那么&lt;code&gt;[v2...vn]&lt;/code&gt;中v2一定是大于v1的最小的那个。所以这时候，如果v2在v1的后面，也就是&lt;code&gt;i2&amp;gt;i1&lt;/code&gt;，那么i2就一定是i1的下一个奇数跳跳。&lt;/p&gt;
+
+&lt;p&gt;偶数跳只是条件有所变化，你可以自己思考一下！&lt;/p&gt;
+
+&lt;p&gt;可以看到，这个mono_stack是单调递减(Monotonically decreasing)的，因为里面存的是位置&lt;code&gt;i1&lt;/code&gt;，如果下一个&lt;code&gt;i2&lt;/code&gt;，大于&lt;code&gt;i1&lt;/code&gt;，我们就找到了&lt;code&gt;i1&lt;/code&gt;的下一跳的位置。反过来说，如果&lt;code&gt;i2&lt;/code&gt;是小于&lt;code&gt;i1&lt;/code&gt;（也即在数组中&lt;code&gt;i2&lt;/code&gt;在&lt;code&gt;i1&lt;/code&gt;前面，那么我们是不能确定&lt;code&gt;i2&lt;/code&gt;的下一跳，所以要先保存在数组中）。&lt;/p&gt;
+
+&lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oddEvenJumps&lt;/span&gt;(self, A: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(A)
+        
+        odd_next &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n
+        stack &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; v, i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; sorted([(v, i) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(A)]):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; stack &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; i:
+                odd_next[stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop()] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i
+            stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(i)
+        
+        even_next &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n
+        stack &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+        &lt;span style=&#34;color:#75715e&#34;&gt;# in order to get the smaller i first, we keep the order of i (increasing) when value is same&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; v, i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; sorted([(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;v, i) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, v &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(A)]):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; stack &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; stack[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; i:
+                even_next[stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pop()] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i
+            stack&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(i)
+        
+        
+        odd_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n
+        even_reached &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n
+        odd_reached[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; even_reached[&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(A) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            odd_reached[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; even_reached[odd_next[i]]
+            even_reached[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; odd_reached[even_next[i]]
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; sum(odd_reached)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</title>

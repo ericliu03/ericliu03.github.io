@@ -12,7 +12,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ericliu03.github.io/posts/" />
 
-<meta property="og:updated_time" content="2019-05-07T10:53:59-07:00"/>
+<meta property="og:updated_time" content="2019-05-14T11:23:20-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
@@ -58,6 +58,46 @@ if (!doNotTrack) {
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/posts/2019/04/coloring_a_border/" rel="bookmark">
+			Coloring Border
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-28T09:42:03">2019-04-28</time>
+</div>
+</div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Question Leetcode 1034: Coloring A Border
+Given a 2-dimensional grid of integers, each value in the grid represents the color of the grid square at that location.
+Two squares belong to the same connected component if and only if they have the same color and are next to each other in any of the 4 directions.
+The border of a connected component is all the squares in the connected component that are either 4-directionally adjacent to a square not in the component, or on the boundary of the grid (the first or last row or column).
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/posts/2019/04/two_pass/" rel="bookmark">
+			Two Pass for Min/Max/Sum/Product
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-23T21:23:24">2019-04-23</time>
+</div>
+</div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		今天我们讲解一种算法思想。这种方法一般使用在需要把整个数组分成2份的情况，求这两份组成的是最大、最小、和最大之类的。下面我们来看三道由易到难的题目。
+Question Leetcode 238: Product of Array Except Self
+Given an array nums of n integers where n &gt; 1, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
+Examples Input: [1,2,3,4] Output: [24,12,8,6]  Follow up:  Please solve it without division and in O(n). Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/posts/2019/04/monotone_stack/" rel="bookmark">
@@ -115,43 +155,6 @@ class TreeNode: def __init__(self, x): self.
 Given an unsorted array of integers, find the length of longest increasing subsequence.
 Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.  Note  There may be more than one LIS combination, it is only necessary for you to return the length. Your algorithm should run in \( O(N^2) \) complexity.  Method 1 Analysis 可以使用Brute force的方法来解决这个问题。 具体来说我们需要试一下所有可能的组合：对于每一个数x，他本身加上他后面的任意一个比他大的数y都可以组成一个increasing subsequence。如果我们已经知道了以y开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以x和y开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字z也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。 时间复杂度是\( O(N!
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/04/inorder_predecessor/" rel="bookmark">
-			Inorder Predecessor
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-13T21:55:51">2019-04-13</time>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question Given a node in a binary tree, return the inorder predecessor of that node. If it doesn&rsquo;t exist, return null. Both input and output should be node objects.
-Node is given as an object with pointers to it&rsquo;s left child, right child and parent.
-Examples Example 1  A / \ B C / \ D E / F In order traversal: DBFEAC If give A, then return should be E.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/04/minimum_point_to_traverse_graph/" rel="bookmark">
-			Minimum Point to Traverse Graph
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-10T15:38:14">2019-04-10</time>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question There is a directed graph and you can traverse the nodes in this graph by following the directed edges. You can start from any node in this graph and you can pick nodes as start points as many as you needed. What is the minimum number of nodes as start points you need to traverse all the nodes?
-You will be given a number n as number of vertices in the graph, and a list contains all the edges in the graph.
-	</div>
 </article>
 </main>
 
@@ -177,11 +180,11 @@ You will be given a number n as number of vertices in the graph, and a list cont
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/560_subarray_sum_equals_k/">[Leetcode 560] Subarray Sum Equals K</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_975_odd_even_jump/">[Leetcode 975] Odd Even Jump</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/best_time_to_buy_sell_stock_with_fee/">[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/student_attendance_record_ii/">[Leetcode 552] Student Attendance Record II</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/minimum_score_triangulation_of_polygon/">[Leetcode 1039] Minimum Score Triangulation of Polygon</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/max_increase_to_keep_city_skyline/">[Leetcode 807] Max Increase to Keep City Skyline</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/k_empty_slots/">[Leetcode 683] K Empty Slots</a></li>
 		</ul>
 	</div>
 </div>
@@ -197,13 +200,15 @@ You will be given a number n as number of vertices in the graph, and a list cont
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cumulative-sum" title="Cumulative sum">Cumulative sum (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stack" title="Stack">Stack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
 	</div>
