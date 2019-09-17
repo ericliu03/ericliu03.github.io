@@ -5,10 +5,252 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 May 2019 11:51:24 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 20:09:42 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 138]: Copy List with Random Pointer</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</link>
+      <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/copy-list-with-random-pointer/&#34;&gt;Leetcode 138: Copy List with Random Pointer&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.&lt;/p&gt;
+
+&lt;p&gt;Return a &lt;strong&gt;deep copy&lt;/strong&gt; of the list.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You must return the copy of the given head as a reference to the cloned list.&lt;/li&gt;
+&lt;li&gt;Node definition:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self, val, next, random):
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; val
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; next
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; random&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;examples&#34;&gt;Examples:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Input:
+{&amp;quot;$id&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;next&amp;quot;:{&amp;quot;$id&amp;quot;:&amp;quot;2&amp;quot;,&amp;quot;next&amp;quot;:null,&amp;quot;random&amp;quot;:{&amp;quot;$ref&amp;quot;:&amp;quot;2&amp;quot;},&amp;quot;val&amp;quot;:2},&amp;quot;random&amp;quot;:{&amp;quot;$ref&amp;quot;:&amp;quot;2&amp;quot;},&amp;quot;val&amp;quot;:1}
+
+Explanation:
+Node 1&#39;s value is 1, both of its next and random pointer points to Node 2.
+Node 2&#39;s value is 2, its next pointer points to null and its random pointer points to itself.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;Treat as a graph. We do dfs/bfs in recursive/iterative ways.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;copyRandomList&lt;/span&gt;(self, head: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Node&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Node&amp;#39;&lt;/span&gt;:
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;visited &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;clone(head)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;clone&lt;/span&gt;(self, node):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; node:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;visited:
+            n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Node(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val, None, None)
+            self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;visited[node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n
+
+            n&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;clone(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next)
+            n&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;clone(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random)
+
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;visited[node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;Treat it like a linked list. Use &lt;code&gt;next&lt;/code&gt; pointer to navigate, and setup &lt;code&gt;random&lt;/code&gt; along the way.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;copyRandomList&lt;/span&gt;(self, head: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Node&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Node&amp;#39;&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; head:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
+        
+        new_head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Node(head&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val, None, None)
+        nodes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {new_head&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val:new_head}
+
+        old_temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head
+        new_temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; new_head
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;get_node&lt;/span&gt;(node):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; None:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
+            val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; val &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; nodes:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; nodes[val]
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Node(val, None, None)
+                nodes[val] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; result
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
+            
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; old_temp:
+            new_temp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; get_node(old_temp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next)
+            new_temp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; get_node(old_temp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random)
+            
+            old_temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; old_temp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next
+            new_temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; new_temp&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;next
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; new_head&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 450] Delete Node in a BST</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</link>
+      <pubDate>Fri, 31 May 2019 15:22:33 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/delete-node-in-a-bst/&#34;&gt;Leetcode 450: Delete Node in a BST&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.&lt;/p&gt;
+
+&lt;p&gt;Basically, the deletion can be divided into two stages:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Search for a node to remove.&lt;/li&gt;
+&lt;li&gt;If the node is found, delete the node.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;p&gt;Time complexity should be O(height of tree).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Definition for a binary tree node.&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TreeNode&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self, x):
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; None
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; None&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;root = [5,3,6,2,4,null,7]
+key = 3
+
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Given key to delete is 3. So we find the node with value 3 and delete it.
+
+One valid answer is [5,4,6,2,null,null,7], shown in the following BST.
+
+    5
+   / \
+  4   6
+ /     \
+2       7
+
+Another valid answer is [5,2,6,null,4,null,7].
+
+    5
+   / \
+  2   6
+   \   \
+    4   7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;第一步用dfs来找到相应的node。 第二步删除node，基本上就是使用node的parent来连接上node的child。为了处理node就是树的root这种情况，我们可以自建一个dummyroot。
+这里需要分几种情况：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;node没有child，那么直接删掉就可以了&lt;/li&gt;
+&lt;li&gt;node有一个child，那么需要把这个child连接到parent上，使用原本node的位置&lt;/li&gt;
+&lt;li&gt;node有两个child，把左边child像2一样链接，然后把右child放到做child的右下的位置。（或者是反过来）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;deleteNode&lt;/span&gt;(self, root: TreeNode, key: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; TreeNode:
+        dummy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; TreeNode(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+        dummy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; root
+    
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;find_node&lt;/span&gt;(node, parent, is_left):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; None:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None, None, False
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; key:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (node, parent, is_left)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; key:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; find_node(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left, node, True)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; find_node(node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right, node, False)
+        
+        node, parent, is_left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; find_node(root, dummy, True)
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; None:
+            child &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; is_left:
+                parent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; child
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                parent&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; child
+
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; child &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; child &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; child&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right:
+                    child &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; child&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right
+                child&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; node&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; dummy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;另一种是纯recursive的方法。基本上就是说在dfs找node同时进行删除。输入是root和寻找的key，所以在dfs中，如果是小于或者大于，就把左或者右子树的root和key进行recursive dfs。return的依然还是左右子树的root。&lt;/p&gt;
+
+&lt;p&gt;如果是等于key的话，还是需要分几种情况
+1. 当前node没有子树，返回None
+1. 如果有子树，就需要找到当前node的predecessor或者successor来替代当前的值，然后recursively，按照我们删除题目中的Key的方法来删除子树里那个predecessor或者successor。&lt;/p&gt;
+
+&lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;find_successor&lt;/span&gt;(self, root):
+        successor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; successor&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left:
+            successor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; successor&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; successor
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;find_predecessor&lt;/span&gt;(self, root):
+        predecessor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; predecessor&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right:
+            predecessor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; predecessor&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; predecessor
+        
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;deleteNode&lt;/span&gt;(self, root: TreeNode, key: int) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; TreeNode:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; root:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; key:
+            root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;deleteNode(root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left, key)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; key:
+            root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;deleteNode(root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right, key)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right:
+                root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_successor(root)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val
+                root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;deleteNode(root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;right, root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left:
+                root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_predecessor(root)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val
+                root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;deleteNode(root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;left, root&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;val)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; None
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; root&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;reference&#34;&gt;Reference&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/delete-node-in-a-bst/discuss/93296/Recursive-Easy-to-Understand-Java-Solution&#34;&gt;Recursive Easy to Understand Java Solution&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>[Leetcode 785] Is Graph Bipartite</title>

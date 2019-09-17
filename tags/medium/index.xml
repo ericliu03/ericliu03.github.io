@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>medium on Yang&#39;s Blog</title>
+    <link>https://ericliu03.github.io/tags/medium/</link>
+    <description>Recent content in medium on Yang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Sep 2019 20:09:42 -0700</lastBuildDate>
+    
+	<atom:link href="https://ericliu03.github.io/tags/medium/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Leetcode 138]: Copy List with Random Pointer</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</link>
+      <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</guid>
+      <description>Question Leetcode 138: Copy List with Random Pointer
+A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+Return a deep copy of the list.
+Note:  You must return the copy of the given head as a reference to the cloned list. Node definition:  class Node: def __init__(self, val, next, random): self.val = val self.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 450] Delete Node in a BST</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</link>
+      <pubDate>Fri, 31 May 2019 15:22:33 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</guid>
+      <description>Question Leetcode 450: Delete Node in a BST
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+Basically, the deletion can be divided into two stages:
+ Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree).</description>
+    </item>
+    
+  </channel>
+</rss>

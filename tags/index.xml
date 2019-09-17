@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 May 2019 11:51:24 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 20:09:42 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title></title>
       <link>https://ericliu03.github.io/tags/</link>
-      <pubDate>Fri, 17 May 2019 11:51:24 -0700</pubDate>
+      <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>medium</title>
+      <link>https://ericliu03.github.io/tags/medium/</link>
+      <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/tags/medium/</guid>
       <description></description>
     </item>
     
@@ -44,15 +53,6 @@
       <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/tags/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cumulative sum</title>
-      <link>https://ericliu03.github.io/tags/cumulative-sum/</link>
-      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/tags/cumulative-sum/</guid>
       <description></description>
     </item>
     

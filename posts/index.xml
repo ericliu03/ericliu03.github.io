@@ -6,10 +6,34 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 May 2019 11:51:24 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 20:09:42 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 138]: Copy List with Random Pointer</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</link>
+      <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</guid>
+      <description>Question Leetcode 138: Copy List with Random Pointer
+A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+Return a deep copy of the list.
+Note:  You must return the copy of the given head as a reference to the cloned list. Node definition:  class Node: def __init__(self, val, next, random): self.val = val self.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 450] Delete Node in a BST</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</link>
+      <pubDate>Fri, 31 May 2019 15:22:33 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</guid>
+      <description>Question Leetcode 450: Delete Node in a BST
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+Basically, the deletion can be divided into two stages:
+ Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree).</description>
+    </item>
     
     <item>
       <title>[Leetcode 785] Is Graph Bipartite</title>
@@ -44,29 +68,6 @@ Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想�
       <description>Question Leetcode 975: Odd Even Jump
 You are given an integer array A. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, &amp;hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &amp;hellip;) jumps in the series are called even numbered jumps.
 You may from index i jump forward to index j (with i &amp;lt; j) in the following way:</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 714] Best Time to Buy and Sell Stock with Transaction Fee</title>
-      <link>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</link>
-      <pubDate>Tue, 07 May 2019 10:53:59 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/best_time_to_buy_sell_stock_with_fee/</guid>
-      <description>Question Leetcode 714: Best Time to Buy and Sell Stock with Transaction Fee
-Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
-You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 552] Student Attendance Record II</title>
-      <link>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</link>
-      <pubDate>Mon, 06 May 2019 10:54:57 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/student_attendance_record_ii/</guid>
-      <description>Question Leetcode 552: Student Attendance Record II
-Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10^9 + 7.
-A student attendance record is a string that only contains the following three characters:
- &amp;lsquo;A&amp;rsquo; : Absent. &amp;lsquo;L&amp;rsquo; : Late. &amp;lsquo;P&amp;rsquo; : Present.  A record is regarded as rewardable if it doesn&amp;rsquo;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).</description>
     </item>
     
   </channel>

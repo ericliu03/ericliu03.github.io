@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Leetcode 450] Delete Node in a BST - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="[Leetcode 450] Delete Node in a BST" />
+<meta property="og:description" content="Question Leetcode 450: Delete Node in a BST
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+Basically, the deletion can be divided into two stages:
+ Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/" />
+<meta property="article:published_time" content="2019-05-31T15:22:33-07:00"/>
+<meta property="article:modified_time" content="2019-05-31T15:22:33-07:00"/>
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Leetcode 450] Delete Node in a BST"/>
+<meta name="twitter:description" content="Question Leetcode 450: Delete Node in a BST
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+Basically, the deletion can be divided into two stages:
+ Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree)."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-138995517-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Leetcode 450] Delete Node in a BST</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-05-31T15:22:33">2019-05-31</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			
+
+<h2 id="question">Question</h2>
+
+<p><a href="https://leetcode.com/problems/delete-node-in-a-bst/">Leetcode 450: Delete Node in a BST</a></p>
+
+<p>Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.</p>
+
+<p>Basically, the deletion can be divided into two stages:</p>
+
+<ol>
+<li>Search for a node to remove.</li>
+<li>If the node is found, delete the node.</li>
+</ol>
+
+<h3 id="note">Note:</h3>
+
+<p>Time complexity should be O(height of tree).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Definition for a binary tree node.</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, x):
+        self<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> x
+        self<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> None
+        self<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> None</code></pre></div>
+<h3 id="examples">Examples</h3>
+
+<pre><code>root = [5,3,6,2,4,null,7]
+key = 3
+
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Given key to delete is 3. So we find the node with value 3 and delete it.
+
+One valid answer is [5,4,6,2,null,null,7], shown in the following BST.
+
+    5
+   / \
+  4   6
+ /     \
+2       7
+
+Another valid answer is [5,2,6,null,4,null,7].
+
+    5
+   / \
+  2   6
+   \   \
+    4   7
+</code></pre>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1">Method 1</h3>
+
+<p>第一步用dfs来找到相应的node。 第二步删除node，基本上就是使用node的parent来连接上node的child。为了处理node就是树的root这种情况，我们可以自建一个dummyroot。
+这里需要分几种情况：</p>
+
+<ol>
+<li>node没有child，那么直接删掉就可以了</li>
+<li>node有一个child，那么需要把这个child连接到parent上，使用原本node的位置</li>
+<li>node有两个child，把左边child像2一样链接，然后把右child放到做child的右下的位置。（或者是反过来）</li>
+</ol>
+
+<h4 id="code">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deleteNode</span>(self, root: TreeNode, key: int) <span style="color:#f92672">-&gt;</span> TreeNode:
+        dummy <span style="color:#f92672">=</span> TreeNode(<span style="color:#ae81ff">0</span>)
+        dummy<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> root
+    
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_node</span>(node, parent, is_left):
+            <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> None:
+                <span style="color:#66d9ef">return</span> None, None, False
+            <span style="color:#66d9ef">elif</span> node<span style="color:#f92672">.</span>val <span style="color:#f92672">==</span> key:
+                <span style="color:#66d9ef">return</span> (node, parent, is_left)
+            <span style="color:#66d9ef">elif</span> node<span style="color:#f92672">.</span>val <span style="color:#f92672">&gt;</span> key:
+                <span style="color:#66d9ef">return</span> find_node(node<span style="color:#f92672">.</span>left, node, True)
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">return</span> find_node(node<span style="color:#f92672">.</span>right, node, False)
+        
+        node, parent, is_left <span style="color:#f92672">=</span> find_node(root, dummy, True)
+        
+        <span style="color:#66d9ef">if</span> node <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+            child <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>left <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>left <span style="color:#66d9ef">else</span> node<span style="color:#f92672">.</span>right
+            <span style="color:#66d9ef">if</span> is_left:
+                parent<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> child
+            <span style="color:#66d9ef">else</span>:
+                parent<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> child
+
+            <span style="color:#66d9ef">if</span> child <span style="color:#f92672">and</span> node<span style="color:#f92672">.</span>left:
+                <span style="color:#66d9ef">while</span> child <span style="color:#f92672">and</span> child<span style="color:#f92672">.</span>right:
+                    child <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>right
+                child<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>right
+        <span style="color:#66d9ef">return</span> dummy<span style="color:#f92672">.</span>left</code></pre></div>
+<h3 id="method-2">Method 2</h3>
+
+<p>另一种是纯recursive的方法。基本上就是说在dfs找node同时进行删除。输入是root和寻找的key，所以在dfs中，如果是小于或者大于，就把左或者右子树的root和key进行recursive dfs。return的依然还是左右子树的root。</p>
+
+<p>如果是等于key的话，还是需要分几种情况
+1. 当前node没有子树，返回None
+1. 如果有子树，就需要找到当前node的predecessor或者successor来替代当前的值，然后recursively，按照我们删除题目中的Key的方法来删除子树里那个predecessor或者successor。</p>
+
+<h4 id="code-1">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_successor</span>(self, root):
+        successor <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span>right
+        <span style="color:#66d9ef">while</span> successor<span style="color:#f92672">.</span>left:
+            successor <span style="color:#f92672">=</span> successor<span style="color:#f92672">.</span>left
+        <span style="color:#66d9ef">return</span> successor
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_predecessor</span>(self, root):
+        predecessor <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span>left
+        <span style="color:#66d9ef">while</span> predecessor<span style="color:#f92672">.</span>right:
+            predecessor <span style="color:#f92672">=</span> predecessor<span style="color:#f92672">.</span>right
+        <span style="color:#66d9ef">return</span> predecessor
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deleteNode</span>(self, root: TreeNode, key: int) <span style="color:#f92672">-&gt;</span> TreeNode:
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> root:
+            <span style="color:#66d9ef">return</span> None
+        <span style="color:#66d9ef">elif</span> root<span style="color:#f92672">.</span>val <span style="color:#f92672">&gt;</span> key:
+            root<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deleteNode(root<span style="color:#f92672">.</span>left, key)
+        <span style="color:#66d9ef">elif</span> root<span style="color:#f92672">.</span>val <span style="color:#f92672">&lt;</span> key:
+            root<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deleteNode(root<span style="color:#f92672">.</span>right, key)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">if</span> root<span style="color:#f92672">.</span>right:
+                root<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find_successor(root)<span style="color:#f92672">.</span>val
+                root<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deleteNode(root<span style="color:#f92672">.</span>right, root<span style="color:#f92672">.</span>val)
+            <span style="color:#66d9ef">elif</span> root<span style="color:#f92672">.</span>left:
+                root<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find_predecessor(root)<span style="color:#f92672">.</span>val
+                root<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deleteNode(root<span style="color:#f92672">.</span>left, root<span style="color:#f92672">.</span>val)
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">return</span> None
+        <span style="color:#66d9ef">return</span> root</code></pre></div>
+<h3 id="reference">Reference</h3>
+
+<ol>
+<li><a href="https://leetcode.com/problems/delete-node-in-a-bst/discuss/93296/Recursive-Easy-to-Understand-Java-Solution">Recursive Easy to Understand Java Solution</a></li>
+</ol>
+
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/medium/" rel="tag">medium</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/05/lc_785_is_graph_bipartite/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 785] Is Graph Bipartite</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/2019/09/lc_138_copy_list_with_random_pointer/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 138]: Copy List with Random Pointer</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ericliu03-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/09/lc_138_copy_list_with_random_pointer/">[Leetcode 138]: Copy List with Random Pointer</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_450_delete_node_in_a_bst/">[Leetcode 450] Delete Node in a BST</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_785_is_graph_bipartite/">[Leetcode 785] Is Graph Bipartite</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/560_subarray_sum_equals_k/">[Leetcode 560] Subarray Sum Equals K</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_975_odd_even_jump/">[Leetcode 975] Odd Even Jump</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bfs" title="Bfs">Bfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cumulative-sum" title="Cumulative sum">Cumulative sum (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/medium" title="Medium">Medium (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stack" title="Stack">Stack (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
