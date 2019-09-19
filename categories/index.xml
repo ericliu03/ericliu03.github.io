@@ -1,23 +1,73 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Yang&#39;s Blog</title>
+    <title>Yang&#39;s Blog</title>
     <link>https://ericliu03.github.io/categories/</link>
-    <description>Recent content in Categories on Yang&#39;s Blog</description>
+    <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Sep 2019 20:09:42 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 18 Sep 2019 20:47:07 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title></title>
-      <link>https://ericliu03.github.io/categories/</link>
+      <title>[Leetcode 523] Continuous Subarray Sum</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_523_continuous_subarray_sum/</link>
+      <pubDate>Wed, 18 Sep 2019 20:47:07 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_523_continuous_subarray_sum/</guid>
+      <description>Question Leetcode 523: Continuous Subarray Sum
+Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k where n is also an integer.
+Note:  The length of the array won&amp;rsquo;t exceed 10,000. You may assume the sum of all the numbers is in the range of a signed 32-bit integer.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 138]: Copy List with Random Pointer</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</link>
       <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
       
-      <guid>https://ericliu03.github.io/categories/</guid>
-      <description></description>
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</guid>
+      <description>Question Leetcode 138: Copy List with Random Pointer
+A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+Return a deep copy of the list.
+Note:  You must return the copy of the given head as a reference to the cloned list. Node definition:  class Node: def __init__(self, val, next, random): self.val = val self.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 450] Delete Node in a BST</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</link>
+      <pubDate>Fri, 31 May 2019 15:22:33 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</guid>
+      <description>Question Leetcode 450: Delete Node in a BST
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+Basically, the deletion can be divided into two stages:
+ Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree).</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 785] Is Graph Bipartite</title>
+      <link>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</link>
+      <pubDate>Fri, 17 May 2019 11:51:24 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</guid>
+      <description>Question Leetcode 785: Is Graph Bipartite?
+Given an undirected graph, return true if and only if it is bipartite.
+Recall that a graph is bipartite if we can split it&amp;rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 560] Subarray Sum Equals K</title>
+      <link>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</link>
+      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/</guid>
+      <description>Question Leetcode 560: Subarray Sum Equals K
+Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+Note:  The length of the array is in range [1, 20,000]. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].  Examples Example 1:
+Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。</description>
     </item>
     
   </channel>

@@ -4,25 +4,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>[Leetcode 560] Subarray Sum Equals K - Yang&#39;s Blog</title>
+	<title>[Leetcode 523] Continuous Subarray Sum - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="[Leetcode 560] Subarray Sum Equals K" />
-<meta property="og:description" content="Question Leetcode 560: Subarray Sum Equals K
-Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
-Note:  The length of the array is in range [1, 20,000]. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].  Examples Example 1:
-Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。" />
+	<meta property="og:title" content="[Leetcode 523] Continuous Subarray Sum" />
+<meta property="og:description" content="Question Leetcode 523: Continuous Subarray Sum
+Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k where n is also an integer.
+Note:  The length of the array won&rsquo;t exceed 10,000. You may assume the sum of all the numbers is in the range of a signed 32-bit integer." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/560_subarray_sum_equals_k/" />
-<meta property="article:published_time" content="2019-05-14T11:23:20-07:00"/>
-<meta property="article:modified_time" content="2019-05-14T11:23:20-07:00"/>
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/09/lc_523_continuous_subarray_sum/" />
+<meta property="article:published_time" content="2019-09-18T20:47:07-07:00"/>
+<meta property="article:modified_time" content="2019-09-18T20:47:07-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Leetcode 560] Subarray Sum Equals K"/>
-<meta name="twitter:description" content="Question Leetcode 560: Subarray Sum Equals K
-Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
-Note:  The length of the array is in range [1, 20,000]. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].  Examples Example 1:
-Input:nums = [1,1,1], k = 2 Output: 2  Solution Method 1 (TLE) 我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。"/>
+<meta name="twitter:title" content="[Leetcode 523] Continuous Subarray Sum"/>
+<meta name="twitter:description" content="Question Leetcode 523: Continuous Subarray Sum
+Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k where n is also an integer.
+Note:  The length of the array won&rsquo;t exceed 10,000. You may assume the sum of all the numbers is in the range of a signed 32-bit integer."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -62,11 +60,11 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">[Leetcode 560] Subarray Sum Equals K</h1>
+			<h1 class="post__title">[Leetcode 523] Continuous Subarray Sum</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-14T11:23:20">2019-05-14</time>
+	<time class="meta__text" datetime="2019-09-18T20:47:07">2019-09-18</time>
 </div>
 
 <div class="meta__item-categories meta__item">
@@ -79,78 +77,82 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/subarray-sum-equals-k/">Leetcode 560: Subarray Sum Equals K</a></p>
+<p><a href="https://leetcode.com/problems/continuous-subarray-sum/">Leetcode 523: Continuous Subarray Sum</a></p>
 
-<p>Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.</p>
+<p>Given a list of <strong>non-negative</strong> numbers and a target <strong>integer</strong> k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of <strong>k</strong>, that is, sums up to n*k where n is also an integer.</p>
 
 <h3 id="note">Note:</h3>
 
 <ol>
-<li>The length of the array is in range [1, 20,000].</li>
-<li>The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].</li>
+<li>The length of the array won&rsquo;t exceed 10,000.</li>
+<li>You may assume the sum of all the numbers is in the range of a signed 32-bit integer.</li>
 </ol>
 
 <h3 id="examples">Examples</h3>
 
-<p>Example 1:</p>
+<pre><code>Example 1:
 
-<pre><code>Input:nums = [1,1,1], k = 2
-Output: 2
+Input: [23, 2, 4, 6, 7],  k=6
+Output: True
+Explanation: Because [2, 4] is a continuous subarray of size 2 and sums up to 6.
+Example 2:
+
+Input: [23, 2, 6, 4, 7],  k=6
+Output: True
+Explanation: Because [23, 2, 6, 4, 7] is an continuous subarray of size 5 and sums up to 42.
 </code></pre>
 
 <h2 id="solution">Solution</h2>
 
-<h3 id="method-1-tle">Method 1 (TLE)</h3>
+<h3 id="method-1">Method 1</h3>
 
-<p>我一开始想到的解法是使用一个存了dict的array，记录下每个位置上出现的所有可能的sum的数量。这样进行到每一位的时候只需要看一下他前面那个位置的dict，就能得到包含当前位置数字所有可能出现的sum。</p>
+<p>Brute Force.  对于每个数字，我们去看一下以他结尾和以所有他之前的数字开头的组合有没有符合题目条件的。</p>
 
-<p>这个方法有点DP的感觉，但实际上是走了 cumulative的路线。cumulative的路线更简单一些，就是在每个位置<code>i</code>存<code>cum_sum[i] = sum(num[:i+1])</code>。这样我们在每个位置就扫一遍前面的所有的sum，做个减法就知道是否有k出现。</p>
-
-<h4 id="code">Code</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subarraySum</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
-        n <span style="color:#f92672">=</span> len(nums)
-        dp <span style="color:#f92672">=</span> [defaultdict(int) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]
-        
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n):
-            <span style="color:#66d9ef">for</span> number, count <span style="color:#f92672">in</span> dp[i]<span style="color:#f92672">.</span>items():
-                dp[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][number <span style="color:#f92672">+</span> nums[i]] <span style="color:#f92672">+=</span> count
-            dp[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][nums[i]] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-        
-        <span style="color:#66d9ef">return</span> sum(dp[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][k] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n))</code></pre></div>
 <h3 id="method-2">Method 2</h3>
 
-<p>这个方法利用到了cumulative sum，hashmap，和题目的要求（只求数量）。</p>
+<p>可以注意到题目是multiple 乘以 k，所以就可以想到mod计算。我们这里利用了下面的math：</p>
 
-<p>首先hashmap是用来存每一种cumulative sum出现了多少次，然后在每个位置看一下<strong>当前位置<code>cum_sum[i]</code>减去k的值</strong>是否在hashmap中存在。如果存在<code>hashmap[cum_sum[i]-k] = x</code>，就意味着之前有过<code>cum_sum[i] - cum_sum[某一位置] = k</code>的情况，而且出现了x次。换句话说，我们找到了x个以i结尾的subarray，他们的和等于k。</p>
+<pre><code>let a % k = x and b % k = x
+then (a - b) % k = (a % k) - (b % k) = x - x = 0
+</code></pre>
 
-<h4 id="code-1">Code</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subarraySum</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
-        n <span style="color:#f92672">=</span> len(nums)
-        cum_sum <span style="color:#f92672">=</span> defaultdict(int)
-        cum_sum[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-        curr_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        
-        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> nums:
-            curr_sum <span style="color:#f92672">+=</span> num
-            result <span style="color:#f92672">+=</span> cum_sum[curr_sum <span style="color:#f92672">-</span> k]
-            <span style="color:#75715e"># we don&#39;t want to use current cum_sum to minus itself</span>
-            <span style="color:#75715e"># so we calculate before add it to hashmap</span>
-            <span style="color:#75715e"># mostly for the case where k = 0</span>
-            cum_sum[curr_sum] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-            
-        <span style="color:#66d9ef">return</span> result</code></pre></div>
+<p>如果a，b分别是从0到i,j的 cumulative sum，那么通过看他们mod k 之后是否相等，就能判断<code>a - b</code>，也即<code>sum(nums[i,j+1])</code>是否能被k整除。</p>
+
+<p>优化一下，我们不存cumulative sum，而是存求余之后的值，那么就能通过等式中第二段的式子来判断在<code>j</code>之前，<code>x</code>有没有出现过，就能够判断是否有可能出现题目所求的情况。</p>
+
+<p>有两点edge case需要注意</p>
+
+<ol>
+<li>至少连续两个值求和，所以我们还要存<code>x</code>出现的位置。</li>
+<li><code>k = 0</code>这种情况，其实就是求和为0。所以我们需要找的就是有没有连续的两个0出现。</li>
+</ol>
+
+<h4 id="code">Code</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">checkSubarraySum</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> bool:
+        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> any(nums[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> nums[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(nums) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+        modulos <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}
+        c_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> i, num <span style="color:#f92672">in</span> enumerate(nums):
+            c_sum <span style="color:#f92672">=</span> (c_sum <span style="color:#f92672">+</span> num)  <span style="color:#f92672">%</span> k              
+            <span style="color:#66d9ef">if</span> c_sum <span style="color:#f92672">in</span> modulos <span style="color:#f92672">and</span> i <span style="color:#f92672">-</span> modulos[c_sum] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+                <span style="color:#66d9ef">return</span> True
+            <span style="color:#66d9ef">if</span> c_sum <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> modulos:
+                modulos[c_sum] <span style="color:#f92672">=</span> i
+        <span style="color:#66d9ef">return</span> False</code></pre></div>
+<h3 id="reference">Reference</h3>
+
+<ol>
+<li><a href="https://leetcode.com/problems/continuous-subarray-sum/discuss/99566/Simple-Python-(10-lines)-with-Explanation-58ms-O(n)-time-O(k)-space">Simple Python (10 lines) with Explanation 58ms O(n) time - O(k) space</a></li>
+</ol>
+
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/array/" rel="tag">array</a></li>
-		<li class="tags__item"><a class="tags__link btn" href="/tags/cumulative-sum/" rel="tag">cumulative sum</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/medium/" rel="tag">medium</a></li>
 	</ul>
 </div>
 	</article>
@@ -170,10 +172,7 @@ Output: 2
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/05/lc_975_odd_even_jump/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 975] Odd Even Jump</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/05/lc_785_is_graph_bipartite/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 785] Is Graph Bipartite</p></a>
+		<a class="post-nav__link" href="/posts/2019/09/lc_138_copy_list_with_random_pointer/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 138]: Copy List with Random Pointer</p></a>
 	</div>
 </nav>
 
