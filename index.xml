@@ -5,10 +5,141 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Sep 2019 20:47:07 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 20 Sep 2019 14:08:46 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 768/769] Max Chunks To Make Sorted</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_769_max_chunks_to_make_sorted/</link>
+      <pubDate>Fri, 20 Sep 2019 14:08:46 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_769_max_chunks_to_make_sorted/</guid>
+      <description>
+
+&lt;h2 id=&#34;question-1&#34;&gt;Question 1&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/max-chunks-to-make-sorted-ii/&#34;&gt;Leetcode 769: Max Chunks To Make Sorted II&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given an array &lt;code&gt;arr&lt;/code&gt; of integers (&lt;strong&gt;not necessarily distinct&lt;/strong&gt;), we split the array into some number of &amp;ldquo;chunks&amp;rdquo; (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.&lt;/p&gt;
+
+&lt;p&gt;What is the most number of chunks we could have made?&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;arr will have length in range [1, 2000].&lt;/li&gt;
+&lt;li&gt;arr[i] will be an integer in range [0, 10**8].&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Example 1:
+
+Input: arr = [5,4,3,2,1]
+Output: 1
+Explanation:
+Splitting into two or more chunks will not return the required result.
+For example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn&#39;t sorted.
+Example 2:
+
+Input: arr = [2,1,3,4,4]
+Output: 4
+Explanation:
+We can split into two chunks, such as [2, 1], [3, 4, 4].
+However, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;切分需要知道能把arr切断的条件，假设我们把index &lt;code&gt;i&lt;/code&gt;作为一个chunk的右边界，那么就需要一个chunk里的所有数字都 &amp;lt;= chunk右边的数字（等于是因为会有重复）。下面的代码中：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;min_to_right&lt;/code&gt; 是每个位置右边所有数字的最小值&lt;/li&gt;
+&lt;li&gt;curr_min被用来记录当前chunk的最大值，如果找到了chunk，就init为下一个chunk的第一个值。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxChunksToSorted&lt;/span&gt;(self, arr: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        min_to_right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+        curr_min &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;inf&amp;#39;&lt;/span&gt;)
+        r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(arr) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            min_to_right&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(curr_min)
+            curr_min &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min( arr[i], curr_min)
+        min_to_right &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min_to_right[::&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+        
+        curr_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arr[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(arr)):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;  arr[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; min_to_right[i] &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; curr_max &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; min_to_right[i]:
+                r &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len(arr):
+                    curr_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arr[i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+                curr_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(arr[i], curr_max)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; r&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;chunk中的数字小于chunk右边的所有数字，那么chunk左边的所有数字一定小于chunk中的任意数字。
+如果我们以chunk的右边界，也就是切割位置来考虑的话，切的位置一定保证了右边的所有数字比左边的所有数字都要大。
+换句话说：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;a = i右边的所有数字中的最小值&lt;/li&gt;
+&lt;li&gt;b = arr[i]和其左边所有数字中的最大值
+如果满足 a &amp;lt;= b，那么我们就可以把i作为一个chunk右边界来切割arr。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;code-1&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxChunksToSorted&lt;/span&gt;(self, arr: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; math
+        right_min &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;inf] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; len(arr)
+        left_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; arr&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;copy()
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(arr) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+            right_min[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; min(arr[i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], right_min[i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, len(arr)):
+            left_max[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(left_max[i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], arr[i])
+        chunks &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(arr)):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; right_min[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; left_max[i]:
+                chunks &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; chunks&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;question-2&#34;&gt;Question 2&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/max-chunks-to-make-sorted/&#34;&gt;Leetcode 769: Max Chunks To Make Sorted&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;与上题不同的是这里的数字限制为[0,len(arr)-1].&lt;/p&gt;
+
+&lt;h2 id=&#34;solution-1&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1-1&#34;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;上题的两个解法都能用在这里。除此之外，我们还可以用本题的条件：数字的范围决定了排好序的数组一定是&lt;code&gt;arr[i] = i&lt;/code&gt;。所以我们可以省去right_min这个信息，只看左边最大的数字。一旦最大的数字与当前i相等，那么我们就能确定一个chunk。&lt;/p&gt;
+
+&lt;h4 id=&#34;code-2&#34;&gt;Code&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;maxChunksToSorted&lt;/span&gt;(self, nums: List[int]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; int:
+        curr_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(nums)):
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; nums[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; curr_max:
+                curr_max &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nums[i]
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; curr_max:
+                result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;reference&#34;&gt;Reference&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;两个解法使用了&lt;code&gt;two pass&lt;/code&gt;的思想，可以参考： &lt;a href=&#34;https://ericliu03.github.io/posts/2019/04/two_pass/&#34;&gt;Two Pass for Min/Max/Sum/Product&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/max-chunks-to-make-sorted-ii/discuss/113462/Java-solution-left-max-and-right-min.&#34;&gt;Java solution, left max and right min&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>[Leetcode 523] Continuous Subarray Sum</title>
