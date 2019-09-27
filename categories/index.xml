@@ -6,10 +6,23 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Sep 2019 14:08:46 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 26 Sep 2019 20:40:16 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 370] Range Addition</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/</link>
+      <pubDate>Thu, 26 Sep 2019 20:40:16 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/</guid>
+      <description>Question Leetcode 370: Range Addition
+Assume you have an array of length n initialized with all 0&amp;rsquo;s and are given k update operations.
+Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+Return the modified array after all k operations were executed.
+Note:  You must return the copy of the given head as a reference to the cloned list.</description>
+    </item>
     
     <item>
       <title>[Leetcode 768/769] Max Chunks To Make Sorted</title>
@@ -56,18 +69,6 @@ Note:  You must return the copy of the given head as a reference to the cloned l
 Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
 Basically, the deletion can be divided into two stages:
  Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree).</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 785] Is Graph Bipartite</title>
-      <link>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</link>
-      <pubDate>Fri, 17 May 2019 11:51:24 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/</guid>
-      <description>Question Leetcode 785: Is Graph Bipartite?
-Given an undirected graph, return true if and only if it is bipartite.
-Recall that a graph is bipartite if we can split it&amp;rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
-The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.</description>
     </item>
     
   </channel>

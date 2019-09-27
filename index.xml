@@ -5,10 +5,105 @@
     <description>Recent content on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Sep 2019 14:08:46 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 26 Sep 2019 20:40:16 -0700</lastBuildDate>
     
         <atom:link href="https://ericliu03.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 370] Range Addition</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/</link>
+      <pubDate>Thu, 26 Sep 2019 20:40:16 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/</guid>
+      <description>
+
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/copy-list-with-random-pointer/&#34;&gt;Leetcode 370: Range Addition&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Assume you have an array of length n initialized with all 0&amp;rsquo;s and are given k update operations.&lt;/p&gt;
+
+&lt;p&gt;Each operation is represented as a triplet: &lt;code&gt;[startIndex, endIndex, inc]&lt;/code&gt; which increments each element of subarray &lt;code&gt;A[startIndex ... endIndex]&lt;/code&gt; (startIndex and endIndex inclusive) with &lt;strong&gt;inc&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Return the modified array after all &lt;strong&gt;k&lt;/strong&gt; operations were executed.&lt;/p&gt;
+
+&lt;h3 id=&#34;note&#34;&gt;Note:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You must return the copy of the given head as a reference to the cloned list.&lt;/li&gt;
+&lt;li&gt;Node definition:
+&lt;code&gt;python
+class Node:
+def __init__(self, val, next, random):
+    self.val = val
+    self.next = next
+    self.random = random
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Input: length = 5, updates = [[1,3,2],[2,4,3],[0,2,-2]]
+Output: [-2,0,3,5,3]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Initial state:
+[0,0,0,0,0]
+
+After applying operation [1,3,2]:
+[0,2,2,2,0]
+
+After applying operation [2,4,3]:
+[0,2,5,5,3]
+
+After applying operation [0,2,-2]:
+[-2,0,3,5,3]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;h3 id=&#34;method-1-tle&#34;&gt;Method 1 (TLE)&lt;/h3&gt;
+
+&lt;p&gt;Just do what the problem says, one by one. worst case O(n*k*n)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getModifiedArray&lt;/span&gt;(self, length: int, updates: List[List[int]]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; List[int]:
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; length
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; s, e, change &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; updates:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(s, e&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+                result[i] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; change
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;method-2&#34;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;题目是range increment，那本质上我们需要记录的数据就是再什么range上增加了多少。乍一看和input一样，但是因为我们的输出是整个最终的数组，所以我们可以丢弃的一部分信息就是每个change各是从哪到哪变了多少。&lt;/p&gt;
+
+&lt;p&gt;那么要把一个个change合起来，我们可以想到的一个方法就是以一种可以merge到一起的方式，记录从哪到哪增加了多少。回想一下cumulative sum，数组中每个数字代表的意思就是：从&lt;code&gt;i&lt;/code&gt;起，后面的每个数字都加&lt;code&gt;a[i]&lt;/code&gt;。所以&lt;code&gt;[s,d,i]&lt;/code&gt;就意味着从s之后（包括s）全部加i，但是从d之后（不包括d）不加i，也就是再减去i。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Solution&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getModifiedArray&lt;/span&gt;(self, length: int, updates: List[List[int]]) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; List[int]:
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (length &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; s, e, change &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; updates:
+            result[s] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; change
+            result[e&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; change
+        
+        curr_sum &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(length):
+            curr_sum &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; result[i]
+            result[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; curr_sum
+        
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result[:&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;reference&#34;&gt;Reference&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/range-addition/solution/&#34;&gt;Approach 2: Range Caching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode.com/problems/range-addition/discuss/84225/Detailed-explanation-if-you-don&#39;t-understand-especially-%22put-negative-inc-at-endIndex%2B1%22&#34;&gt;Detailed explanation if you don&amp;rsquo;t understand, especially &amp;ldquo;put negative inc at [endIndex+1]&amp;rdquo;
+&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>[Leetcode 768/769] Max Chunks To Make Sorted</title>

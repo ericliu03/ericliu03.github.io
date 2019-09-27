@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ericliu03.github.io/" />
 
-<meta property="og:updated_time" content="2019-09-20T14:08:46-07:00"/>
+<meta property="og:updated_time" content="2019-09-26T20:40:16-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Yang&#39;s Blog"/>
@@ -57,6 +57,26 @@ if (!doNotTrack) {
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/posts/2019/04/uncrossed_lines/" rel="bookmark">
+			Uncrossed Lines
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-28T10:46:05">2019-04-28</time>
+</div>
+</div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Question Leetcode 1035: Uncrossed Lines
+We write the integers of A and B (in the order they are given) on two separate horizontal lines.
+Now, we may draw a straight line connecting two numbers A[i] and B[j] as long as A[i] == B[j], and the line we draw does not intersect any other connecting (non-horizontal) line.
+Return the maximum number of connecting lines we can draw in this way.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/posts/2019/04/coloring_a_border/" rel="bookmark">
@@ -135,25 +155,6 @@ Example given the list of temperatures T = [73, 74, 75, 71, 69, 72, 76, 73], you
 (A node A is an ancestor of B if either: any child of A is equal to B, or any child of A is an ancestor of B.)
 class TreeNode: def __init__(self, x): self.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/04/longest_increasing_subsequence/" rel="bookmark">
-			Longest Increasing Subsequence (Chinese)
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-15T20:03:06">2019-04-15</time>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		Question This question is from Leetcode 300
-Given an unsorted array of integers, find the length of longest increasing subsequence.
-Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.  Note  There may be more than one LIS combination, it is only necessary for you to return the length. Your algorithm should run in \( O(N^2) \) complexity.  Method 1 Analysis 可以使用Brute force的方法来解决这个问题。 具体来说我们需要试一下所有可能的组合：对于每一个数x，他本身加上他后面的任意一个比他大的数y都可以组成一个increasing subsequence。如果我们已经知道了以y开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以x和y开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字z也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。 时间复杂度是\( O(N!
-	</div>
 </article>
 </main>
 
@@ -178,11 +179,11 @@ Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increas
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/09/lc_370_range_addition/">[Leetcode 370] Range Addition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/09/lc_769_max_chunks_to_make_sorted/">[Leetcode 768/769] Max Chunks To Make Sorted</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/09/lc_523_continuous_subarray_sum/">[Leetcode 523] Continuous Subarray Sum</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/09/lc_138_copy_list_with_random_pointer/">[Leetcode 138]: Copy List with Random Pointer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_450_delete_node_in_a_bst/">[Leetcode 450] Delete Node in a BST</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/2019/05/lc_785_is_graph_bipartite/">[Leetcode 785] Is Graph Bipartite</a></li>
 		</ul>
 	</div>
 </div>
@@ -208,7 +209,7 @@ Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increas
 		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/medium" title="Medium">Medium (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/medium" title="Medium">Medium (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stack" title="Stack">Stack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>

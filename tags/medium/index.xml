@@ -6,10 +6,23 @@
     <description>Recent content in medium on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Sep 2019 14:08:46 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 26 Sep 2019 20:40:16 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/medium/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 370] Range Addition</title>
+      <link>https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/</link>
+      <pubDate>Thu, 26 Sep 2019 20:40:16 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/</guid>
+      <description>Question Leetcode 370: Range Addition
+Assume you have an array of length n initialized with all 0&amp;rsquo;s and are given k update operations.
+Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+Return the modified array after all k operations were executed.
+Note:  You must return the copy of the given head as a reference to the cloned list.</description>
+    </item>
     
     <item>
       <title>[Leetcode 768/769] Max Chunks To Make Sorted</title>

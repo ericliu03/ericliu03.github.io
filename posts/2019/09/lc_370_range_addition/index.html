@@ -4,23 +4,27 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>[Leetcode 807] Max Increase to Keep City Skyline - Yang&#39;s Blog</title>
+	<title>[Leetcode 370] Range Addition - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="[Leetcode 807] Max Increase to Keep City Skyline" />
-<meta property="og:description" content="Question Leetcode 807: Max Increase to Keep City Skyline
-In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.
-At the end, the &ldquo;skyline&rdquo; when viewed from all four directions of the grid, i." />
+	<meta property="og:title" content="[Leetcode 370] Range Addition" />
+<meta property="og:description" content="Question Leetcode 370: Range Addition
+Assume you have an array of length n initialized with all 0&rsquo;s and are given k update operations.
+Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+Return the modified array after all k operations were executed.
+Note:  You must return the copy of the given head as a reference to the cloned list." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/max_increase_to_keep_city_skyline/" />
-<meta property="article:published_time" content="2019-05-03T16:22:13-07:00"/>
-<meta property="article:modified_time" content="2019-05-03T16:22:13-07:00"/>
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/09/lc_370_range_addition/" />
+<meta property="article:published_time" content="2019-09-26T20:40:16-07:00"/>
+<meta property="article:modified_time" content="2019-09-26T20:40:16-07:00"/>
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Leetcode 807] Max Increase to Keep City Skyline"/>
-<meta name="twitter:description" content="Question Leetcode 807: Max Increase to Keep City Skyline
-In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.
-At the end, the &ldquo;skyline&rdquo; when viewed from all four directions of the grid, i."/>
+<meta name="twitter:title" content="[Leetcode 370] Range Addition"/>
+<meta name="twitter:description" content="Question Leetcode 370: Range Addition
+Assume you have an array of length n initialized with all 0&rsquo;s and are given k update operations.
+Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+Return the modified array after all k operations were executed.
+Note:  You must return the copy of the given head as a reference to the cloned list."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -60,11 +64,11 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">[Leetcode 807] Max Increase to Keep City Skyline</h1>
+			<h1 class="post__title">[Leetcode 370] Range Addition</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-03T16:22:13">2019-05-03</time>
+	<time class="meta__text" datetime="2019-09-26T20:40:16">2019-09-26</time>
 </div>
 
 <div class="meta__item-categories meta__item">
@@ -77,77 +81,87 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/max-increase-to-keep-city-skyline/">Leetcode 807: Max Increase to Keep City Skyline</a></p>
+<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/">Leetcode 370: Range Addition</a></p>
 
-<p>In a 2 dimensional array grid, each value <code>grid[i][j]</code> represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.</p>
+<p>Assume you have an array of length n initialized with all 0&rsquo;s and are given k update operations.</p>
 
-<p>At the end, the &ldquo;skyline&rdquo; when viewed from all four directions of the grid, i.e. top, bottom, left, and right, must be the same as the skyline of the original grid. A city&rsquo;s skyline is the outer contour of the rectangles formed by all the buildings when viewed from a distance. See the following example.</p>
+<p>Each operation is represented as a triplet: <code>[startIndex, endIndex, inc]</code> which increments each element of subarray <code>A[startIndex ... endIndex]</code> (startIndex and endIndex inclusive) with <strong>inc</strong>.</p>
 
-<p>What is the maximum total sum that the height of the buildings can be increased?</p>
+<p>Return the modified array after all <strong>k</strong> operations were executed.</p>
 
-<h3 id="examples">Examples</h3>
-
-<pre><code>Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
-Output: 35
-Explanation: 
-The grid is:
-[ [3, 0, 8, 4], 
-  [2, 4, 5, 7],
-  [9, 2, 6, 3],
-  [0, 3, 1, 0] ]
-
-The skyline viewed from top or bottom is: [9, 4, 8, 7]
-The skyline viewed from left or right is: [8, 7, 9, 3]
-
-The grid after increasing the height of buildings without affecting skylines is:
-
-gridNew = [ [8, 4, 8, 7],
-            [7, 4, 7, 7],
-            [9, 4, 8, 7],
-            [3, 3, 3, 3] ]
-</code></pre>
-
-<h3 id="notes">Notes:</h3>
+<h3 id="note">Note:</h3>
 
 <ol>
-<li><code>1 &lt; grid.length = grid[0].length &lt;= 50</code>.</li>
-<li>All heights <code>grid[i][j]</code> are in the range <code>[0, 100]</code>.</li>
-<li>All buildings in <code>grid[i][j]</code> occupy the entire grid cell: that is, they are a <code>1 x 1 x grid[i][j]</code> rectangular prism.</li>
+<li>You must return the copy of the given head as a reference to the cloned list.</li>
+<li>Node definition:
+<code>python
+class Node:
+def __init__(self, val, next, random):
+    self.val = val
+    self.next = next
+    self.random = random
+</code></li>
 </ol>
+
+<h3 id="examples">Examples:</h3>
+
+<pre><code>Input: length = 5, updates = [[1,3,2],[2,4,3],[0,2,-2]]
+Output: [-2,0,3,5,3]
+</code></pre>
+
+<pre><code>Initial state:
+[0,0,0,0,0]
+
+After applying operation [1,3,2]:
+[0,2,2,2,0]
+
+After applying operation [2,4,3]:
+[0,2,5,5,3]
+
+After applying operation [0,2,-2]:
+[-2,0,3,5,3]
+</code></pre>
 
 <h2 id="solution">Solution</h2>
 
-<h3 id="method-1">Method 1</h3>
+<h3 id="method-1-tle">Method 1 (TLE)</h3>
 
-<p>本题本身并不难，想要不改变skyline那要求就是对于每个楼，它的高度不能超过他这行和这列的最大值。需要做的就是找出每一行和每一列的最大值，然后求差。</p>
-
-<h4 id="code">Code</h4>
+<p>Just do what the problem says, one by one. worst case O(n*k*n)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxIncreaseKeepingSkyline</span>(self, grid: List[List[int]]) <span style="color:#f92672">-&gt;</span> int:
-        row <span style="color:#f92672">=</span> [max(row) <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> grid]
-        col <span style="color:#f92672">=</span> [grid[<span style="color:#ae81ff">0</span>][j] <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(grid[<span style="color:#ae81ff">0</span>]))]
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getModifiedArray</span>(self, length: int, updates: List[List[int]]) <span style="color:#f92672">-&gt;</span> List[int]:
+        result <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> length
         
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(grid)):
-            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(grid[<span style="color:#ae81ff">0</span>])):
-                col[j] <span style="color:#f92672">=</span> max(col[j], grid[i][j])
-        
-        r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(grid)):
-            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(grid[<span style="color:#ae81ff">0</span>])):
-                <span style="color:#66d9ef">if</span> grid[i][j] <span style="color:#f92672">&lt;</span> min(col[j], row[i]):
-                    r <span style="color:#f92672">+=</span> min(col[j], row[i]) <span style="color:#f92672">-</span> grid[i][j]
-        <span style="color:#66d9ef">return</span> r</code></pre></div>
+        <span style="color:#66d9ef">for</span> s, e, change <span style="color:#f92672">in</span> updates:
+            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(s, e<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+                result[i] <span style="color:#f92672">+=</span> change
+        <span style="color:#66d9ef">return</span> result
+        </code></pre></div>
 <h3 id="method-2">Method 2</h3>
 
-<p>但这个题我想说的点是看到了一个使用了python 语法糖的解法。其中使用了常见的<code>max</code>, <code>min</code>, <code>sum</code>。还使用了我不熟悉的<a href="https://www.geeksforgeeks.org/python-map-function/"><code>map</code></a> 和<a href="https://www.geeksforgeeks.org/zip-in-python/"><code>zip</code></a>. 简单来说<code>map(func, iter)</code>就是把iter中的每个元素拿到func中处理一下，生成一个list结果。<code>zip(a,b,c)</code>是把a b c三个iter中同样位置的元素组合成一个tuple，然后生成一个list, <code>coupled</code>。还有unzip就是zip的反向操作：<code>zip(*coupled)</code>(注意这个 *)，生成个list of list出来。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxIncreaseKeepingSkyline</span>(self, grid: List[List[int]]) <span style="color:#f92672">-&gt;</span> int:
-    row, col <span style="color:#f92672">=</span> list(map(max, grid)), list(map(max, zip(<span style="color:#f92672">*</span>grid)))
-    <span style="color:#66d9ef">return</span> sum(min(i, j) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> row <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> col) <span style="color:#f92672">-</span> sum(map(sum, grid))</code></pre></div>
-<p>我们来分析一下这个代码：</p>
+<p>题目是range increment，那本质上我们需要记录的数据就是再什么range上增加了多少。乍一看和input一样，但是因为我们的输出是整个最终的数组，所以我们可以丢弃的一部分信息就是每个change各是从哪到哪变了多少。</p>
+
+<p>那么要把一个个change合起来，我们可以想到的一个方法就是以一种可以merge到一起的方式，记录从哪到哪增加了多少。回想一下cumulative sum，数组中每个数字代表的意思就是：从<code>i</code>起，后面的每个数字都加<code>a[i]</code>。所以<code>[s,d,i]</code>就意味着从s之后（包括s）全部加i，但是从d之后（不包括d）不加i，也就是再减去i。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getModifiedArray</span>(self, length: int, updates: List[List[int]]) <span style="color:#f92672">-&gt;</span> List[int]:
+        result <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> (length <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        
+        <span style="color:#66d9ef">for</span> s, e, change <span style="color:#f92672">in</span> updates:
+            result[s] <span style="color:#f92672">+=</span> change
+            result[e<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-=</span> change
+        
+        curr_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(length):
+            curr_sum <span style="color:#f92672">+=</span> result[i]
+            result[i] <span style="color:#f92672">=</span> curr_sum
+        
+        <span style="color:#66d9ef">return</span> result[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+        </code></pre></div>
+<h3 id="reference">Reference</h3>
 
 <ol>
-<li><code>map(max, grid)</code>是吧grid中的每个元素（也就是作为一行的一个list）求最大，生成的就是每行的最大值</li>
-<li><code>map(max, zip(*grid))</code>，和之前一样，只不过先做了一个unzip，就是把grid的n行看做n个元素，然后每个元素的第i个sub元素拿出来，各自组成一个list。</li>
+<li><a href="https://leetcode.com/problems/range-addition/solution/">Approach 2: Range Caching</a></li>
+<li><a href="https://leetcode.com/problems/range-addition/discuss/84225/Detailed-explanation-if-you-don't-understand-especially-%22put-negative-inc-at-endIndex%2B1%22">Detailed explanation if you don&rsquo;t understand, especially &ldquo;put negative inc at [endIndex+1]&rdquo;
+</a></li>
 </ol>
 
 		</div>
@@ -155,8 +169,7 @@ gridNew = [ [8, 4, 8, 7],
 <div class="post__tags tags clearfix">
 	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/array/" rel="tag">array</a></li>
-		<li class="tags__item"><a class="tags__link btn" href="/tags/matrix/" rel="tag">matrix</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/medium/" rel="tag">medium</a></li>
 	</ul>
 </div>
 	</article>
@@ -176,10 +189,7 @@ gridNew = [ [8, 4, 8, 7],
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/05/k_empty_slots/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 683] K Empty Slots</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/05/minimum_score_triangulation_of_polygon/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 1039] Minimum Score Triangulation of Polygon</p></a>
+		<a class="post-nav__link" href="/posts/2019/09/lc_769_max_chunks_to_make_sorted/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 768/769] Max Chunks To Make Sorted</p></a>
 	</div>
 </nav>
 
