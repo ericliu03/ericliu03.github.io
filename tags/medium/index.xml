@@ -6,10 +6,34 @@
     <description>Recent content in medium on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Sep 2019 20:40:16 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 11:27:59 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/medium/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 735] Asteroid Collision</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_735_asteroid_collision/</link>
+      <pubDate>Wed, 09 Oct 2019 11:27:59 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_735_asteroid_collision/</guid>
+      <description>Question Leetcode 735: Asteroid Collision
+We are given an array asteroids of integers representing asteroids in a row.
+For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
+Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 334] Increasing Triplet Subsequence</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_334_increasing_triplet_sbsequence/</link>
+      <pubDate>Thu, 03 Oct 2019 11:25:01 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_334_increasing_triplet_sbsequence/</guid>
+      <description>Question Leetcode 334: Increasing Triplet Subsequence
+Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.
+Formally the function should:
+Return true if there exists i, j, k such that arr[i] &amp;lt; arr[j] &amp;lt; arr[k] given 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1 else return false.  Note:  Your algorithm should run in O(n) time complexity and O(1) space complexity.</description>
+    </item>
     
     <item>
       <title>[Leetcode 370] Range Addition</title>
@@ -45,30 +69,6 @@ Note:  arr will have length in range [1, 2000]. arr[i] will be an integer in ran
       <description>Question Leetcode 523: Continuous Subarray Sum
 Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k where n is also an integer.
 Note:  The length of the array won&amp;rsquo;t exceed 10,000. You may assume the sum of all the numbers is in the range of a signed 32-bit integer.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 138]: Copy List with Random Pointer</title>
-      <link>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</link>
-      <pubDate>Mon, 16 Sep 2019 20:09:42 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/09/lc_138_copy_list_with_random_pointer/</guid>
-      <description>Question Leetcode 138: Copy List with Random Pointer
-A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
-Return a deep copy of the list.
-Note:  You must return the copy of the given head as a reference to the cloned list. Node definition:  class Node: def __init__(self, val, next, random): self.val = val self.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 450] Delete Node in a BST</title>
-      <link>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</link>
-      <pubDate>Fri, 31 May 2019 15:22:33 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/lc_450_delete_node_in_a_bst/</guid>
-      <description>Question Leetcode 450: Delete Node in a BST
-Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
-Basically, the deletion can be divided into two stages:
- Search for a node to remove. If the node is found, delete the node.  Note: Time complexity should be O(height of tree).</description>
     </item>
     
   </channel>
