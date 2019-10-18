@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sliding window on Yang&#39;s Blog</title>
+    <link>https://ericliu03.github.io/tags/sliding-window/</link>
+    <description>Recent content in sliding window on Yang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Oct 2019 16:01:42 -0700</lastBuildDate>
+    
+	<atom:link href="https://ericliu03.github.io/tags/sliding-window/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Leetcode 713] Subarray Product Less Than K</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/</link>
+      <pubDate>Fri, 18 Oct 2019 16:01:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/</guid>
+      <description>Question Leetcode 713: Subarray Product Less Than K
+Your are given an array of positive integers nums.
+Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
+Return true if there exists i, j, k such that arr[i] &amp;lt; arr[j] &amp;lt; arr[k] given 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1 else return false.  Note:  0 &amp;lt; nums.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -4,25 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>[Leetcode 334] Increasing Triplet Subsequence - Yang&#39;s Blog</title>
+	<title>[Leetcode 713] Subarray Product Less Than K - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="[Leetcode 334] Increasing Triplet Subsequence" />
-<meta property="og:description" content="Question Leetcode 334: Increasing Triplet Subsequence
-Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.
-Formally the function should:
-Return true if there exists i, j, k such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.  Note:  Your algorithm should run in O(n) time complexity and O(1) space complexity." />
+	<meta property="og:title" content="[Leetcode 713] Subarray Product Less Than K" />
+<meta property="og:description" content="Question Leetcode 713: Subarray Product Less Than K
+Your are given an array of positive integers nums.
+Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
+Return true if there exists i, j, k such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.  Note:  0 &lt; nums." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_334_increasing_triplet_sbsequence/" />
-<meta property="article:published_time" content="2019-10-03T11:25:01-07:00" />
-<meta property="article:modified_time" content="2019-10-03T11:25:01-07:00" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/" />
+<meta property="article:published_time" content="2019-10-18T16:01:42-07:00" />
+<meta property="article:modified_time" content="2019-10-18T16:01:42-07:00" />
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Leetcode 334] Increasing Triplet Subsequence"/>
-<meta name="twitter:description" content="Question Leetcode 334: Increasing Triplet Subsequence
-Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.
-Formally the function should:
-Return true if there exists i, j, k such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.  Note:  Your algorithm should run in O(n) time complexity and O(1) space complexity."/>
+<meta name="twitter:title" content="[Leetcode 713] Subarray Product Less Than K"/>
+<meta name="twitter:description" content="Question Leetcode 713: Subarray Product Less Than K
+Your are given an array of positive integers nums.
+Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
+Return true if there exists i, j, k such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.  Note:  0 &lt; nums."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -62,11 +62,11 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">[Leetcode 334] Increasing Triplet Subsequence</h1>
+			<h1 class="post__title">[Leetcode 713] Subarray Product Less Than K</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-10-03T11:25:01">2019-10-03</time>
+	<time class="meta__text" datetime="2019-10-18T16:01:42">2019-10-18</time>
 </div>
 
 <div class="meta__item-categories meta__item">
@@ -79,11 +79,11 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/increasing-triplet-subsequence/">Leetcode 334: Increasing Triplet Subsequence</a></p>
+<p><a href="https://leetcode.com/problems/subarray-product-less-than-k/">Leetcode 713: Subarray Product Less Than K</a></p>
 
-<p>Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.</p>
+<p>Your are given an array of positive integers <code>nums</code>.</p>
 
-<p>Formally the function should:</p>
+<p>Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than <code>k</code>.</p>
 
 <pre><code>Return true if there exists i, j, k
 such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.
@@ -92,60 +92,87 @@ such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 els
 <h3 id="note">Note:</h3>
 
 <ol>
-<li>Your algorithm should run in O(n) time complexity and O(1) space complexity.</li>
+<li>0 &lt; nums.length &lt;= 50000.</li>
+<li>0 &lt; nums[i] &lt; 1000.</li>
+<li>0 &lt;= k &lt; 10^6.</li>
 </ol>
 
 <h3 id="examples">Examples:</h3>
 
-<pre><code>Example 1:
-
-Input: [1,2,3,4,5]
-Output: true
-Example 2:
-
-Input: [5,4,3,2,1]
-Output: false
+<pre><code>Input: nums = [10, 5, 2, 6], k = 100
+Output: 8
+Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
+Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
 </code></pre>
 
 <h2 id="solution">Solution</h2>
 
+<p>本题一看就是双指针 sliding window。乘积小了right向右扩大window，大了left指针向右缩小window。问题在于</p>
+
+<ol>
+<li>怎么计算中间的可能乘积的数量。
+
+<ol>
+<li>每次left变动时计算，也即以left为开头的subarray可组成的乘积种类。比如right到了4时超过了k in <code>{1,2,3,4}</code>，那么这时我们需要变动left。可能的乘积组合就是 <code>{1,2,3}, {1,2}, {1}</code>。这样计算有个问题就是当right到头了之后，left依然需要往右，循环的condition很难搞清，或者需要两个循环。</li>
+<li>每次right变动时计算。因为right是所有数字都过了一遍，所以就能保证考虑到了以所有数字作为有边界的情况。</li>
+</ol></li>
+<li>如何定义left和right和window的边界的关系。
+
+<ol>
+<li>一般来说，我们双指针的时候会把window的边界都定义在左边：左边界在left的左边，有边界在right的左边。这样<code>right - left</code>就等于window的长度。但是本题如果用此方法就必须分开处理当<code>right=len(nums)</code>的情况，因为这时我们即不能再<code>nums[right]</code>，但又必须去计算<code>right - left</code>因为window的边界还是valid的。</li>
+<li>window的边界在left的左边和right的右边。</li>
+</ol></li>
+<li>sliding window 有时候会在循环里套循环来移动left，本质上和用if 然后在大循环中每次either移动left or right没有本质区别。</li>
+</ol>
+
 <h3 id="method-1">Method 1</h3>
 
-<p>本题的突破点是increasing subsequence是固定的三个。所以我们可以用两个variable （first，second）来存前两个数字。当下一个数字比他们两个的某个小的时候就更新，如果比second大那么就找到了。</p>
+<p>用了一般的边界定义，可以看到在while循环里有if check。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">increasingTriplet</span>(self, nums: List[int]) <span style="color:#f92672">-&gt;</span> bool:
-        first <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> 
-        second <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">for</span> i, num <span style="color:#f92672">in</span> enumerate(nums):
-            <span style="color:#66d9ef">if</span> first <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> num <span style="color:#f92672">&lt;</span> nums[first]:
-                first <span style="color:#f92672">=</span> i
-            <span style="color:#66d9ef">elif</span> num <span style="color:#f92672">&gt;</span> nums[first]:
-                second <span style="color:#f92672">=</span> i <span style="color:#66d9ef">if</span> second <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> num <span style="color:#f92672">&lt;</span> nums[second] <span style="color:#66d9ef">else</span> second
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">numSubarrayProductLessThanK</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
+        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        right <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        curr_product <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span> right <span style="color:#f92672">&lt;=</span> len(nums):
+            <span style="color:#66d9ef">while</span> curr_product <span style="color:#f92672">&gt;=</span> k <span style="color:#f92672">and</span> left <span style="color:#f92672">&lt;</span> right:
+                curr_product <span style="color:#f92672">/=</span> nums[left]
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
             
-            <span style="color:#66d9ef">if</span> second <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> num <span style="color:#f92672">&gt;</span> nums[second]:
-                <span style="color:#66d9ef">return</span> True
-        <span style="color:#66d9ef">return</span> False</code></pre></div>
+            result <span style="color:#f92672">+=</span> right <span style="color:#f92672">-</span> left
+            <span style="color:#66d9ef">if</span> right <span style="color:#f92672">&lt;</span> len(nums):
+                curr_product <span style="color:#f92672">*=</span> nums[right]
+            right <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> result</code></pre></div>
 <h3 id="method-2">Method 2</h3>
 
-<p>上面的代码有点冗余。如果我们<code>first</code>和<code>second</code> init为<code>float('inf')</code>，我们就可以直接进行比较了。其次，我们用<code>if..else..</code>来限制每个新的数字的可比较范围。比如新的数字比first小，那么一定的他会取代first，而不会去比较second。最后，我们不需要保证second一定要大于first，这两个variable代表的分别是，目前为止最小的数字，和<code>前面有一个更小的数字的</code>最小的数字。所以只要有一个数字比second还大，就能保证题目要求了。</p>
+<p>我们在for loop里最开始就把当前的right指向的数字加了进去，也就意味这right所指数字是在window内部的。所以在内部的while循环中，用了<code>left &lt;= right</code>，因为相等的时候window并不是空的。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">increasingTriplet</span>(self, nums: List[int]) <span style="color:#f92672">-&gt;</span> bool:
-        first <span style="color:#f92672">=</span> float(<span style="color:#e6db74">&#39;inf&#39;</span>) 
-        second <span style="color:#f92672">=</span> float(<span style="color:#e6db74">&#39;inf&#39;</span>) 
-        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> nums:
-            <span style="color:#66d9ef">if</span> num <span style="color:#f92672">&lt;=</span> first:
-                first <span style="color:#f92672">=</span> num
-            <span style="color:#66d9ef">elif</span> num <span style="color:#f92672">&lt;=</span> second:
-                second <span style="color:#f92672">=</span> num
-            <span style="color:#66d9ef">else</span>:
-                <span style="color:#66d9ef">return</span> True
-        <span style="color:#66d9ef">return</span> False</code></pre></div>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">numSubarrayProductLessThanK</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
+        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        right <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        curr_product <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> right <span style="color:#f92672">in</span> range(len(nums)):
+            curr_product <span style="color:#f92672">*=</span> nums[right]
+
+            <span style="color:#66d9ef">while</span> curr_product <span style="color:#f92672">&gt;=</span> k <span style="color:#f92672">and</span> left <span style="color:#f92672">&lt;=</span> right:
+                curr_product <span style="color:#f92672">/=</span> nums[left]
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            result <span style="color:#f92672">+=</span> right <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> left
+
+        <span style="color:#66d9ef">return</span> result</code></pre></div>
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item"><a class="tags__link btn" href="/tags/medium/" rel="tag">medium</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/sliding-window/" rel="tag">sliding window</a></li>
 	</ul>
 </div>
 	</article>
@@ -165,10 +192,7 @@ Output: false
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/09/lc_370_range_addition/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 370] Range Addition</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/10/lc_735_asteroid_collision/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 735] Asteroid Collision</p></a>
+		<a class="post-nav__link" href="/posts/2019/10/lc_663_equal_tree_partition/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 663] Equal Tree Partition</p></a>
 	</div>
 </nav>
 

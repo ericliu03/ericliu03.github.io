@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2019 20:30:23 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 16:01:42 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>medium</title>
       <link>https://ericliu03.github.io/tags/medium/</link>
-      <pubDate>Tue, 15 Oct 2019 20:30:23 -0700</pubDate>
+      <pubDate>Fri, 18 Oct 2019 16:01:42 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/tags/medium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sliding window</title>
+      <link>https://ericliu03.github.io/tags/sliding-window/</link>
+      <pubDate>Fri, 18 Oct 2019 16:01:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/tags/sliding-window/</guid>
       <description></description>
     </item>
     
@@ -44,15 +53,6 @@
       <pubDate>Fri, 17 May 2019 11:51:24 -0700</pubDate>
       
       <guid>https://ericliu03.github.io/tags/dfs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>array</title>
-      <link>https://ericliu03.github.io/tags/array/</link>
-      <pubDate>Tue, 14 May 2019 11:23:20 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/tags/array/</guid>
       <description></description>
     </item>
     

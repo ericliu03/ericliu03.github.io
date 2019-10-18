@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2019 20:30:23 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 16:01:42 -0700</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 713] Subarray Product Less Than K</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/</link>
+      <pubDate>Fri, 18 Oct 2019 16:01:42 -0700</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/</guid>
+      <description>Question Leetcode 713: Subarray Product Less Than K
+Your are given an array of positive integers nums.
+Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
+Return true if there exists i, j, k such that arr[i] &amp;lt; arr[j] &amp;lt; arr[k] given 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1 else return false.  Note:  0 &amp;lt; nums.</description>
+    </item>
     
     <item>
       <title>[Leetcode 663] Equal Tree Partition</title>
@@ -57,18 +69,6 @@ Assume you have an array of length n initialized with all 0&amp;rsquo;s and are 
 Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
 Return the modified array after all k operations were executed.
 Note:  You must return the copy of the given head as a reference to the cloned list.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 768/769] Max Chunks To Make Sorted</title>
-      <link>https://ericliu03.github.io/posts/2019/09/lc_769_max_chunks_to_make_sorted/</link>
-      <pubDate>Fri, 20 Sep 2019 14:08:46 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/09/lc_769_max_chunks_to_make_sorted/</guid>
-      <description>Question 1 Leetcode 769: Max Chunks To Make Sorted II
-Given an array arr of integers (not necessarily distinct), we split the array into some number of &amp;ldquo;chunks&amp;rdquo; (partitions), and individually sort each chunk. After concatenating them, the result equals the sorted array.
-What is the most number of chunks we could have made?
-Note:  arr will have length in range [1, 2000]. arr[i] will be an integer in range [0, 10**8].</description>
     </item>
     
   </channel>
