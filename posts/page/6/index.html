@@ -12,7 +12,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ericliu03.github.io/posts/" />
 
-<meta property="og:updated_time" content="2019-10-18T16:01:42-07:00" />
+<meta property="og:updated_time" content="2019-10-25T11:34:38-07:00" />
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
@@ -58,6 +58,25 @@ if (!doNotTrack) {
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/posts/2019/04/longest_increasing_subsequence/" rel="bookmark">
+			Longest Increasing Subsequence (Chinese)
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-04-15T20:03:06">2019-04-15</time>
+</div>
+</div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Question This question is from Leetcode 300
+Given an unsorted array of integers, find the length of longest increasing subsequence.
+Examples Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.  Note  There may be more than one LIS combination, it is only necessary for you to return the length. Your algorithm should run in \( O(N^2) \) complexity.  Method 1 Analysis 可以使用Brute force的方法来解决这个问题。 具体来说我们需要试一下所有可能的组合：对于每一个数x，他本身加上他后面的任意一个比他大的数y都可以组成一个increasing subsequence。如果我们已经知道了以y开头（对，就是recursion的思想），最长能组成的subsequence的长度，我们就知道了以x和y开头的最长的长度。但是选y只是以x开头的increasing subsequence的可能性之一。或许有一个数字z也符合条件（比x大，在x的后面），如果以z开头的increasing subsequence 的最长长度比以y开头的长，那么对于x来说，更好地选项就是接上z，以xz开头。 所以，为了知道最长的到底是那个，需要把后面所有符合条件的数都拿来试一下，然后选那个最长的。 时间复杂度是\( O(N!
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/posts/2019/04/inorder_predecessor/" rel="bookmark">
@@ -132,26 +151,6 @@ Each video clip clips[i] is an interval: it starts at time clips[i][0] and ends 
 Question: We are given an elevation map, heights[i] representing the height of the terrain at that index. The width at each index is 1. After V units of water fall at index K, how much water is at each index?
 Assumptions: Now, you should ask some clarify questions and make some assumptions of this questions. There are a lot of good solutions and explanations on leetcode so I will have a different version of the assumption here.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/posts/2019/04/remove_undirect_edge/" rel="bookmark">
-			Create tree from tuples
-			</a>
-		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-04-06T16:55:31">2019-04-06</time>
-</div>
-</div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		This is a coding problem from Uber onsite interview found here.
-Question: Given a list of pairs (tuples), each of them represents a connection from parent to it&rsquo;s child in a tree. In this list, nodes will have edges not only for their direct children, but also all of it&rsquo;s descendants (i.e. children&rsquo;s children, and their children etc).
-If we have the following tree as an example:
- A / \ B C / \ D E  Then the list given it will be
-	</div>
 </article>
 </main>
 
@@ -177,11 +176,11 @@ If we have the following tree as an example:
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_678_valid_parenthesis_string/">[Leetcode 678] Valid Parenthesis String</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_713_subarray_product_less_than_k/">[Leetcode 713] Subarray Product Less Than K</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_663_equal_tree_partition/">[Leetcode 663] Equal Tree Partition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_735_asteroid_collision/">[Leetcode 735] Asteroid Collision</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_334_increasing_triplet_sbsequence/">[Leetcode 334] Increasing Triplet Subsequence</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/2019/09/lc_370_range_addition/">[Leetcode 370] Range Addition</a></li>
 		</ul>
 	</div>
 </div>
@@ -207,7 +206,7 @@ If we have the following tree as an example:
 		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/medium" title="Medium">Medium (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/medium" title="Medium">Medium (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sliding-window" title="Sliding window">Sliding window (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stack" title="Stack">Stack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>

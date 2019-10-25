@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Leetcode 678] Valid Parenthesis String - Yang&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="[Leetcode 678] Valid Parenthesis String" />
+<meta property="og:description" content="Question Leetcode 678: Valid Parenthesis String
+Given a string containing only three types of characters: &#39;(&#39;, &#39;)&#39; and &#39;*&#39;, write a function to check whether this string is valid. We define the validity of a string by these rules:
+ Any left parenthesis &#39;(&#39; must have a corresponding right parenthesis &#39;)&#39;. Any right parenthesis &#39;)&#39; must have a corresponding left parenthesis &#39;(&#39;. Left parenthesis &#39;(&#39; must go before the corresponding right parenthesis &#39;)&#39;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_678_valid_parenthesis_string/" />
+<meta property="article:published_time" content="2019-10-25T11:34:38-07:00" />
+<meta property="article:modified_time" content="2019-10-25T11:34:38-07:00" />
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Leetcode 678] Valid Parenthesis String"/>
+<meta name="twitter:description" content="Question Leetcode 678: Valid Parenthesis String
+Given a string containing only three types of characters: &#39;(&#39;, &#39;)&#39; and &#39;*&#39;, write a function to check whether this string is valid. We define the validity of a string by these rules:
+ Any left parenthesis &#39;(&#39; must have a corresponding right parenthesis &#39;)&#39;. Any right parenthesis &#39;)&#39; must have a corresponding left parenthesis &#39;(&#39;. Left parenthesis &#39;(&#39; must go before the corresponding right parenthesis &#39;)&#39;."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-138995517-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Yang&#39;s Blog" rel="home">
+				<div class="logo__title">Yang&#39;s Blog</div>
+				<div class="logo__tagline">About Algorithms</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Leetcode 678] Valid Parenthesis String</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2019-10-25T11:34:38">2019-10-25</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			
+
+<h2 id="question">Question</h2>
+
+<p><a href="https://leetcode.com/problems/valid-parenthesis-string/">Leetcode 678: Valid Parenthesis String</a></p>
+
+<p>Given a string containing only three types of characters: <code>'(', ')' and '*'</code>, write a function to check whether this string is valid. We define the validity of a string by these rules:</p>
+
+<ol>
+<li>Any left parenthesis <code>'('</code> must have a corresponding right parenthesis <code>')'</code>.</li>
+<li>Any right parenthesis <code>')'</code> must have a corresponding left parenthesis <code>'('</code>.</li>
+<li>Left parenthesis <code>'('</code> must go before the corresponding right parenthesis <code>')'</code>.</li>
+<li><code>'*'</code> could be treated as a single right parenthesis <code>')'</code> or a single left parenthesis <code>'('</code> or an empty string.</li>
+
+<li><p>An empty string is also valid.</p>
+
+<pre><code>Return true if there exists i, j, k
+such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.
+</code></pre></li>
+</ol>
+
+<h3 id="examples">Examples:</h3>
+
+<pre><code>Example 1:
+Input: &quot;()&quot;
+Output: True
+Example 2:
+Input: &quot;(*)&quot;
+Output: True
+Example 3:
+Input: &quot;(*))&quot;
+Output: True
+</code></pre>
+
+<h3 id="note">Note:</h3>
+
+<ol>
+<li>The string size will be in the range [1, 100].</li>
+</ol>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="method-1">Method 1</h3>
+
+<p>本题和之前的陨石碰撞题目有点像，看到题目自然而然想到用stack，而tricky的地方是<code>*</code>可以变为empty。所以如果遇到右括号来pop stack的时候看到<code>*</code>了是无法确实是否应该与他配对。比如<code>(*)</code>。</p>
+
+<p>有一个办法就是让右括号优先和左括号配对，不够了再用<code>*</code>。最后如果有剩左括号再与<code>*</code>配对。需要注意的一点是左括号配对时只能配其右边的<code>*</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">checkValidString</span>(self, s: str) <span style="color:#f92672">-&gt;</span> bool:
+        star_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        stack <span style="color:#f92672">=</span> defaultdict(list)
+        
+        <span style="color:#66d9ef">for</span> i, each <span style="color:#f92672">in</span> enumerate(s):
+            <span style="color:#66d9ef">if</span> each <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">or</span> each <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;*&#39;</span>:
+                stack[each]<span style="color:#f92672">.</span>append(i)
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">if</span> stack[<span style="color:#e6db74">&#39;(&#39;</span>]:
+                    stack[<span style="color:#e6db74">&#39;(&#39;</span>]<span style="color:#f92672">.</span>pop()
+                <span style="color:#66d9ef">elif</span> stack[<span style="color:#e6db74">&#39;*&#39;</span>]:
+                    stack[<span style="color:#e6db74">&#39;*&#39;</span>]<span style="color:#f92672">.</span>pop()
+                <span style="color:#66d9ef">else</span>:
+                    <span style="color:#66d9ef">return</span> False
+        <span style="color:#66d9ef">while</span> stack[<span style="color:#e6db74">&#39;*&#39;</span>] <span style="color:#f92672">and</span> stack[<span style="color:#e6db74">&#39;(&#39;</span>] <span style="color:#f92672">and</span> stack[<span style="color:#e6db74">&#39;*&#39;</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> stack[<span style="color:#e6db74">&#39;(&#39;</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+            stack[<span style="color:#e6db74">&#39;(&#39;</span>]<span style="color:#f92672">.</span>pop()
+            stack[<span style="color:#e6db74">&#39;*&#39;</span>]<span style="color:#f92672">.</span>pop()
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">not</span> stack[<span style="color:#e6db74">&#39;(&#39;</span>]</code></pre></div>
+<h3 id="method-2">Method 2</h3>
+
+<p>上面的代码有点冗余。既然题目是说能不能配对，我们就不需要在意具体谁和谁配对（虽然我们上边找出的配对顺序也不对）。只需要数数就好了。</p>
+
+<p>数的是未配对左括号可能的存在的数量。因为<code>*</code>存在的原因，<code>(*</code>可以是<code>()</code>，<code>(</code>（<code>*</code>代表空的时候）或者<code>((</code>。也就是说未配对左括号可能是0个，1个或者2个，也就是区间[0,2)。因为范围总是<code>*</code>带来的，而<code>*</code>又可以-1，0，+1未配对左括号的数量，所以区间一定是连续的。</p>
+
+<p>注意lo和hi代表的是<code>未配对左括号数量</code>的区间边界。<code>checkValidString2()</code>更明显能看出来在不同情况下区间的变化情况。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">checkValidString</span>(self, s: str) <span style="color:#f92672">-&gt;</span> bool:
+        lo <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        hi <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s:
+            lo <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            lo <span style="color:#f92672">=</span> max(lo, <span style="color:#ae81ff">0</span>)
+
+            hi <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">or</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> hi <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">return</span> False
+
+        <span style="color:#66d9ef">return</span> lo <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">checkValidString2</span>(self, s: str) <span style="color:#f92672">-&gt;</span> bool:
+        lo <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        hi <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> s:
+            <span style="color:#66d9ef">if</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;(&#39;</span>:
+                lo <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                hi <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;*&#39;</span>:
+                hi <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                lo <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                lo <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+                hi <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            lo <span style="color:#f92672">=</span> max(lo, <span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">if</span> hi <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">return</span> False
+
+        <span style="color:#66d9ef">return</span> lo <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span></code></pre></div>
+<h3 id="method-3">Method 3</h3>
+
+<p>还有一种（2维）DP的方法，简单来说就是dp[i][j]代表s[i:j+1]是valid的括号组合。转移方程:</p>
+
+<ol>
+<li>s[i] = * :dp[i][j] = dp[i+1][j]</li>
+<li>s[i] = ( : dp[i][j] = 对于k 属于 [i+1:j]， 存在dp[i+1][k-1] == dp[k+1][j] == True</li>
+<li>s[i] = )就不行啦</li>
+</ol>
+
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/medium/" rel="tag">medium</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Eric avatar" src="/img/avatar1.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Eric</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer, with interests in algorithm
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/2019/10/lc_713_subarray_product_less_than_k/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 713] Subarray Product Less Than K</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ericliu03-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://ericliu03.github.io/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_678_valid_parenthesis_string/">[Leetcode 678] Valid Parenthesis String</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_713_subarray_product_less_than_k/">[Leetcode 713] Subarray Product Less Than K</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_663_equal_tree_partition/">[Leetcode 663] Equal Tree Partition</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_735_asteroid_collision/">[Leetcode 735] Asteroid Collision</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/2019/10/lc_334_increasing_triplet_sbsequence/">[Leetcode 334] Increasing Triplet Subsequence</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/" title=""> (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/array" title="Array">Array (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bfs" title="Bfs">Bfs (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cumulative-sum" title="Cumulative sum">Cumulative sum (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfs" title="Dfs">Dfs (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dp" title="Dp">Dp (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/graph" title="Graph">Graph (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hard" title="Hard">Hard (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/inverted-index" title="Inverted index">Inverted index (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/loop" title="Loop">Loop (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/matrix" title="Matrix">Matrix (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/medium" title="Medium">Medium (10)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sliding-window" title="Sliding window">Sliding window (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stack" title="Stack">Stack (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/topological-sort" title="Topological sort">Topological sort (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tree" title="Tree">Tree (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Yang&#39;s Blog.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
