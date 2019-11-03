@@ -6,10 +6,22 @@
     <description>Recent content in hard on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Sep 2019 14:08:46 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 14:36:47 -0800</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/tags/hard/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 329] Longest Increasing Path in a Matrix</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_329_longest_increasing_path_in_a_matrix/</link>
+      <pubDate>Tue, 29 Oct 2019 14:36:47 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_329_longest_increasing_path_in_a_matrix/</guid>
+      <description>Question Leetcode 329: Longest Increasing Path in a Matrix
+Given an integer matrix, find the length of the longest increasing path.
+From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
+Examples: Example 1: Input: nums = [ [9,9,4], [6,6,8], [2,1,1] ] Output: 4 Explanation: The longest increasing path is [1, 2, 6, 9].</description>
+    </item>
     
     <item>
       <title>[Leetcode 768/769] Max Chunks To Make Sorted</title>

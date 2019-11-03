@@ -4,23 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>[Leetcode 403] Frog Jump - Yang&#39;s Blog</title>
+	<title>[Leetcode 329] Longest Increasing Path in a Matrix - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="[Leetcode 403] Frog Jump" />
-<meta property="og:description" content="Question Leetcode 403: Frog Jump
-A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
-Given a list of stones&rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone." />
+	<meta property="og:title" content="[Leetcode 329] Longest Increasing Path in a Matrix" />
+<meta property="og:description" content="Question Leetcode 329: Longest Increasing Path in a Matrix
+Given an integer matrix, find the length of the longest increasing path.
+From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
+Examples: Example 1: Input: nums = [ [9,9,4], [6,6,8], [2,1,1] ] Output: 4 Explanation: The longest increasing path is [1, 2, 6, 9]." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/frog_jump/" />
-<meta property="article:published_time" content="2019-05-01T16:44:51-07:00" />
-<meta property="article:modified_time" content="2019-05-01T16:44:51-07:00" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_329_longest_increasing_path_in_a_matrix/" />
+<meta property="article:published_time" content="2019-10-29T14:36:47-08:00" />
+<meta property="article:modified_time" content="2019-10-29T14:36:47-08:00" />
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Leetcode 403] Frog Jump"/>
-<meta name="twitter:description" content="Question Leetcode 403: Frog Jump
-A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
-Given a list of stones&rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone."/>
+<meta name="twitter:title" content="[Leetcode 329] Longest Increasing Path in a Matrix"/>
+<meta name="twitter:description" content="Question Leetcode 329: Longest Increasing Path in a Matrix
+Given an integer matrix, find the length of the longest increasing path.
+From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
+Examples: Example 1: Input: nums = [ [9,9,4], [6,6,8], [2,1,1] ] Output: 4 Explanation: The longest increasing path is [1, 2, 6, 9]."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -60,11 +62,16 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">[Leetcode 403] Frog Jump</h1>
+			<h1 class="post__title">[Leetcode 329] Longest Increasing Path in a Matrix</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-01T16:44:51">2019-05-01</time>
+	<time class="meta__text" datetime="2019-10-29T14:36:47">2019-10-29</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/" rel="category"></a></span>
 </div>
 </div>
 		</header><div class="content post__content clearfix">
@@ -72,94 +79,75 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/frog-jump/">Leetcode 403: Frog Jump</a></p>
+<p><a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/">Leetcode 329: Longest Increasing Path in a Matrix</a></p>
 
-<p>A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.</p>
+<p>Given an integer matrix, find the length of the longest increasing path.</p>
 
-<p>Given a list of stones&rsquo; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone. Initially, the frog is on the first stone and assume the first jump must be 1 unit.</p>
+<p>From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).</p>
 
-<p>If the frog&rsquo;s last jump was k units, then its next jump must be either k - 1, k, or k + 1 units. Note that the frog can only jump in the forward direction.</p>
+<h3 id="examples">Examples:</h3>
 
-<h3 id="note">Note:</h3>
+<pre><code>Example 1:
 
-<ol>
-<li>The number of stones is ≥ 2 and is &lt; 1,100.</li>
-<li>Each stone&rsquo;s position will be a non-negative integer &lt; 231.</li>
-<li>The first stone&rsquo;s position is always 0.</li>
-</ol>
+Input: nums = 
+[
+  [9,9,4],
+  [6,6,8],
+  [2,1,1]
+] 
+Output: 4 
+Explanation: The longest increasing path is [1, 2, 6, 9].
+Example 2:
 
-<h3 id="examples">Examples</h3>
-
-<p>Example 1:</p>
-
-<pre><code>[0,1,3,5,6,8,12,17]
-
-There are a total of 8 stones.
-The first stone at the 0th unit, second stone at the 1st unit,
-third stone at the 3rd unit, and so on...
-The last stone at the 17th unit.
-
-Return true. The frog can jump to the last stone by jumping 
-1 unit to the 2nd stone, then 2 units to the 3rd stone, then 
-2 units to the 4th stone, then 3 units to the 6th stone, 
-4 units to the 7th stone, and 5 units to the 8th stone.
-</code></pre>
-
-<p>Example 2:</p>
-
-<pre><code>[0,1,2,3,4,8,9,11]
-
-Return false. There is no way to jump to the last stone as 
-the gap between the 5th and 6th stone is too large.
+Input: nums = 
+[
+  [3,4,5],
+  [3,2,6],
+  [2,2,1]
+] 
+Output: 4 
+Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
 </code></pre>
 
 <h2 id="solution">Solution</h2>
 
 <h3 id="method-1">Method 1</h3>
 
-<p>At first glance this question reminds me <a href="https://github.com/ericliu03/blog.io/blob/master/content/posts/2019/04/longest_increasing_subsequence.md">longest increasing subsequence</a>. We can translate the stones into the vertices in the graph and then what we need to find out are the edges and whether there&rsquo;s a path between start and end vertex.</p>
+<p>本题最明显的接法肯定是使用DFS，但是如果对于每个起点都进行一遍DFS肯定复杂度太高。用一点点DP的思想来存下已经计算的结果就好了。</p>
 
-<p>At each vertex, to calculate the edges to next vertices, we will use the rule given by the question: <em>the difference between previous vertex and current vertex (plus -1, 0, 1)</em>.</p>
-
-<p>Since we start from the start stone, so if there&rsquo;s any vertex that&rsquo;s connected to the end vertex then it means we find a path.</p>
-
-<h4 id="code">Code</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">canCross</span>(stones) <span style="color:#f92672">-&gt;</span> bool:
-    <span style="color:#75715e"># jump sizes are the distance between previous stone to current stone</span>
-    jump_sizes <span style="color:#f92672">=</span> {}
-    <span style="color:#66d9ef">for</span> stone <span style="color:#f92672">in</span> stones:
-        jump_sizes[stone] <span style="color:#f92672">=</span> set()
+<p>注意的一点是找的是increasing path，所以如果在DFS的中间碰到之前走过的一个点，那么这个点存的最长长度的path一定和已经走的path没有重叠。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">longestIncreasingPath</span>(self, matrix: List[List[int]]) <span style="color:#f92672">-&gt;</span> int:
+        dirs <span style="color:#f92672">=</span> [(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>), (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)]    
+        lengths <span style="color:#f92672">=</span>[[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> len(matrix[<span style="color:#ae81ff">0</span>]) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(len(matrix))]
+    
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_length</span>(i,j):
+            <span style="color:#66d9ef">if</span> lengths[i][j] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">return</span> lengths[i][j]
+    
+            <span style="color:#66d9ef">for</span> dx, dy <span style="color:#f92672">in</span> dirs:
+                x <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> dx
+                y <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> dy
+                <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> x <span style="color:#f92672">&lt;</span> len(matrix) <span style="color:#f92672">and</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> y <span style="color:#f92672">&lt;</span> len(matrix[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">and</span> matrix[x][y] <span style="color:#f92672">&gt;</span> matrix[i][j]:
+                    lengths[i][j] <span style="color:#f92672">=</span> max(lengths[i][j], find_length(x, y))
+            lengths[i][j] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">return</span> lengths[i][j]
         
-    jump_sizes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>add(<span style="color:#ae81ff">0</span>)
-    <span style="color:#66d9ef">for</span> stone <span style="color:#f92672">in</span> stones:
-        <span style="color:#66d9ef">for</span> jump_size <span style="color:#f92672">in</span> jump_sizes[stone]:
-            <span style="color:#66d9ef">for</span> delta <span style="color:#f92672">in</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>):
-                next_jump <span style="color:#f92672">=</span> jump_size <span style="color:#f92672">+</span> delta
-                <span style="color:#75715e"># we use the distance between prev and curr stone to calculate next stone</span>
-                <span style="color:#75715e"># and add this new jump size to it&#39;s jump size set if next stone exists</span>
-                <span style="color:#66d9ef">if</span> stone <span style="color:#f92672">+</span> next_jump <span style="color:#f92672">in</span> jump_sizes <span style="color:#f92672">and</span> next_jump <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-                    jump_sizes[stone <span style="color:#f92672">+</span> next_jump]<span style="color:#f92672">.</span>add(next_jump)
+        max_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(matrix)):
+            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(matrix[i])):
+                max_len <span style="color:#f92672">=</span> max(max_len, find_length(i,j))
+        <span style="color:#66d9ef">return</span> max_len</code></pre></div>
+<h3 id="method-2">Method 2</h3>
 
-    <span style="color:#66d9ef">return</span> len(jump_sizes[stones[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span></code></pre></div>
-<h3 id="thoughts">Thoughts</h3>
-
-<ol>
-<li>the information stored could be in different formats, such as
-
-<ol>
-<li>previous stone&rsquo;s location</li>
-<li>jump distances used to jump to this stone (the one i chose)</li>
-<li>jump distances could be used in this stone to next stones</li>
-</ol></li>
-</ol>
+<p>另一个想法是把matrix想成一个有向图 directed graph，每个数会指向它上下左右的比他大的数。那么这个最长的path的起点一定是一个只有出度的数。所以进行 topological sort，在每个round的中先找出所有入度为0的数， 根据他们的边更新graph，就会有新的入度为0的数出现。每个round代表了path的长度加一。</p>
 
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/dp/" rel="tag">DP</a></li>
-		<li class="tags__item"><a class="tags__link btn" href="/tags/graph/" rel="tag">graph</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/hard/" rel="tag">hard</a></li>
 	</ul>
 </div>
 	</article>
@@ -179,10 +167,7 @@ the gap between the 5th and 6th stone is too large.
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/04/escape_a_large_maze/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Escape A Large Maze</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/05/k_empty_slots/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 683] K Empty Slots</p></a>
+		<a class="post-nav__link" href="/posts/2019/10/lc_678_valid_parenthesis_string/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 678] Valid Parenthesis String</p></a>
 	</div>
 </nav>
 
