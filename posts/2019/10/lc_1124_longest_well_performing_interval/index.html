@@ -4,25 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>[Leetcode 713] Subarray Product Less Than K - Yang&#39;s Blog</title>
+	<title>[Leetcode 1124] Longest_well_performing_interval - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="[Leetcode 713] Subarray Product Less Than K" />
-<meta property="og:description" content="Question Leetcode 713: Subarray Product Less Than K
-Your are given an array of positive integers nums.
-Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
-Return true if there exists i, j, k such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.  Note:  0 &lt; nums." />
+	<meta property="og:title" content="[Leetcode 1124] Longest_well_performing_interval" />
+<meta property="og:description" content="Question Leetcode 1124. Longest Well-Performing Interval
+We are given hours, a list of the number of hours worked per day for a given employee.
+A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8.
+A well-performing interval is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/" />
-<meta property="article:published_time" content="2019-10-18T16:01:42-07:00" />
-<meta property="article:modified_time" content="2019-10-18T16:01:42-07:00" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_1124_longest_well_performing_interval/" />
+<meta property="article:published_time" content="2020-01-06T21:34:46-08:00" />
+<meta property="article:modified_time" content="2020-01-06T21:34:46-08:00" />
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Leetcode 713] Subarray Product Less Than K"/>
-<meta name="twitter:description" content="Question Leetcode 713: Subarray Product Less Than K
-Your are given an array of positive integers nums.
-Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
-Return true if there exists i, j, k such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.  Note:  0 &lt; nums."/>
+<meta name="twitter:title" content="[Leetcode 1124] Longest_well_performing_interval"/>
+<meta name="twitter:description" content="Question Leetcode 1124. Longest Well-Performing Interval
+We are given hours, a list of the number of hours worked per day for a given employee.
+A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8.
+A well-performing interval is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -62,11 +62,11 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">[Leetcode 713] Subarray Product Less Than K</h1>
+			<h1 class="post__title">[Leetcode 1124] Longest_well_performing_interval</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-10-18T16:01:42">2019-10-18</time>
+	<time class="meta__text" datetime="2020-01-06T21:34:46">2020-01-06</time>
 </div>
 
 <div class="meta__item-categories meta__item">
@@ -79,100 +79,109 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/subarray-product-less-than-k/">Leetcode 713: Subarray Product Less Than K</a></p>
+<p><a href="https://leetcode.com/problems/longest-well-performing-interval/">Leetcode 1124. Longest Well-Performing Interval</a></p>
 
-<p>Your are given an array of positive integers <code>nums</code>.</p>
+<p>We are given hours, a list of the number of hours worked per day for a given employee.</p>
 
-<p>Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than <code>k</code>.</p>
+<p>A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8.</p>
 
-<pre><code>Return true if there exists i, j, k
-such that arr[i] &lt; arr[j] &lt; arr[k] given 0 ≤ i &lt; j &lt; k ≤ n-1 else return false.
-</code></pre>
+<p>A well-performing interval is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days.</p>
+
+<p>Return the length of the longest well-performing interval.</p>
 
 <h3 id="note">Note:</h3>
 
 <ol>
-<li>0 &lt; nums.length &lt;= 50000.</li>
-<li>0 &lt; nums[i] &lt; 1000.</li>
-<li>0 &lt;= k &lt; 10^6.</li>
+<li>1 &lt;= hours.length &lt;= 10000</li>
+<li>0 &lt;= hours[i] &lt;= 16</li>
 </ol>
 
 <h3 id="examples">Examples:</h3>
 
-<pre><code>Input: nums = [10, 5, 2, 6], k = 100
-Output: 8
-Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
-Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+<pre><code>Example 1:
+
+Input: hours = [9,9,6,0,6,6,9]
+Output: 3
+Explanation: The longest well-performing interval is [9,9,6].
 </code></pre>
 
 <h2 id="solution">Solution</h2>
 
-<p>本题一看就是双指针 sliding window。乘积小了right向右扩大window，大了left指针向右缩小window。问题在于</p>
-
-<ol>
-<li>怎么计算中间的可能乘积的数量。
-
-<ol>
-<li>每次left变动时计算，也即以left为开头的subarray可组成的乘积种类。比如right到了4时超过了k in <code>{1,2,3,4}</code>，那么这时我们需要变动left。可能的乘积组合就是 <code>{1,2,3}, {1,2}, {1}</code>。这样计算有个问题就是当right到头了之后，left依然需要往右，循环的condition很难搞清，或者需要两个循环。</li>
-<li>每次right变动时计算。因为right是所有数字都过了一遍，所以就能保证考虑到了以所有数字作为有边界的情况。</li>
-</ol></li>
-<li>如何定义left和right和window的边界的关系。
-
-<ol>
-<li>一般来说，我们双指针的时候会把window的边界都定义在左边：左边界在left的左边，有边界在right的左边。这样<code>right - left</code>就等于window的长度。但是本题如果用此方法就必须分开处理当<code>right=len(nums)</code>的情况，因为这时我们即不能再<code>nums[right]</code>，但又必须去计算<code>right - left</code>因为window的边界还是valid的。</li>
-<li>window的边界在left的左边和right的右边。</li>
-</ol></li>
-<li>sliding window 有时候会在循环里套循环来移动left，本质上和用if 然后在大循环中每次either移动left or right没有本质区别。</li>
-</ol>
-
 <h3 id="method-1">Method 1</h3>
 
-<p>用了一般的边界定义，可以看到在while循环里有if check。</p>
+<p>我最开始想的用sliding window，但是本题无法用此方法解决的原因是sliding window划过去了，信息就丢了。但是本题很有可能还需要前面的信息：可以这样想像，每出现一个累天，我们就可以往前多带一个非累天来增加总天数。</p>
+
+<p>之后就使用了accumulate sum，进行了O(n2)的算法来都试一遍，对于每个位置<code>i</code>，都看一下从开始到<code>i</code>的最长的符合条件的。accu_sum简化了检查这个步骤，但是n2少不了。TLE了。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">numSubarrayProductLessThanK</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
-        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-        left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        right <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">longestWPI</span>(self, hours: List[int]) <span style="color:#f92672">-&gt;</span> int:
+        tiring_days <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>]
+        curr_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> hour <span style="color:#f92672">in</span> hours:
+            curr_sum <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> hour <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">8</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+            tiring_days<span style="color:#f92672">.</span>append(curr_sum)
+        
         result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        curr_product <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">while</span> right <span style="color:#f92672">&lt;=</span> len(nums):
-            <span style="color:#66d9ef">while</span> curr_product <span style="color:#f92672">&gt;=</span> k <span style="color:#f92672">and</span> left <span style="color:#f92672">&lt;</span> right:
-                curr_product <span style="color:#f92672">/=</span> nums[left]
-                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-            
-            result <span style="color:#f92672">+=</span> right <span style="color:#f92672">-</span> left
-            <span style="color:#66d9ef">if</span> right <span style="color:#f92672">&lt;</span> len(nums):
-                curr_product <span style="color:#f92672">*=</span> nums[right]
-            right <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(tiring_days)):
+            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i):
+                <span style="color:#66d9ef">if</span> i <span style="color:#f92672">-</span> j <span style="color:#f92672">&lt;</span> (tiring_days[i] <span style="color:#f92672">-</span> tiring_days[j] ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>:
+                    result <span style="color:#f92672">=</span> max(result, i <span style="color:#f92672">-</span> j)
         <span style="color:#66d9ef">return</span> result</code></pre></div>
 <h3 id="method-2">Method 2</h3>
 
-<p>我们在for loop里最开始就把当前的right指向的数字加了进去，也就意味这right所指数字是在window内部的。所以在内部的while循环中，用了<code>left &lt;= right</code>，因为相等的时候window并不是空的。</p>
+<p>看了别人的解法之后学习到：我们可以把题目抽象为，累天+1，非累-1，求最长subarray that sum &gt; 0. 其中引用了一个数据结构 prefixSum，其实和accumulate sum是一个意思，保存了从起始到<code>i</code>的accumulate的和，但是和解法1的区别是，这里的和 &gt;0 就意味着subarray是valid的 （而之前是代表累天的总数量，还需要进一步计算是否valid）。</p>
+
+<p>而对于算法复杂度最关键的点就是，通过每次把这个和存下来，我们可以通过找之前的和来计算当前位置i的最长的valid的subarray的长度。</p>
+
+<ol>
+<li>对于位置<code>i</code>的<code>sum[i]</code>如果&lt;=0，就意味着前面包含的<code>-1</code>比<code>+1</code>多，如果位置 <code>j</code>（ <code>j&lt;i</code>）的<code>sum[j]</code>比位置<code>sum[i]</code>的还小，就说明<code>j</code>之前的*<code>-1</code>比<code>+1</code>多的数量<em>比<code>i</code>之前的更多，也就意味这<code>j-&gt;i</code>之间的</em><code>-1</code>比<code>+1</code>少*。</li>
+<li>我们把每一种和的最小的位置存在map, <code>seen = {}</code>里，这样对array scan的时候，从左往右，如果当前<code>i</code>的和<code>sum[i]&gt;0</code>那么当前就是最长的。如果小于等于0，我们找<code>sum[i] - 1</code>的位置<code>seen[sum[i]-1] -&gt; j</code>。那么subarray的长度就是<code>i-j</code></li>
+
+<li><p>之所以只看 <code>sum[i]-1</code>就够了，因为<code>sum[i]-x</code>，意味着从起始算起，-1比+1多了x个。但是能走到x一定是从1,2,&hellip;,x-1个加上去的。既然我们是找最长，自然就看最左边的那个，也就是只多了1的情况了。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">numSubarrayProductLessThanK</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
-        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>:
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-        left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        right <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        curr_product <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">for</span> right <span style="color:#f92672">in</span> range(len(nums)):
-            curr_product <span style="color:#f92672">*=</span> nums[right]
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">longestWPI</span>(self, hours: List[int]) <span style="color:#f92672">-&gt;</span> int:
+    first_saw <span style="color:#f92672">=</span> {}
 
-            <span style="color:#66d9ef">while</span> curr_product <span style="color:#f92672">&gt;=</span> k <span style="color:#f92672">and</span> left <span style="color:#f92672">&lt;=</span> right:
-                curr_product <span style="color:#f92672">/=</span> nums[left]
-                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-            result <span style="color:#f92672">+=</span> right <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> left
+    result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    curr_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> i, hour <span style="color:#f92672">in</span> enumerate(hours):
+        curr_sum <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> hour <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">8</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> curr_sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            result <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> curr_sum<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">in</span> first_saw:
+            result <span style="color:#f92672">=</span> max(result, i <span style="color:#f92672">-</span> first_saw[curr_sum<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
 
-        <span style="color:#66d9ef">return</span> result</code></pre></div>
+        first_saw<span style="color:#f92672">.</span>setdefault(curr_sum, i)
+    <span style="color:#66d9ef">return</span> result</code></pre></div></li>
+</ol>
+
+<p><code>setdefault(key, def_value): get(key) then if key not in map: map[key] = def_value</code></p>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>简化，抽象问题。本题一开始我用数数的方式来记录i到j之间超出的日子是否符合规范没有问题，没有剥离出本质，导致带的无用信息太多，容易把自己绕晕了。比如我用了</p>
+
+<pre><code>1.accumulate sum来记录当前正数天数有多少
+2.再用 s[i] - s[j]来计算中间的累天
+3. 最后再算累天*2是否小于i-j。
+</code></pre>
+
+<p>如果将题目抽象为，累天+1，非累天-1，那么就是sum[i]- sum[j]&gt;0。</p>
+
+<p>综合来看像是accumulate sum的变形应用。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+<li><a href="https://leetcode.com/problems/longest-well-performing-interval/discuss/334565/JavaC%2B%2BPython-O(N)-Solution-Life-needs-996-and-669">[Java/C++/Python] O(N) Solution, Life needs 996 and 669</a></li>
+<li><a href="https://www.geeksforgeeks.org/longest-subarray-with-sum-greater-than-equal-to-zero/">Longest Subarray with Sum greater than Equal to Zero</a></li>
+</ol>
+
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item"><a class="tags__link btn" href="/tags/medium/" rel="tag">medium</a></li>
-		<li class="tags__item"><a class="tags__link btn" href="/tags/sliding-window/" rel="tag">sliding window</a></li>
 	</ul>
 </div>
 	</article>
@@ -192,10 +201,7 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/10/lc_663_equal_tree_partition/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 663] Equal Tree Partition</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/10/lc_678_valid_parenthesis_string/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 678] Valid Parenthesis String</p></a>
+		<a class="post-nav__link" href="/posts/2019/10/lc_329_longest_increasing_path_in_a_matrix/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 329] Longest Increasing Path in a Matrix</p></a>
 	</div>
 </nav>
 
