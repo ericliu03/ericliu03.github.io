@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jan 2020 21:34:46 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 21:24:40 -0800</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Lc_955_delete_columns_to_make_sorted_ii</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_955_delete_columns_to_make_sorted_ii/</link>
+      <pubDate>Wed, 08 Jan 2020 21:24:40 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_955_delete_columns_to_make_sorted_ii/</guid>
+      <description>Question 955. Delete Columns to Make Sorted II
+We are given an array A of N lowercase letter strings, all of the same length.
+Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.
+For example, if we have an array A = [&amp;quot;abcdef&amp;quot;,&amp;quot;uvwxyz&amp;quot;] and deletion indices {0, 2, 3}, then the final array after deletions is [&amp;quot;bef&amp;quot;,&amp;quot;vyz&amp;quot;].</description>
+    </item>
     
     <item>
       <title>[Leetcode 1124] Longest Well Performing Interval</title>
@@ -56,17 +68,6 @@ Given a string containing only three types of characters: &#39;(&#39;, &#39;)&#3
 Your are given an array of positive integers nums.
 Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
 Return true if there exists i, j, k such that arr[i] &amp;lt; arr[j] &amp;lt; arr[k] given 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1 else return false.  Note:  0 &amp;lt; nums.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 663] Equal Tree Partition</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_663_equal_tree_partition/</link>
-      <pubDate>Tue, 15 Oct 2019 20:30:23 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_663_equal_tree_partition/</guid>
-      <description>Question Leetcode 663: Equal Tree Partition
-Given a binary tree with n nodes, your task is to check if it&amp;rsquo;s possible to partition the tree to two trees which have the equal sum of values after removing exactly one edge on the original tree.
-Return true if there exists i, j, k such that arr[i] &amp;lt; arr[j] &amp;lt; arr[k] given 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1 else return false.</description>
     </item>
     
   </channel>
