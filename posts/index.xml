@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 21:24:40 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2020 21:49:43 -0800</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 962] Maximum Width Ramp</title>
+      <link>https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/</link>
+      <pubDate>Fri, 10 Jan 2020 21:49:43 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/</guid>
+      <description>Question Leetcode 962. Maximum Width Ramp
+Given an array A of integers, a ramp is a tuple (i, j) for which i &amp;lt; j and A[i] &amp;lt;= A[j]. The width of such a ramp is j - i.
+Find the maximum width of a ramp in A. If one doesn&amp;rsquo;t exist, return 0.
+Note:  2 &amp;lt;= A.length &amp;lt;= 50000 0 &amp;lt;= A[i] &amp;lt;= 50000  Examples: Example 1: Input: [6,0,8,2,1,5] Output: 4 Explanation: The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5.</description>
+    </item>
     
     <item>
       <title>[Leetcode 955] Delete Columns to Make Sorted II</title>
@@ -56,18 +68,6 @@ Examples: Example 1: Input: nums = [ [9,9,4], [6,6,8], [2,1,1] ] Output: 4 Expla
       <description>Question Leetcode 678: Valid Parenthesis String
 Given a string containing only three types of characters: &#39;(&#39;, &#39;)&#39; and &#39;*&#39;, write a function to check whether this string is valid. We define the validity of a string by these rules:
  Any left parenthesis &#39;(&#39; must have a corresponding right parenthesis &#39;)&#39;. Any right parenthesis &#39;)&#39; must have a corresponding left parenthesis &#39;(&#39;. Left parenthesis &#39;(&#39; must go before the corresponding right parenthesis &#39;)&#39;.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 713] Subarray Product Less Than K</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/</link>
-      <pubDate>Fri, 18 Oct 2019 16:01:42 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_713_subarray_product_less_than_k/</guid>
-      <description>Question Leetcode 713: Subarray Product Less Than K
-Your are given an array of positive integers nums.
-Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
-Return true if there exists i, j, k such that arr[i] &amp;lt; arr[j] &amp;lt; arr[k] given 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1 else return false.  Note:  0 &amp;lt; nums.</description>
     </item>
     
   </channel>

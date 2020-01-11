@@ -4,25 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>[Leetcode 785] Is Graph Bipartite - Yang&#39;s Blog</title>
+	<title>[Leetcode 962] Maximum Width Ramp - Yang&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="[Leetcode 785] Is Graph Bipartite" />
-<meta property="og:description" content="Question Leetcode 785: Is Graph Bipartite?
-Given an undirected graph, return true if and only if it is bipartite.
-Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
-The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists." />
+	<meta property="og:title" content="[Leetcode 962] Maximum Width Ramp" />
+<meta property="og:description" content="Question Leetcode 962. Maximum Width Ramp
+Given an array A of integers, a ramp is a tuple (i, j) for which i &lt; j and A[i] &lt;= A[j]. The width of such a ramp is j - i.
+Find the maximum width of a ramp in A. If one doesn&rsquo;t exist, return 0.
+Note:  2 &lt;= A.length &lt;= 50000 0 &lt;= A[i] &lt;= 50000  Examples: Example 1: Input: [6,0,8,2,1,5] Output: 4 Explanation: The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ericliu03.github.io/posts/2019/05/lc_785_is_graph_bipartite/" />
-<meta property="article:published_time" content="2019-05-17T11:51:24-07:00" />
-<meta property="article:modified_time" content="2019-05-17T11:51:24-07:00" />
+<meta property="og:url" content="https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/" />
+<meta property="article:published_time" content="2020-01-10T21:49:43-08:00" />
+<meta property="article:modified_time" content="2020-01-10T21:49:43-08:00" />
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Leetcode 785] Is Graph Bipartite"/>
-<meta name="twitter:description" content="Question Leetcode 785: Is Graph Bipartite?
-Given an undirected graph, return true if and only if it is bipartite.
-Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
-The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists."/>
+<meta name="twitter:title" content="[Leetcode 962] Maximum Width Ramp"/>
+<meta name="twitter:description" content="Question Leetcode 962. Maximum Width Ramp
+Given an array A of integers, a ramp is a tuple (i, j) for which i &lt; j and A[i] &lt;= A[j]. The width of such a ramp is j - i.
+Find the maximum width of a ramp in A. If one doesn&rsquo;t exist, return 0.
+Note:  2 &lt;= A.length &lt;= 50000 0 &lt;= A[i] &lt;= 50000  Examples: Example 1: Input: [6,0,8,2,1,5] Output: 4 Explanation: The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -62,11 +62,11 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">[Leetcode 785] Is Graph Bipartite</h1>
+			<h1 class="post__title">[Leetcode 962] Maximum Width Ramp</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2019-05-17T11:51:24">2019-05-17</time>
+	<time class="meta__text" datetime="2020-01-10T21:49:43">2020-01-10</time>
 </div>
 
 <div class="meta__item-categories meta__item">
@@ -79,93 +79,95 @@ if (!doNotTrack) {
 
 <h2 id="question">Question</h2>
 
-<p><a href="https://leetcode.com/problems/is-graph-bipartite/">Leetcode 785: Is Graph Bipartite?</a></p>
+<p><a href="https://leetcode.com/problems/maximum-width-ramp/">Leetcode 962. Maximum Width Ramp</a></p>
 
-<p>Given an undirected <code>graph</code>, return <code>true</code> if and only if it is bipartite.</p>
+<p>Given an array A of integers, a ramp is a tuple (i, j) for which i &lt; j and A[i] &lt;= A[j].  The width of such a ramp is j - i.</p>
 
-<p>Recall that a graph is bipartite if we can split it&rsquo;s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.</p>
-
-<p>The graph is given in the following form: <code>graph[i]</code> is a list of indexes <code>j</code> for which the edge between nodes <code>i</code> and <code>j</code> exists.  Each node is an integer between <code>0</code> and <code>graph.length - 1</code>.  There are no self edges or parallel edges: <code>graph[i]</code> does not contain <code>i</code>, and it doesn&rsquo;t contain any element twice.</p>
+<p>Find the maximum width of a ramp in A.  If one doesn&rsquo;t exist, return 0.</p>
 
 <h3 id="note">Note:</h3>
 
 <ol>
-<li>graph will have length in range [1, 100].</li>
-<li>graph[i] will contain integers in range [0, graph.length - 1].</li>
-<li>graph[i] will not contain i or duplicate values.</li>
-<li>The graph is undirected: if any element j is in graph[i], then i will be in graph[j].</li>
+<li>2 &lt;= A.length &lt;= 50000</li>
+<li>0 &lt;= A[i] &lt;= 50000</li>
 </ol>
 
-<h3 id="examples">Examples</h3>
+<h3 id="examples">Examples:</h3>
 
-<p>Example 1:</p>
+<pre><code>Example 1:
 
-<pre><code>Input: [[1,3], [0,2], [1,3], [0,2]]
-Output: true
+Input: [6,0,8,2,1,5]
+Output: 4
 Explanation: 
-The graph looks like this:
-0----1
-|    |
-|    |
-3----2
-We can divide the vertices into two groups: {0, 2} and {1, 3}.
-</code></pre>
+The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5.
+Example 2:
 
-<p>Example 2:</p>
-
-<pre><code>Input: [[1,2,3], [0,2], [0,1,3], [0,2]]
-Output: false
+Input: [9,8,1,0,1,9,4,0,4,1]
+Output: 7
 Explanation: 
-The graph looks like this:
-0----1
-| \  |
-|  \ |
-3----2
-We cannot find a way to divide the set of nodes into two independent subsets.
+The maximum width ramp is achieved at (i, j) = (2, 9): A[2] = 1 and A[9] = 1.
 </code></pre>
 
 <h2 id="solution">Solution</h2>
 
 <h3 id="method-1">Method 1</h3>
 
-<p>Key:每个edge的两个vertex在不同的group -&gt; 任意一个vertex, <code>v</code>, 的所有neighbor都应该是与<code>v</code>在不同的group。</p>
+<p>最简单的就是按着题目给出的思路走，两层for loop一个一个试。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxWidthRamp</span>(self, A: List[int]) <span style="color:#f92672">-&gt;</span> int:
+        
+        result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(A)):
+            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(j):
+                <span style="color:#66d9ef">if</span> A[i] <span style="color:#f92672">&lt;=</span> A[j]:
+                    result <span style="color:#f92672">=</span> max(result, j<span style="color:#f92672">-</span>i)
+                    
+        <span style="color:#66d9ef">return</span> result</code></pre></div>
+<h3 id="method-2">Method 2</h3>
 
-<p>所以只需要dfs或者bfs走一遍，每次往neighbor走一个level时看看是不是访问过，如果有看下是不是相同group。bfs或者dfs的过程中，我们可以用一个map记录已经访问的vertex的group是什么。</p>
-
-<p>我认为需要注意的点:</p>
+<p>提示要用stack，自然就想到了用monostack。但是这题和之前讲的monostack的有变化</p>
 
 <ol>
-<li>有可能存在多个联通分量，所以需要从每个点都开始一次</li>
-<li>题目给的就是每个点的neighbor id，所以无需处理</li>
+<li>没有拿出的过程：对于每个来的新数，都要看一下是否比栈顶的小，如果小，那就是比stack所有的数字小，所以不可能和前面的数字配对，但是有可能会作为后面某个数的配对，所以要存下来。如果大，那么就要找出下标最小的又比新数小的那个数，（用二分可以logn），位置的距离就是可能的答案。但是，找到了也不能删除，因为有可能后边的数还要用到。</li>
+<li>每一个新的数据来了之后，都需要和stack中的所有数比较找出符合条件的那个，而不是只看栈顶。</li>
 </ol>
 
-<h4 id="code">Code</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>(object):
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isBipartite</span>(self, graph):
-        group <span style="color:#f92672">=</span> {}
-        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(graph)):
-            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> group:
-                <span style="color:#66d9ef">continue</span>
-            
-            queue <span style="color:#f92672">=</span> [i]
-            group[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-            <span style="color:#66d9ef">while</span> queue:
-                curr_node <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
-                <span style="color:#66d9ef">for</span> neighbor <span style="color:#f92672">in</span> graph[curr_node]:
-                    <span style="color:#66d9ef">if</span> neighbor <span style="color:#f92672">in</span> group:
-                        <span style="color:#66d9ef">if</span> group[neighbor] <span style="color:#f92672">==</span> group[curr_node]:
-                            <span style="color:#66d9ef">return</span> False
-                    <span style="color:#66d9ef">else</span>:
-                        queue<span style="color:#f92672">.</span>append(neighbor)
-                        group[neighbor] <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>group[curr_node]
-        <span style="color:#66d9ef">return</span> True</code></pre></div>
+<p>有一个优化，来源是：因为我们是找最大，也就是说当我们的monostack包含了全部数字之后，我们从右往左看，假设<code>A[j] where j = len(A)-1</code> 的时候<code>i&lt;j and A[i]&lt;=A[j]</code>，那么j-1就没有必要和i再比较了，因为<code>j-1 - i &lt; j-i</code>。所以对于j，我们找到最小的那个符合条件的i之后，在j到i之间的这些数字就不用在作为配对的左数来考虑了，因为一定小于<code>j-i</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">minDeletionSize</span>(self, A):
+        res, n, m <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, len(A), len(A[<span style="color:#ae81ff">0</span>])
+        unsorted <span style="color:#f92672">=</span> set(range(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(m):
+            <span style="color:#66d9ef">if</span> any(A[i][j] <span style="color:#f92672">&gt;</span> A[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][j] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> unsorted):
+                res <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                unsorted <span style="color:#f92672">-=</span> {i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> unsorted <span style="color:#66d9ef">if</span> A[i][j] <span style="color:#f92672">&lt;</span> A[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][j]}
+        <span style="color:#66d9ef">return</span> res</code></pre></div>
+<h3 id="thoughts">Thoughts</h3>
+
+<ol>
+<li>mono stack的活用，本题最终解法还是有些难度的。需要考虑
+
+<ol>
+<li>stack存的数字代表了什么</li>
+<li>每个新的数字来了如何处理</li>
+<li>找最大的性质</li>
+</ol></li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+<li><a href="https://leetcode.com/problems/maximum-width-ramp/discuss/208348/JavaC%2B%2BPython-O(N)-Using-Stack">[Java/C++/Python] O(N) Using Stack
+</a></li>
+</ol>
+
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/bfs/" rel="tag">bfs</a></li>
-		<li class="tags__item"><a class="tags__link btn" href="/tags/dfs/" rel="tag">dfs</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/stack/" rel="tag">stack</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/monostack/" rel="tag">monostack</a></li>
 	</ul>
 </div>
 	</article>
@@ -185,10 +187,7 @@ We cannot find a way to divide the set of nodes into two independent subsets.
 
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/2019/05/560_subarray_sum_equals_k/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 560] Subarray Sum Equals K</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/2019/05/lc_450_delete_node_in_a_bst/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">[Leetcode 450] Delete Node in a BST</p></a>
+		<a class="post-nav__link" href="/posts/2019/10/lc_955_delete_columns_to_make_sorted_ii/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">[Leetcode 955] Delete Columns to Make Sorted II</p></a>
 	</div>
 </nav>
 

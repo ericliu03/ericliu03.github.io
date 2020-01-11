@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>stack on Yang&#39;s Blog</title>
-    <link>https://ericliu03.github.io/tags/stack/</link>
-    <description>Recent content in stack on Yang&#39;s Blog</description>
+    <title>monostack on Yang&#39;s Blog</title>
+    <link>https://ericliu03.github.io/tags/monostack/</link>
+    <description>Recent content in monostack on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jan 2020 21:49:43 -0800</lastBuildDate>
     
-	<atom:link href="https://ericliu03.github.io/tags/stack/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ericliu03.github.io/tags/monostack/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,17 +21,6 @@
 Given an array A of integers, a ramp is a tuple (i, j) for which i &amp;lt; j and A[i] &amp;lt;= A[j]. The width of such a ramp is j - i.
 Find the maximum width of a ramp in A. If one doesn&amp;rsquo;t exist, return 0.
 Note:  2 &amp;lt;= A.length &amp;lt;= 50000 0 &amp;lt;= A[i] &amp;lt;= 50000  Examples: Example 1: Input: [6,0,8,2,1,5] Output: 4 Explanation: The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 975] Odd Even Jump</title>
-      <link>https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/</link>
-      <pubDate>Fri, 10 May 2019 09:59:57 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/05/lc_975_odd_even_jump/</guid>
-      <description>Question Leetcode 975: Odd Even Jump
-You are given an integer array A. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, &amp;hellip;) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, &amp;hellip;) jumps in the series are called even numbered jumps.
-You may from index i jump forward to index j (with i &amp;lt; j) in the following way:</description>
     </item>
     
   </channel>
