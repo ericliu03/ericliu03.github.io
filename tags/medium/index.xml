@@ -13,10 +13,10 @@
     
     <item>
       <title>[Leetcode 1124] Longest Well Performing Interval</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_1124_longest_well_performing_interval/</link>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_1124_longest_well_performing_interval/</link>
       <pubDate>Mon, 06 Jan 2020 21:34:46 -0800</pubDate>
       
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_1124_longest_well_performing_interval/</guid>
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_1124_longest_well_performing_interval/</guid>
       <description>Question Leetcode 1124. Longest Well-Performing Interval
 We are given hours, a list of the number of hours worked per day for a given employee.
 A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8.

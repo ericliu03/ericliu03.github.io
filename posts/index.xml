@@ -6,17 +6,42 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2020 21:49:43 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jan 2020 12:55:12 -0800</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>[Leetcode 117] Populating Next Right Pointers in Each Node II</title>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_117_populating_next_right_pointers_in_each_node_ii/</link>
+      <pubDate>Fri, 31 Jan 2020 12:55:12 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_117_populating_next_right_pointers_in_each_node_ii/</guid>
+      <description>Question 117. Populating Next Right Pointers in Each Node II
+Given a binary tree
+struct Node { int val; Node *left; Node *right; Node *next; }  Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+Initially, all next pointers are set to NULL.
+Follow up:  You may only use constant extra space.</description>
+    </item>
+    
+    <item>
+      <title>[Leetcode 134] Gas Station</title>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_134_gas_station/</link>
+      <pubDate>Wed, 29 Jan 2020 12:52:36 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_134_gas_station/</guid>
+      <description>Question 134. Gas Station
+There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
+You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
+Return the starting gas station&amp;rsquo;s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</description>
+    </item>
+    
+    <item>
       <title>[Leetcode 962] Maximum Width Ramp</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/</link>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_962_maximum_width_ramp/</link>
       <pubDate>Fri, 10 Jan 2020 21:49:43 -0800</pubDate>
       
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/</guid>
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_962_maximum_width_ramp/</guid>
       <description>Question Leetcode 962. Maximum Width Ramp
 Given an array A of integers, a ramp is a tuple (i, j) for which i &amp;lt; j and A[i] &amp;lt;= A[j]. The width of such a ramp is j - i.
 Find the maximum width of a ramp in A. If one doesn&amp;rsquo;t exist, return 0.
@@ -25,10 +50,10 @@ Note:  2 &amp;lt;= A.length &amp;lt;= 50000 0 &amp;lt;= A[i] &amp;lt;= 50000  Ex
     
     <item>
       <title>[Leetcode 955] Delete Columns to Make Sorted II</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_955_delete_columns_to_make_sorted_ii/</link>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_955_delete_columns_to_make_sorted_ii/</link>
       <pubDate>Wed, 08 Jan 2020 21:24:40 -0800</pubDate>
       
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_955_delete_columns_to_make_sorted_ii/</guid>
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_955_delete_columns_to_make_sorted_ii/</guid>
       <description>Question 955. Delete Columns to Make Sorted II
 We are given an array A of N lowercase letter strings, all of the same length.
 Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.
@@ -37,37 +62,14 @@ For example, if we have an array A = [&amp;quot;abcdef&amp;quot;,&amp;quot;uvwxy
     
     <item>
       <title>[Leetcode 1124] Longest Well Performing Interval</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_1124_longest_well_performing_interval/</link>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_1124_longest_well_performing_interval/</link>
       <pubDate>Mon, 06 Jan 2020 21:34:46 -0800</pubDate>
       
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_1124_longest_well_performing_interval/</guid>
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_1124_longest_well_performing_interval/</guid>
       <description>Question Leetcode 1124. Longest Well-Performing Interval
 We are given hours, a list of the number of hours worked per day for a given employee.
 A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8.
 A well-performing interval is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days.</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 329] Longest Increasing Path in a Matrix</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_329_longest_increasing_path_in_a_matrix/</link>
-      <pubDate>Tue, 29 Oct 2019 14:36:47 -0800</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_329_longest_increasing_path_in_a_matrix/</guid>
-      <description>Question Leetcode 329: Longest Increasing Path in a Matrix
-Given an integer matrix, find the length of the longest increasing path.
-From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
-Examples: Example 1: Input: nums = [ [9,9,4], [6,6,8], [2,1,1] ] Output: 4 Explanation: The longest increasing path is [1, 2, 6, 9].</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 678] Valid Parenthesis String</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_678_valid_parenthesis_string/</link>
-      <pubDate>Fri, 25 Oct 2019 11:34:38 -0700</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_678_valid_parenthesis_string/</guid>
-      <description>Question Leetcode 678: Valid Parenthesis String
-Given a string containing only three types of characters: &#39;(&#39;, &#39;)&#39; and &#39;*&#39;, write a function to check whether this string is valid. We define the validity of a string by these rules:
- Any left parenthesis &#39;(&#39; must have a corresponding right parenthesis &#39;)&#39;. Any right parenthesis &#39;)&#39; must have a corresponding left parenthesis &#39;(&#39;. Left parenthesis &#39;(&#39; must go before the corresponding right parenthesis &#39;)&#39;.</description>
     </item>
     
   </channel>

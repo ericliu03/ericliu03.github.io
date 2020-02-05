@@ -13,10 +13,10 @@
     
     <item>
       <title>[Leetcode 962] Maximum Width Ramp</title>
-      <link>https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/</link>
+      <link>https://ericliu03.github.io/posts/2020/01/lc_962_maximum_width_ramp/</link>
       <pubDate>Fri, 10 Jan 2020 21:49:43 -0800</pubDate>
       
-      <guid>https://ericliu03.github.io/posts/2019/10/lc_962_maximum_width_ramp/</guid>
+      <guid>https://ericliu03.github.io/posts/2020/01/lc_962_maximum_width_ramp/</guid>
       <description>Question Leetcode 962. Maximum Width Ramp
 Given an array A of integers, a ramp is a tuple (i, j) for which i &amp;lt; j and A[i] &amp;lt;= A[j]. The width of such a ramp is j - i.
 Find the maximum width of a ramp in A. If one doesn&amp;rsquo;t exist, return 0.
