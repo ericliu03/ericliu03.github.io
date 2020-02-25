@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>binary on Yang&#39;s Blog</title>
+    <link>https://ericliu03.github.io/tags/binary/</link>
+    <description>Recent content in binary on Yang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Feb 2020 21:45:10 -0800</lastBuildDate>
+    
+	<atom:link href="https://ericliu03.github.io/tags/binary/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Leetcode 655] Print Binary Tree</title>
+      <link>https://ericliu03.github.io/posts/2020/02/lc_655_print_binary_tree/</link>
+      <pubDate>Mon, 24 Feb 2020 21:45:10 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2020/02/lc_655_print_binary_tree/</guid>
+      <description>Question 655. Print Binary Tree
+Print a binary tree in an m*n 2D string array following these rules:
+ The row number m should be equal to the height of the given binary tree. The column number n should always be an odd number. The root node&amp;rsquo;s value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part).</description>
+    </item>
+    
+  </channel>
+</rss>

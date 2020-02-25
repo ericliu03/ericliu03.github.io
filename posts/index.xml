@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Yang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Jan 2020 12:55:12 -0800</lastBuildDate>
+    <lastBuildDate>Mon, 24 Feb 2020 21:45:10 -0800</lastBuildDate>
     
 	<atom:link href="https://ericliu03.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Leetcode 655] Print Binary Tree</title>
+      <link>https://ericliu03.github.io/posts/2020/02/lc_655_print_binary_tree/</link>
+      <pubDate>Mon, 24 Feb 2020 21:45:10 -0800</pubDate>
+      
+      <guid>https://ericliu03.github.io/posts/2020/02/lc_655_print_binary_tree/</guid>
+      <description>Question 655. Print Binary Tree
+Print a binary tree in an m*n 2D string array following these rules:
+ The row number m should be equal to the height of the given binary tree. The column number n should always be an odd number. The root node&amp;rsquo;s value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part).</description>
+    </item>
     
     <item>
       <title>[Leetcode 117] Populating Next Right Pointers in Each Node II</title>
@@ -58,18 +69,6 @@ Note:  2 &amp;lt;= A.length &amp;lt;= 50000 0 &amp;lt;= A[i] &amp;lt;= 50000  Ex
 We are given an array A of N lowercase letter strings, all of the same length.
 Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.
 For example, if we have an array A = [&amp;quot;abcdef&amp;quot;,&amp;quot;uvwxyz&amp;quot;] and deletion indices {0, 2, 3}, then the final array after deletions is [&amp;quot;bef&amp;quot;,&amp;quot;vyz&amp;quot;].</description>
-    </item>
-    
-    <item>
-      <title>[Leetcode 1124] Longest Well Performing Interval</title>
-      <link>https://ericliu03.github.io/posts/2020/01/lc_1124_longest_well_performing_interval/</link>
-      <pubDate>Mon, 06 Jan 2020 21:34:46 -0800</pubDate>
-      
-      <guid>https://ericliu03.github.io/posts/2020/01/lc_1124_longest_well_performing_interval/</guid>
-      <description>Question Leetcode 1124. Longest Well-Performing Interval
-We are given hours, a list of the number of hours worked per day for a given employee.
-A day is considered to be a tiring day if and only if the number of hours worked is (strictly) greater than 8.
-A well-performing interval is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days.</description>
     </item>
     
   </channel>
